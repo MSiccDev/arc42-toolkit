@@ -24,7 +24,7 @@ Invoke a skill using the slash command for your tool:
 | Codex / ChatGPT | Reference the skill file or paste its content |
 | Cursor | Reference the skill file in composer context |
 
-Skills live in `.claude/commands/`. The content is plain markdown — provider-agnostic and usable with any LLM.
+Skills live in `.agents/`. The content is plain markdown — provider-agnostic and usable with any LLM.
 
 ## Available Skills
 
@@ -79,7 +79,7 @@ Full model: [quality.arc42.org](https://quality.arc42.org)
 
 ```
 AGENT.md                          # This file — AI assistant context
-.claude/commands/                 # Skills (provider-agnostic markdown)
+.agents/                          # Skills (provider-agnostic markdown)
 │   arc42-section-01.md           # Introduction and Goals
 │   arc42-section-02.md           # Constraints
 │   arc42-section-03.md           # Context and Scope
