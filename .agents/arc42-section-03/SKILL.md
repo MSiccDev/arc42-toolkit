@@ -67,10 +67,12 @@ Once all answers are in, produce Section 3. Always include the business context.
 
 ### Context Diagram
 
-Use C4 PlantUML for the context diagram:
+Use C4 PlantUML for the context diagram. **Save the diagram as a separate file at `docs/diagrams/context-business.puml`** and reference it in the documentation — do not inline the PlantUML source in the section text.
+
+File to create: `docs/diagrams/context-business.puml`
 
 ```plantuml
-@startuml [System Name] Context
+@startuml context-business
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 
 title System Context: [System Name]
@@ -87,8 +89,15 @@ Rel(systemC, system, "Sends events to", "[data exchanged]")
 @enduml
 ```
 
-> Generate the diagram using the actual system name and actors from the user's answers.
+Reference in the section markdown:
+
+```markdown
+![Business Context](diagrams/context-business.puml)
+```
+
+> Generate the diagram content using the actual system name and actors from the user's answers.
 > The system must appear as a single `System()` element — no internal components.
+> If a `docs/diagrams/` folder does not yet exist, instruct the user to create it.
 
 ### External Interfaces
 

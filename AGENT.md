@@ -67,6 +67,21 @@ These are the most common consistency traps — watch for them across all sectio
 - Section 4 key decisions → each should have a detailed ADR in Section 9
 - Section 9 ADRs → failed decisions become Section 11 risks
 
+## Diagram Convention
+
+All PlantUML diagrams use **C4 PlantUML** notation and are stored as individual `.puml` files in `docs/diagrams/`. They are never inlined in the section markdown — only referenced.
+
+| Diagram | File |
+|---------|------|
+| Business context (§3) | `docs/diagrams/context-business.puml` |
+| Technical context (§3) | `docs/diagrams/context-technical.puml` |
+| Building block Level-1 (§5) | `docs/diagrams/building-blocks-level1.puml` |
+| Building block Level-2+ (§5) | `docs/diagrams/building-blocks-level2-[name].puml` |
+| Runtime scenario (§6) | `docs/diagrams/runtime-[scenario-name].puml` |
+| Deployment (§7) | `docs/diagrams/deployment-[environment].puml` |
+
+Reference diagrams in markdown as: `![Title](diagrams/[filename].puml)`
+
 ## Q42 Quality Properties
 
 Use these tags for quality goals (Section 1.2, Section 10):
