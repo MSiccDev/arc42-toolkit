@@ -67,25 +67,49 @@ Once all answers are in, produce Section 3. Always include the business context.
 
 ### Context Diagram
 
-[ASCII diagram — system as a single central box, all external actors surrounding it, labeled arrows showing data flow direction and content]
+Use PlantUML for the context diagram. Two notation options — choose based on project preference:
 
-Example structure:
-┌──────────┐  [data out]   ┌──────────────────┐  [data in]   ┌─────────────┐
-│ Actor A  │ ◄──────────── │                  │ ◄─────────── │  System B   │
-│          │ ──────────── ►│  [System Name]   │ ─────────── ►│             │
-└──────────┘  [data in]    │                  │  [data out]  └─────────────┘
-                           └──────────────────┘
-                                    │
-                           [data out]│
-                                    ▼
-                           ┌────────────────┐
-                           │   System C     │
-                           └────────────────┘
+**Option A — C4 PlantUML (recommended, most expressive for context views):**
 
-Legend:
-- [System Name] — the system being documented (single box, no internals)
-- External boxes — actors, users, or systems outside the system boundary
-- ──► — data flow with direction and brief label
+```plantuml
+@startuml [System Name] Context
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title System Context: [System Name]
+
+Person(actorA, "Actor A", "Brief description")
+System(system, "[System Name]", "Brief system description")
+System_Ext(systemB, "System B", "Brief description")
+System_Ext(systemC, "System C", "Brief description")
+
+Rel(actorA, system, "Uses", "[data exchanged]")
+Rel(system, systemB, "Calls", "[data exchanged]")
+Rel(systemC, system, "Sends events to", "[data exchanged]")
+
+@enduml
+```
+
+**Option B — Standard PlantUML (no external dependency):**
+
+```plantuml
+@startuml [System Name] Context
+title System Context: [System Name]
+
+actor "Actor A" as actorA
+rectangle "[System Name]" as system #lightblue
+rectangle "System B" as systemB
+rectangle "System C" as systemC
+
+actorA --> system : [data in]
+system --> actorA : [data out]
+system --> systemB : [data out]
+systemC --> system : [data in]
+
+@enduml
+```
+
+> Generate the diagram using the actual system name and actors from the user's answers.
+> The system must appear as a single element — no internal components.
 
 ### External Interfaces
 
@@ -130,7 +154,7 @@ Legend:
 After presenting the draft, work through this checklist. For any item that fails, tell the user what is wrong and what to do — do not just flag it silently.
 
 **Context diagram:**
-- [ ] System is shown as a single box with no internal components visible → if internal components appear, move them to Section 5 and redraw
+- [ ] System is shown as a single element with no internal components visible → if internal components appear, move them to Section 5 and redraw the diagram
 - [ ] Every external actor from questions 2 and 3 appears in the diagram → if any are missing, add them
 - [ ] All arrows have direction and a brief data label → if any are unlabelled, ask the user what is exchanged
 - [ ] System boundary is unambiguous — clear what is inside vs. outside
