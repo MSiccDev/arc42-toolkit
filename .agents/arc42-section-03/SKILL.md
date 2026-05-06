@@ -67,9 +67,7 @@ Once all answers are in, produce Section 3. Always include the business context.
 
 ### Context Diagram
 
-Use PlantUML for the context diagram. Two notation options — choose based on project preference:
-
-**Option A — C4 PlantUML (recommended, most expressive for context views):**
+Use C4 PlantUML for the context diagram:
 
 ```plantuml
 @startuml [System Name] Context
@@ -89,27 +87,8 @@ Rel(systemC, system, "Sends events to", "[data exchanged]")
 @enduml
 ```
 
-**Option B — Standard PlantUML (no external dependency):**
-
-```plantuml
-@startuml [System Name] Context
-title System Context: [System Name]
-
-actor "Actor A" as actorA
-rectangle "[System Name]" as system #lightblue
-rectangle "System B" as systemB
-rectangle "System C" as systemC
-
-actorA --> system : [data in]
-system --> actorA : [data out]
-system --> systemB : [data out]
-systemC --> system : [data in]
-
-@enduml
-```
-
 > Generate the diagram using the actual system name and actors from the user's answers.
-> The system must appear as a single element — no internal components.
+> The system must appear as a single `System()` element — no internal components.
 
 ### External Interfaces
 
