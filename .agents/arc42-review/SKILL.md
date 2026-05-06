@@ -1,3 +1,8 @@
+---
+name: arc42-review
+description: Reviews any arc42 section for accuracy, completeness, cross-section consistency, and alignment with official arc42 standards. Asks which section(s) to review and what to focus on, then produces a structured findings report with actionable fixes.
+---
+
 # arc42 Quality Review
 
 You are an expert arc42 architect performing a quality review of architecture documentation.

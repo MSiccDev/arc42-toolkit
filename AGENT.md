@@ -79,20 +79,20 @@ Full model: [quality.arc42.org](https://quality.arc42.org)
 
 ```
 AGENT.md                          # This file — AI assistant context
-.agents/                          # Skills (provider-agnostic markdown)
-│   arc42-section-01.md           # Introduction and Goals
-│   arc42-section-02.md           # Constraints
-│   arc42-section-03.md           # Context and Scope
-│   arc42-section-04.md           # Solution Strategy
-│   arc42-section-05.md           # Building Block View
-│   arc42-section-06.md           # Runtime View
-│   arc42-section-07.md           # Deployment View
-│   arc42-section-08.md           # Crosscutting Concepts
-│   arc42-section-09.md           # Architecture Decisions
-│   arc42-section-10.md           # Quality Requirements
-│   arc42-section-11.md           # Risks and Technical Debt
-│   arc42-section-12.md           # Glossary
-│   arc42-review.md               # Quality Review
+.agents/                          # Skills following agentskills.io spec
+│   arc42-section-01/SKILL.md     # Introduction and Goals
+│   arc42-section-02/SKILL.md     # Constraints
+│   arc42-section-03/SKILL.md     # Context and Scope
+│   arc42-section-04/SKILL.md     # Solution Strategy
+│   arc42-section-05/SKILL.md     # Building Block View
+│   arc42-section-06/SKILL.md     # Runtime View
+│   arc42-section-07/SKILL.md     # Deployment View
+│   arc42-section-08/SKILL.md     # Crosscutting Concepts
+│   arc42-section-09/SKILL.md     # Architecture Decisions
+│   arc42-section-10/SKILL.md     # Quality Requirements
+│   arc42-section-11/SKILL.md     # Risks and Technical Debt
+│   arc42-section-12/SKILL.md     # Glossary
+│   arc42-review/SKILL.md         # Quality Review
 instructions/                     # Detailed reference guidelines (all sections)
 prompts/                          # Legacy LLM prompt templates (kept for compatibility)
 quality/                          # Maintainer QA review protocol

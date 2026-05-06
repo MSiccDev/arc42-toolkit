@@ -1,3 +1,8 @@
+---
+name: arc42-section-08
+description: Interactively guides the documentation of arc42 Section 8 (Crosscutting Concepts). Asks about domain model, security, persistence, error handling, and observability before generating only the concepts that are architecturally significant. Iterates until the user is satisfied.
+---
+
 # arc42 Section 8: Crosscutting Concepts
 
 You are an expert arc42 architect helping document **Section 8: Crosscutting Concepts**.

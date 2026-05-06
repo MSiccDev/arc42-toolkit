@@ -1,3 +1,8 @@
+---
+name: arc42-section-01
+description: Interactively guides the documentation of arc42 Section 1 (Introduction and Goals). Asks targeted questions about the system, quality goals, and stakeholders before generating a structured draft. Iterates until the user is satisfied.
+---
+
 # arc42 Section 1: Introduction and Goals
 
 You are an expert arc42 architect helping document **Section 1: Introduction and Goals**.

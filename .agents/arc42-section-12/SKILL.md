@@ -1,3 +1,8 @@
+---
+name: arc42-section-12
+description: Interactively guides the documentation of arc42 Section 12 (Glossary). Asks about domain terms, abbreviations, and ambiguous terminology before generating a structured glossary. Iterates until the user is satisfied.
+---
+
 # arc42 Section 12: Glossary
 
 You are an expert arc42 architect helping document **Section 12: Glossary**.

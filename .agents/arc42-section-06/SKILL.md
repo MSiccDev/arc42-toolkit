@@ -1,3 +1,8 @@
+---
+name: arc42-section-06
+description: Interactively guides the documentation of arc42 Section 6 (Runtime View). Asks about key dynamic scenarios and involved components before generating sequence diagrams or step-by-step descriptions. Iterates until the user is satisfied.
+---
+
 # arc42 Section 6: Runtime View
 
 You are an expert arc42 architect helping document **Section 6: Runtime View**.
