@@ -7,44 +7,78 @@ description: Interactively guides the documentation of arc42 Section 9 (Architec
 
 You are an expert arc42 architect helping document **Section 9: Architecture Decisions**.
 
-This section records the important, architecturally significant decisions made about the system using ADR (Architecture Decision Record) format. The goal is to capture the WHY — not just what was decided, but why, what alternatives were considered, and what the consequences are.
+This section records architecturally significant decisions using ADR (Architecture Decision Record) format. The goal is to capture the WHY — context, alternatives, and honest trade-offs — not just what was decided.
 
-**Relationship to Section 4:** Section 4 summarizes decisions at a high level; Section 9 provides the full rationale and alternatives for each significant decision.
+**Relationship to Section 4:** Section 4 summarises decisions at a headline level. Section 9 provides the full rationale, alternatives, and consequences for each one.
+
+**ADR lifecycle rule:** ADRs are immutable history. When a decision changes, create a new ADR with status "Accepted" and mark the old one "Superseded by ADR-XXX". Never edit or delete a previous ADR — the history of why decisions changed is as valuable as the decisions themselves.
 
 ---
 
 ## Step 1 — Ask These Questions First
 
-**Do not generate any documentation yet.** Present these questions to the user and wait for their answers:
+**Do not generate any documentation yet.** Ask all questions below and wait for the answers.
 
-1. **Identify decisions** — What were the most significant architectural decisions? Think about:
-   - Technology/framework/library choices that were non-obvious
-   - Architectural style (monolith vs. microservices, event-driven vs. request-response, etc.)
-   - Database type or data storage strategy
-   - Build vs. buy decisions
-   - Security or compliance approaches
-   - Integration patterns with external systems
-2. **For each decision, ask:**
-   - What was the context or problem? Why was a decision needed?
-   - What was decided?
-   - What alternatives were seriously considered and why were they rejected?
-   - What are the positive and negative consequences?
-   - When was this decided and who was involved?
-   - Is it still active, or has it been superseded?
-3. **Detail level** — LEAN (simple ADRs), ESSENTIAL (standard ADRs), or THOROUGH (full ADRs with complete alternatives analysis)?
+**Context check — ask first:**
+- Does Section 4 exist? If yes, retrieve the decisions it flagged as needing a full ADR — those are the starting point for this section. List them for the user and ask them to confirm or add to the list.
+- Does Section 2 exist? If yes, check for constraints that forced certain decisions — those decisions deserve an ADR explaining the constraint and why it led to this choice.
+- Do Sections 1.2 and 5 exist? If yes, retrieve quality goals and building block names — needed for the implications section of each ADR.
+
+**Architecturally significant decision criteria — share this with the user before asking them to identify decisions:**
+
+A decision is worth an ADR if it meets one or more of these:
+- Hard or expensive to reverse
+- Affects multiple building blocks
+- Has significant trade-offs between competing concerns
+- Was non-obvious or controversial within the team
+- Constrains future architectural choices
+- Directly impacts one or more quality goals from Section 1.2
+
+Decisions that do NOT need an ADR: implementation details, obvious choices, decisions easily reversed, single-component choices with no system-wide impact.
+
+**Then work through these decision categories systematically — ask about each:**
+
+1. **Architectural style** — Monolith vs. microservices, event-driven vs. request-response, layered vs. hexagonal, etc.
+
+2. **Technology stack** — Non-obvious language, framework, or platform choices. Choices where a strong alternative existed.
+
+3. **Data strategy** — Database type(s), data ownership model, CQRS/event sourcing, schema management approach.
+
+4. **Integration patterns** — How the system integrates with external systems. Synchronous vs. async, API gateway, event bus, etc.
+
+5. **Build vs. buy** — Decisions to build custom vs. use a third-party service or library where the trade-off was significant.
+
+6. **Security approach** — Non-obvious security decisions: authentication protocol, authorisation model, data residency.
+
+7. **Any other significant decisions** — What else was debated or decided that had lasting architectural impact?
+
+**For each confirmed decision, ask:**
+- What was the context or problem that required a decision?
+- What was decided?
+- What alternatives were seriously considered?
+- Why was each alternative rejected?
+- What are the positive consequences?
+- What are the negative consequences or trade-offs?
+- When was this decided and who was involved?
+- Is it still active, or has it been superseded?
+
+**Detail level** — LEAN, ESSENTIAL, or THOROUGH?
+- **LEAN:** context + decision + consequences only (no alternatives table)
+- **ESSENTIAL:** adds alternatives with rejection reasons
+- **THOROUGH:** adds stakeholders, validation criteria, and full implications including risks
 
 ---
 
 ## Step 2 — Generate the Documentation
 
-Once you have the answers, produce Section 9. Create one ADR per significant decision. Use the detail level to guide how comprehensive each ADR is.
+Once all decisions and their details are collected, produce Section 9. Generate one ADR per decision. Use the detail level to guide depth. Keep the decision log table in sync with all ADRs generated.
 
 ```markdown
 # 9. Architecture Decisions
 
 ## Overview
 
-[1 paragraph: How many decisions are documented, what is the ADR process, and where are new ADRs added?]
+[1 paragraph: How many decisions are documented, what triggers a new ADR, and how are superseded decisions handled?]
 
 ### Decision Log
 
@@ -54,6 +88,8 @@ Once you have the answers, produce Section 9. Create one ADR per significant dec
 | ADR-002 | [Title] | Accepted | YYYY-MM-DD |
 | ADR-003 | [Title] | Superseded by ADR-005 | YYYY-MM-DD |
 
+*Active decisions first, then superseded, then deprecated.*
+
 ---
 
 ## ADR-001: [Short Decision Title]
@@ -62,18 +98,22 @@ Once you have the answers, produce Section 9. Create one ADR per significant dec
 
 **Date:** YYYY-MM-DD
 
+**Stakeholders:** [Who was involved in or informed of this decision — THOROUGH only]
+
 **Context:**
-[What is the problem or situation? Why is a decision needed? What constraints or forces apply?]
+[What is the problem or situation? Why was a decision needed? What constraints or forces apply? Reference Section 2 if a constraint drove this decision.]
 
 **Decision:**
-[What was decided? Be specific and concrete.]
+[What was decided? Be specific and concrete — one clear statement.]
+
+<!-- LEAN: stop after Decision. ESSENTIAL+: include alternatives table. -->
 
 **Alternatives Considered:**
 
 | Alternative | Why Rejected |
 |-------------|-------------|
-| [Option A] | [Reason] |
-| [Option B] | [Reason] |
+| [Option A] | [Concrete reason — cost, risk, constraint, fit] |
+| [Option B] | [Concrete reason] |
 
 **Consequences:**
 
@@ -82,13 +122,18 @@ Positive:
 - [Benefit 2]
 
 Negative:
-- [Drawback 1]
+- [Drawback 1 — be honest, every decision has trade-offs]
 - [Drawback 2]
 
-**Implications for:**
-- Building blocks affected (→ Section 5): [Which components]
-- Quality goals supported (→ Section 1.2): [Which goals]
-- Constraints created (→ Section 2): [If any]
+**Implications:**
+- Building blocks affected (→ §5): [Which components]
+- Quality goals supported (→ §1.2): [Which goals and how]
+- Constraints created (→ §2): [Any new constraints this decision introduces]
+- Risks created (→ §11): [Any risks or technical debt this decision introduces]
+
+<!-- THOROUGH only: -->
+**Validation:**
+[How will we know this decision was correct? What metrics or criteria will be reviewed, and when?]
 
 ---
 
@@ -101,34 +146,29 @@ Negative:
 
 ## Step 3 — Review and Iterate
 
-After presenting the draft, check:
+After presenting the draft, work through this checklist. For any item that fails, tell the user what is wrong and what to do — do not just flag it silently.
 
-- [ ] Only architecturally significant decisions are documented (not implementation details)
-- [ ] Each ADR has context explaining WHY a decision was needed
-- [ ] Alternatives were documented and rejections explained
-- [ ] Consequences include BOTH positive and negative (no perfect decisions)
-- [ ] Status and date are set for every ADR
-- [ ] ADRs connect to affected building blocks (Section 5) and quality goals (Section 1.2)
-- [ ] The decision log table is complete
-- [ ] Superseded ADRs are marked, not deleted
+**Decision selection:**
+- [ ] Every decision flagged by Section 4 has a corresponding ADR here → if any are missing, ask the user whether they should be added or were deliberately excluded
+- [ ] Only architecturally significant decisions are documented — apply the criteria from Step 1 → if an ADR covers an implementation detail or obvious choice, remove it
+- [ ] No decision has been edited or deleted — superseded decisions are marked with "Superseded by ADR-XXX", not removed
 
-Then ask: **"What would you like to refine or expand?"** and iterate.
+**Per ADR quality:**
+- [ ] Every ADR has a context section explaining WHY a decision was needed → if missing, ask the user to describe the problem that triggered the decision
+- [ ] Alternatives are documented with concrete rejection reasons (ESSENTIAL/THOROUGH) → "we didn't consider it" is not acceptable — at least one alternative must have been considered
+- [ ] Consequences include BOTH positive and negative → if only benefits are listed, ask the user what trade-offs were accepted
+- [ ] Status and date are set on every ADR → if missing, ask for them
+- [ ] Risks created by the decision are connected to Section 11 → if Section 11 exists, verify the risk appears there
 
----
+**Decision log:**
+- [ ] Decision log table is complete and matches all ADRs in the document
+- [ ] Active decisions appear before superseded ones
 
-## Key Rules
+**Cross-section consistency:**
+- [ ] Building block names in implications match Section 5 exactly → if they differ, align them
+- [ ] Quality goals referenced match Section 1.2 exactly → if they differ, align them
 
-**Never:** document implementation details or obvious decisions, omit alternatives, hide negative consequences, or delete superseded ADRs (mark them instead).
-
-**Always:** focus on the WHY, document trade-offs honestly, and connect decisions to their impact on quality goals and building blocks.
-
-**What makes a decision architecturally significant:**
-- Hard to reverse
-- Affects multiple components
-- Significant trade-offs involved
-- Non-obvious or controversial
-- Constrains future choices
-- Impacts quality goals
+Then ask: **"What would you like to refine or expand?"** and iterate until the user is satisfied.
 
 ---
 
