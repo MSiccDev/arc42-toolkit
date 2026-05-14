@@ -49,22 +49,9 @@ This section documents the static decomposition of the system into building bloc
 
 Once all answers are in, produce Section 5. Always generate Level-1 first. Add black-box descriptions for ESSENTIAL and THOROUGH. Add Level-2 only for components identified in question 6.
 
-All diagrams go in `docs/diagrams/` as separate `.puml` files per the project convention. Reference them in the markdown, never inline the source.
+All diagrams go in `docs/diagrams/` as separate `.puml` files. Reference them in the section markdown — never inline the source.
 
-```markdown
-# 5. Building Block View
-
-## Overview
-
-[1–2 paragraphs: What decomposition strategy is used? How does this structure support the quality goals from Section 1.2 and the solution strategy from Section 4?]
-
----
-
-## 5.1 Level 1: Overall System (White-box) — MANDATORY
-
-### Structure Diagram
-
-File: `docs/diagrams/building-blocks-level1.puml`
+**Level-1 diagram file** — write to `docs/diagrams/building-blocks-level1.puml`. Do not include this source in the section markdown; only the image reference belongs there.
 
 ```plantuml
 @startuml building-blocks-level1
@@ -87,6 +74,37 @@ Rel(comp3, systemB, "Sends data to", "IF-02 [protocol]")
 
 @enduml
 ```
+
+**Level-2 diagram file** (THOROUGH, per complex component) — write to `docs/diagrams/building-blocks-level2-[component-name].puml`. Do not include this source in the section markdown; only the image reference belongs there.
+
+```plantuml
+@startuml building-blocks-level2-[component-name]
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Building Block View — Level 2: [Component Name]
+
+Container_Boundary(comp, "[Component Name]") {
+    Component(sub1, "Sub-component 1", "[Technology]", "Responsibility")
+    Component(sub2, "Sub-component 2", "[Technology]", "Responsibility")
+}
+
+Rel(sub1, sub2, "Calls", "[protocol]")
+
+@enduml
+```
+
+```markdown
+# 5. Building Block View
+
+## Overview
+
+[1–2 paragraphs: What decomposition strategy is used? How does this structure support the quality goals from Section 1.2 and the solution strategy from Section 4?]
+
+---
+
+## 5.1 Level 1: Overall System (White-box) — MANDATORY
+
+### Structure Diagram
 
 ![Building Block View Level 1](diagrams/building-blocks-level1.puml)
 
@@ -138,24 +156,6 @@ Rel(comp3, systemB, "Sends data to", "IF-02 [protocol]")
 **Motivation:** [Why is this component complex enough to refine? What would a developer miss from the black-box description alone?]
 
 ### Structure Diagram
-
-File: `docs/diagrams/building-blocks-level2-[component-name].puml`
-
-```plantuml
-@startuml building-blocks-level2-[component-name]
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
-
-title Building Block View — Level 2: [Component Name]
-
-Container_Boundary(comp, "[Component Name]") {
-    Component(sub1, "Sub-component 1", "[Technology]", "Responsibility")
-    Component(sub2, "Sub-component 2", "[Technology]", "Responsibility")
-}
-
-Rel(sub1, sub2, "Calls", "[protocol]")
-
-@enduml
-```
 
 ![Building Block View Level 2 — [Component Name]](diagrams/building-blocks-level2-[component-name].puml)
 

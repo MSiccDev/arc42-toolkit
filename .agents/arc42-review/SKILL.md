@@ -24,7 +24,7 @@ This skill reviews one or more sections of arc42 documentation for accuracy, com
 
 2. **Where are the files?** — What is the path to the arc42 documentation? (e.g. `docs/arc42/`, `architecture/`, or a single file.) Do not ask the user to paste content — read the files directly.
 
-3. **Review focus** — Should the review prioritise all dimensions equally, or focus on one?
+3. **Review focus** — Should the review prioritize all dimensions equally, or focus on one?
    - **Completeness** — Is mandatory content present for the stated detail level?
    - **Consistency** — Do cross-section references, names, and IDs match?
    - **Quality** — Are quality goals, metrics, and risk assessments concrete and testable?

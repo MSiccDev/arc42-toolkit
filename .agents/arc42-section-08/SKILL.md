@@ -54,24 +54,7 @@ This section captures overarching principles, patterns, and solutions that apply
 
 Generate **only the subsections the user confirmed as significant** — do not produce empty or generic subsections. Each subsection must contain something specific to this system, not generic industry advice.
 
-```markdown
-# 8. Crosscutting Concepts
-
-## Overview
-
-[1 paragraph: Which crosscutting concerns are particularly important for this system, why, and which building blocks they apply to.]
-
----
-
-<!-- Only include confirmed and significant subsections below. -->
-
-## 8.1 Domain Model
-
-<!-- Include only if domain entities cross component boundaries. -->
-<!-- Use a PlantUML class diagram for complex models, stored as docs/diagrams/domain-model.puml -->
-<!-- Note: use standard PlantUML class diagram notation here, not C4 — C4 does not cover domain models. -->
-
-File (if diagram needed): `docs/diagrams/domain-model.puml`
+**Domain model diagram file** (include only if domain entities cross component boundaries) — write to `docs/diagrams/domain-model.puml` using standard PlantUML class diagram notation (not C4 — C4 does not cover domain models). Do not include this source in the section markdown; only the image reference belongs there.
 
 ```plantuml
 @startuml domain-model
@@ -98,6 +81,22 @@ Customer "1" o-- "0..*" Order
 
 @enduml
 ```
+
+```markdown
+# 8. Crosscutting Concepts
+
+## Overview
+
+[1 paragraph: Which crosscutting concerns are particularly important for this system, why, and which building blocks they apply to.]
+
+---
+
+<!-- Only include confirmed and significant subsections below. -->
+
+## 8.1 Domain Model
+
+<!-- Include only if domain entities cross component boundaries. -->
+<!-- Uses standard PlantUML class diagram notation (see diagram template above Step 2) — not C4. -->
 
 ![Domain Model](diagrams/domain-model.puml)
 

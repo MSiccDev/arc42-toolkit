@@ -58,18 +58,7 @@ This section defines the system boundary — what is inside your system and what
 
 Once all answers are in, produce Section 3. Always include the business context. Add technical context only if confirmed in question 6.
 
-```markdown
-# 3. Context and Scope
-
-## 3.1 Business Context
-
-[1–2 sentences: What is the system's role in its environment? Who and what does it interact with?]
-
-### Context Diagram
-
-Use C4 PlantUML for the context diagram. **Save the diagram as a separate file at `docs/diagrams/context-business.puml`** and reference it in the documentation — do not inline the PlantUML source in the section text.
-
-File to create: `docs/diagrams/context-business.puml`
+**Business context diagram file** — write to `docs/diagrams/context-business.puml`. Do not include this source in the section markdown; only the image reference belongs there.
 
 ```plantuml
 @startuml context-business
@@ -89,15 +78,18 @@ Rel(systemC, system, "Sends events to", "[data exchanged]")
 @enduml
 ```
 
-Reference in the section markdown:
+> Generate using the actual system name and actors from the user's answers. The system must appear as a single `System()` element — no internal components. If `docs/diagrams/` does not yet exist, instruct the user to create it.
 
 ```markdown
-![Business Context](diagrams/context-business.puml)
-```
+# 3. Context and Scope
 
-> Generate the diagram content using the actual system name and actors from the user's answers.
-> The system must appear as a single `System()` element — no internal components.
-> If a `docs/diagrams/` folder does not yet exist, instruct the user to create it.
+## 3.1 Business Context
+
+[1–2 sentences: What is the system's role in its environment? Who and what does it interact with?]
+
+### Context Diagram
+
+![Business Context](diagrams/context-business.puml)
 
 ### External Interfaces
 

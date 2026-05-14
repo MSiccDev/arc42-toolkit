@@ -69,7 +69,7 @@ These are the most common consistency traps — watch for them across all sectio
 
 ## Diagram Convention
 
-All PlantUML diagrams use **C4 PlantUML** notation and are stored as individual `.puml` files in `docs/diagrams/`. They are never inlined in the section markdown — only referenced.
+Architecture diagrams use **C4 PlantUML** notation. The single exception is the §8 domain model, which uses standard PlantUML class diagram notation (C4 does not cover domain-level class relationships). All diagrams are stored as individual `.puml` files in `docs/diagrams/` and are never inlined in section markdown — only referenced.
 
 | Diagram | File |
 |---------|------|
@@ -80,7 +80,7 @@ All PlantUML diagrams use **C4 PlantUML** notation and are stored as individual 
 | Runtime scenario (§6) | `docs/diagrams/runtime-[scenario-name].puml` |
 | Deployment (§7) | `docs/diagrams/deployment-[environment].puml` |
 
-Reference diagrams in markdown as: `![Title](diagrams/[filename].puml)`
+Reference diagrams in markdown as: `![Title](diagrams/[filename].puml)` — this path is relative to the section markdown file. If section files live directly in `docs/`, the path resolves correctly. If stored in a subdirectory (e.g. `docs/arc42/`), adjust to `../diagrams/[filename].puml`.
 
 ## Q42 Quality Properties
 

@@ -50,7 +50,28 @@ This section describes the dynamic behavior of the system — how building block
 
 ## Step 2 — Generate the Documentation
 
-Once all answers are in, produce Section 6 with one sub-section per scenario. Diagrams go in `docs/diagrams/` as separate `.puml` files. Reference them in the markdown, never inline the source.
+Once all answers are in, produce Section 6 with one sub-section per scenario. Diagrams go in `docs/diagrams/` as separate `.puml` files. Reference them in the section markdown — never inline the source.
+
+**Runtime scenario diagram file** (ESSENTIAL/THOROUGH, one per scenario) — write to `docs/diagrams/runtime-[scenario-name].puml`. Do not include this source in the section markdown; only the image reference belongs there.
+
+```plantuml
+@startuml runtime-[scenario-name]
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Dynamic.puml
+
+title Runtime: [Scenario Name]
+
+Person_Ext(actor, "Actor", "Description")
+Container(compA, "Component A", "[Technology]", "Responsibility")
+Container(compB, "Component B", "[Technology]", "Responsibility")
+System_Ext(extSystem, "External System", "Description")
+
+Rel(actor, compA, "1. sends request", "[protocol/format]")
+Rel(compA, compB, "2. queries", "[protocol/format]")
+Rel_Back(compA, compB, "3. returns result", "[protocol/format]")
+Rel_Back(actor, compA, "4. responds", "[protocol/format]")
+
+@enduml
+```
 
 ```markdown
 # 6. Runtime View
@@ -82,28 +103,7 @@ Steps:
 4. [Component] returns [result] to [Component]
 5. [Component] responds to [Actor]
 
-<!-- ESSENTIAL and THOROUGH: also generate the diagram file below -->
-
-File: `docs/diagrams/runtime-[scenario-name].puml`
-
-```plantuml
-@startuml runtime-[scenario-name]
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Dynamic.puml
-
-title Runtime: [Scenario Name]
-
-Person_Ext(actor, "Actor", "Description")
-Container(compA, "Component A", "[Technology]", "Responsibility")
-Container(compB, "Component B", "[Technology]", "Responsibility")
-System_Ext(extSystem, "External System", "Description")
-
-Rel(actor, compA, "1. sends request", "[protocol/format]")
-Rel(compA, compB, "2. queries", "[protocol/format]")
-Rel_Back(compA, compB, "3. returns result", "[protocol/format]")
-Rel_Back(actor, compA, "4. responds", "[protocol/format]")
-
-@enduml
-```
+<!-- ESSENTIAL and THOROUGH: also generate the diagram file (see diagram template above Step 2) -->
 
 ![Runtime: [Scenario Name]](diagrams/runtime-[scenario-name].puml)
 

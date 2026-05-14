@@ -165,7 +165,7 @@ After presenting the draft, work through this checklist. For any item that fails
 **Cross-section consistency:**
 - [ ] Scenarios referencing infrastructure mechanisms exist in Section 7 → if Section 7 exists but is not referenced, check whether the scenario duplicates or complements it
 - [ ] Q42 property tags match those used in Section 1.2 exactly → if they differ, align them
-- [ ] QS IDs are sequential and stable — no gaps unless a scenario has been marked "Retired" → if IDs are inconsistent, renumber and note the change
+- [ ] QS IDs are stable — never renumber existing IDs; if an ID appears to be missing, verify the scenario is marked "Retired" in both the tree and tables → assign new IDs only to new scenarios, never reuse or renumber existing ones
 
 **Quality tree (ESSENTIAL/THOROUGH):**
 - [ ] Every QS ID in the tree appears in the scenario tables, and vice versa → if the tree and tables are out of sync, correct both

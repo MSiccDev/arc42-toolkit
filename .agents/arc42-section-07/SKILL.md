@@ -57,24 +57,9 @@ This section describes the technical infrastructure and how software building bl
 
 ## Step 2 — Generate the Documentation
 
-Once all answers are in, produce Section 7. Always start with production. Diagrams go in `docs/diagrams/` as separate `.puml` files — never inline the source.
+Once all answers are in, produce Section 7. Always start with production. Diagrams go in `docs/diagrams/` as separate `.puml` files. Reference them in the section markdown — never inline the source.
 
-```markdown
-# 7. Deployment View
-
-## Overview
-
-[1–2 paragraphs: What is the target infrastructure? How do the infrastructure choices realise the key quality goals?]
-
----
-
-## 7.1 Production Deployment
-
-### Deployment Diagram
-
-<!-- ESSENTIAL and THOROUGH: generate this diagram. LEAN: omit. -->
-
-File: `docs/diagrams/deployment-production.puml`
+**Deployment diagram file** — write to `docs/diagrams/deployment-[environment].puml` (e.g. `deployment-production.puml`). Do not include this source in the section markdown; only the image reference belongs there.
 
 ```plantuml
 @startuml deployment-production
@@ -107,6 +92,21 @@ Rel(compA, broker, "AMQP", "5671")
 
 @enduml
 ```
+
+```markdown
+# 7. Deployment View
+
+## Overview
+
+[1–2 paragraphs: What is the target infrastructure? How do the infrastructure choices realise the key quality goals?]
+
+---
+
+## 7.1 Production Deployment
+
+### Deployment Diagram
+
+<!-- ESSENTIAL and THOROUGH: generate this diagram. LEAN: omit. -->
 
 ![Deployment View — Production](diagrams/deployment-production.puml)
 
