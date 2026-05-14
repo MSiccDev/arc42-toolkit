@@ -1,8 +1,8 @@
-# Contributing to Awesome arc42 Copilot
+# Contributing to arc42 Toolkit
 
-🎉 **Thank you for your interest in contributing!** 🎉
+Thank you for your interest in contributing!
 
-We're excited to have you help make architecture documentation easier and more accessible for everyone. Whether you're fixing a typo, improving instructions, or sharing real-world examples, every contribution matters.
+We're excited to have you help make architecture documentation easier and more accessible for everyone. Whether you're fixing a typo, improving a skill, or sharing real-world examples, every contribution matters.
 
 ---
 
@@ -38,19 +38,19 @@ This project aims to make arc42 architecture documentation accessible through AI
 
 ### 🐛 Report Issues
 Found a problem? Help us improve!
-- Typos or grammar errors in instructions
+- Typos or grammar errors in a skill
 - Inaccuracies compared to official arc42 standards
-- Prompts that don't work well with LLM tools
+- Skills that don't work well with a particular AI tool
 - Missing information or unclear explanations
 
 **How:** [Open an issue](../../issues/new) with details
 
-### 📝 Improve Documentation
+### 📝 Improve Skills
 Make our content better!
-- Fix typos and grammar
-- Clarify confusing instructions
-- Add helpful examples
-- Improve prompt effectiveness
+- Fix typos and grammar in a skill
+- Clarify confusing questions or checklist items
+- Add helpful examples to skill output templates
+- Sharpen skill effectiveness for specific AI tools
 - Update outdated information
 
 **How:** Submit a pull request
@@ -64,12 +64,12 @@ Real-world examples help everyone!
 
 **How:** Share in [Discussions](../../discussions) or submit as example
 
-### 💡 Enhance Prompts
-Make LLM interactions better!
-- Test prompts with different AI tools (Copilot, Cursor, Claude Code)
-- Improve prompt clarity and effectiveness
-- Add edge case handling
-- Share better prompt patterns
+### 💡 Improve Skills
+Make AI interactions better!
+- Test skills with different AI tools (Claude Code, Copilot, Cursor, Codex)
+- Improve question clarity and skill output templates
+- Add edge case handling to quality checklists
+- Share better patterns for interactive documentation
 
 **How:** Submit a pull request with testing details
 
@@ -83,8 +83,8 @@ Extend the ecosystem!
 **How:** Discuss in [Issues](../../issues) first, then submit PR
 
 ### 🌍 Translations
-Make arc42-copilot global!
-- Translate instructions to other languages
+Make arc42 Toolkit global!
+- Translate skills to other languages
 - Localize examples
 - Adapt for regional standards
 
@@ -106,7 +106,7 @@ Make arc42-copilot global!
 
 ### 3. Test Your Changes
 - Validate against official arc42 standards
-- Test prompts with at least one LLM tool (Copilot, Cursor, or Claude Code)
+- Test skill changes with at least one AI tool (Claude Code, Copilot, or Cursor)
 - Ensure markdown formatting is correct
 - Check that examples are clear and accurate
 
@@ -121,7 +121,7 @@ Make arc42-copilot global!
 3. **Make your changes**
 4. **Sign your commit** with DCO (see below)
    ```bash
-   git commit -s -m "Fix typo in Section 5 instructions"
+   git commit -s -m "Fix typo in Section 5 skill"
    ```
 5. **Push** to your fork
 6. **Open a Pull Request** with clear description
@@ -150,9 +150,9 @@ All contributions should meet these standards:
 
 - **Authentic:** Based on official arc42 sources (arc42.org, docs.arc42.org, quality.arc42.org)
 - **Accurate:** No invented or speculative content
-- **Clear:** Written for both humans and LLMs
-- **Consistent:** Follows existing structure and formatting
-- **Tested:** Validated with at least one LLM tool
+- **Clear:** Written for both humans and AI tools
+- **Consistent:** Follows existing skill structure and formatting
+- **Tested:** Validated with at least one AI tool
 
 ### ✅ Formatting Requirements
 
