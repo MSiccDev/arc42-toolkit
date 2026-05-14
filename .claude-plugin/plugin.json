@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "arc42-toolkit",
+  "version": "1.0.0",
+  "description": "Provider-agnostic AI skills for creating professional arc42 software architecture documentation. Covers all 12 arc42 sections plus cross-section quality review.",
+  "author": {
+    "name": "MSiccDev Software Development",
+    "url": "https://github.com/MSiccDev"
+  },
+  "homepage": "https://github.com/MSiccDev/arc42-toolkit",
+  "repository": "https://github.com/MSiccDev/arc42-toolkit",
+  "license": "MIT",
+  "keywords": [
+    "arc42",
+    "architecture",
+    "documentation",
+    "skills",
+    "adr",
+    "quality",
+    "c4"
+  ]
+}

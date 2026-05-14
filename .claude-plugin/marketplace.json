@@ -1,0 +1,30 @@
+{
+  "name": "arc42-toolkit",
+  "description": "Provider-agnostic AI skills for creating professional arc42 software architecture documentation. Covers all 12 arc42 sections plus cross-section quality review.",
+  "owner": {
+    "name": "MSiccDev Software Development"
+  },
+  "plugins": [
+    {
+      "name": "arc42-toolkit",
+      "source": {
+        "source": "github",
+        "repo": "MSiccDev/arc42-toolkit"
+      },
+      "description": "Provider-agnostic AI skills for creating professional arc42 software architecture documentation. Covers all 12 arc42 sections plus cross-section quality review.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "homepage": "https://github.com/MSiccDev/arc42-toolkit",
+      "repository": "https://github.com/MSiccDev/arc42-toolkit",
+      "keywords": [
+        "arc42",
+        "architecture",
+        "documentation",
+        "skills",
+        "adr",
+        "quality",
+        "c4"
+      ]
+    }
+  ]
+}

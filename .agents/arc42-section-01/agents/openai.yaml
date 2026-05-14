@@ -1,0 +1,7 @@
+interface:
+  display_name: "Introduction and Goals"
+  short_description: "Document system purpose, quality goals, and stakeholders for arc42 Section 1"
+  default_prompt: "Use arc42-section-01 to interactively document the introduction and goals of the system, including quality goals and stakeholders"
+
+policy:
+  allow_implicit_invocation: true
