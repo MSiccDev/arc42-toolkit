@@ -1,223 +1,207 @@
-# 🚀 Awesome arc42 Copilot
+# arc42 Toolkit
 
 [![arc42](https://img.shields.io/badge/arc42-compliant-brightgreen)](https://arc42.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-> Production-ready arc42 architecture documentation system optimized for AI coding assistants (GitHub Copilot, Cursor, Claude Code, and other LLM tools).
+> Provider-agnostic arc42 documentation skills for AI coding assistants — Claude Code, GitHub Copilot, Cursor, Codex, and any LLM tool that reads markdown.
 
-Create professional software architecture documentation with AI assistance using the proven arc42 template. This repository provides comprehensive instructions and prompts specifically designed for Large Language Models to generate high-quality, standards-compliant architecture documentation.
-
----
-
-## ✨ Features
-
-- ✅ **Complete arc42 Coverage** - All 12 sections with detailed instructions
-- 🤖 **LLM-Optimized** - Specially crafted prompts for GitHub Copilot, Cursor, and Claude Code
-- 📊 **Q42 Quality Model** - Integrated quality framework with 492 attributes across 8 properties
-- 🎯 **Three Detail Levels** - LEAN (minimal), ESSENTIAL (core), THOROUGH (comprehensive)
-- ✅ **Quality Assurance** - Built-in review protocol for validation
-- 📚 **Official Standards** - Based on arc42.org, docs.arc42.org, and quality.arc42.org
-- 🔄 **Flexible & Pragmatic** - "All sections optional" - use what you need
-- 🌍 **Open Source** - Free to use, modify, and contribute
+Create professional software architecture documentation through guided, interactive AI conversations. Each of the 12 arc42 sections is covered by a dedicated skill that asks the right questions first, generates a structured draft, then iterates until you are satisfied.
 
 ---
 
-## 🎯 What is arc42?
+## Features
 
-arc42 is the proven, open-source template for software architecture documentation created by Dr. Gernot Starke and Dr. Peter Hruschka. Used in thousands of projects worldwide, it provides a pragmatic, tool-agnostic approach to documenting software architectures.
+- **13 interactive skills** — one per arc42 section, plus a cross-cutting quality review skill
+- **Provider-agnostic** — works with Claude Code, GitHub Copilot, Cursor, Codex, and any LLM tool
+- **Ask-first approach** — every skill gathers your project details before generating anything
+- **Three depth levels** — LEAN, ESSENTIAL, or THOROUGH, chosen per section based on your needs
+- **C4 PlantUML diagrams** — architecture diagrams as separate `.puml` files, never inlined
+- **Q42 quality model** — 492 quality attributes across 8 properties integrated into relevant skills
+- **Cross-section consistency** — skills check related sections and flag contradictions
+- **Standards-based** — grounded in arc42.org, docs.arc42.org, and quality.arc42.org
 
-**Core Philosophy:**
+---
+
+## What is arc42?
+
+arc42 is the proven, open-source template for software architecture documentation created by Dr. Gernot Starke and Dr. Peter Hruschka. Used in thousands of projects worldwide, it provides a pragmatic, tool-agnostic approach.
+
+**Core philosophy:**
 - Document economically but continuously
-- "Painless documentation" - only what stakeholders truly need
-- All sections are optional - use what fits your project
+- "Painless documentation" — only what stakeholders truly need
+- All sections are optional — use what fits your project
 - Suitable for agile and traditional environments
 
----
-
-## 🚀 Quick Start
-
-### For GitHub Copilot / Cursor / Claude Code Users
-
-1. **Clone or download this repository**
-   ```bash
-   git clone https://github.com/MSicc/awesome-arc42-copilot.git
-   ```
-
-2. **Choose your section** (e.g., Section 1: Introduction and Goals)
-   - Open `prompts/arc42-section-01-prompt.md`
-   - Read the input template
-   - Fill in your project details
-
-3. **Let your AI assistant generate the documentation**
-   - Copy the prompt into your AI coding assistant
-   - Provide your project-specific information
-   - Review and refine the generated output
-
-### Example Workflow
-
-```markdown
-1. Read: instructions/arc42-section-01-instructions.md
-   → Understand what Section 1 should contain
-
-2. Use: prompts/arc42-section-01-prompt.md
-   → Generate documentation with your AI assistant
-
-3. Review and refine the generated output
-   → Iterate with your AI assistant until satisfied
-```
-
-**Note:** The `quality/REVIEW-PROMPT.md` is for maintainers to validate the instruction and prompt files themselves, not for reviewing your generated documentation.
+**One mandatory exception:** Section 1.2 (Quality Goals) must exist before any other architecture work begins.
 
 ---
 
-## 📂 Repository Structure
+## Quick Start
+
+### 1. Clone the repository into your project
+
+```bash
+git clone https://github.com/MSiccDev/arc42-toolkit.git
+```
+
+Or copy `AGENT.md` and the `.agents/` directory into your existing project.
+
+### 2. Start with Section 1
+
+Invoke the skill for your AI tool:
+
+| Tool | Command |
+|------|----------|
+| Claude Code | `/arc42-section-01` |
+| GitHub Copilot Chat | `#arc42-section-01` |
+| Cursor / Codex | Reference `.agents/arc42-section-01/SKILL.md` in context |
+
+### 3. Answer the questions
+
+The skill asks about your project — requirements, stakeholders, quality goals. No generation happens until you have answered.
+
+### 4. Review and iterate
+
+The skill produces a draft, runs a built-in quality checklist, and asks what you want to refine. Repeat until satisfied.
+
+### 5. Continue section by section
+
+Use the same pattern for each section you need. The `/arc42-review` skill validates any section or the full document at any time.
+
+---
+
+## Repository Structure
 
 ```
-awesome-arc42-copilot/
+arc42-toolkit/
 │
+├── AGENT.md                           # Project context — read by all AI assistants
 ├── README.md                          # This file
 ├── LICENSE                            # MIT License
 ├── CONTRIBUTING.md                    # Contribution guidelines
 │
-├── instructions/                      # Human-readable guidelines
-│   ├── arc42-global-instructions.md  # Overview and philosophy
-│   ├── arc42-section-01-instructions.md
-│   ├── arc42-section-02-instructions.md
-│   └── ... (sections 03-12)
-│
-├── prompts/                           # LLM-optimized prompts
-│   ├── arc42-section-01-prompt.md    # Introduction & Goals
-│   ├── arc42-section-02-prompt.md    # Constraints
-│   ├── arc42-section-03-prompt.md    # Context & Scope
-│   └── ... (sections 04-12)
-│
-└── quality/
-    └── REVIEW-PROMPT.md               # QA protocol for validating instruction/prompt files
+└── .agents/                           # Skills (slash commands)
+    ├── arc42-section-01/SKILL.md      # Introduction and Goals
+    ├── arc42-section-02/SKILL.md      # Constraints
+    ├── arc42-section-03/SKILL.md      # Context and Scope
+    ├── arc42-section-04/SKILL.md      # Solution Strategy
+    ├── arc42-section-05/SKILL.md      # Building Block View
+    ├── arc42-section-06/SKILL.md      # Runtime View
+    ├── arc42-section-07/SKILL.md      # Deployment View
+    ├── arc42-section-08/SKILL.md      # Crosscutting Concepts
+    ├── arc42-section-09/SKILL.md      # Architecture Decisions
+    ├── arc42-section-10/SKILL.md      # Quality Requirements
+    ├── arc42-section-11/SKILL.md      # Risks and Technical Debt
+    ├── arc42-section-12/SKILL.md      # Glossary
+    └── arc42-review/SKILL.md          # Quality review (any section or full doc)
 ```
 
-**Note:** The `quality/` folder contains the systematic review protocol used to ensure the instruction and prompt files meet arc42 standards. This is for repository maintainers, not for end-users validating their generated documentation.
+Generated documentation goes in your project's `docs/` directory. Architecture diagrams are stored as `.puml` files in `docs/diagrams/`.
 
 ---
 
-## 📖 The 12 arc42 Sections
+## The 12 arc42 Sections
 
-| Section | Name | Purpose | Required? |
-|---------|------|---------|-----------|
-| **1** | [Introduction and Goals](instructions/arc42-section-01-instructions.md) | Requirements overview, quality goals, stakeholders | **Quality goals mandatory** |
-| **2** | [Constraints](instructions/arc42-section-02-instructions.md) | Technical, organizational, political boundaries | Optional |
-| **3** | [Context and Scope](instructions/arc42-section-03-instructions.md) | System boundary and external interfaces | Recommended |
-| **4** | [Solution Strategy](instructions/arc42-section-04-instructions.md) | Fundamental decisions and approaches | Recommended |
-| **5** | [Building Block View](instructions/arc42-section-05-instructions.md) | Static structure (Level-1 mandatory) | **Level-1 mandatory** |
-| **6** | [Runtime View](instructions/arc42-section-06-instructions.md) | Dynamic behavior scenarios | Optional |
-| **7** | [Deployment View](instructions/arc42-section-07-instructions.md) | Infrastructure and deployment | Optional |
-| **8** | [Crosscutting Concepts](instructions/arc42-section-08-instructions.md) | Overarching patterns and rules | Optional |
-| **9** | [Architecture Decisions](instructions/arc42-section-09-instructions.md) | ADRs with rationale | Recommended |
-| **10** | [Quality Requirements](instructions/arc42-section-10-instructions.md) | Detailed quality scenarios | Recommended |
-| **11** | [Risks and Technical Debt](instructions/arc42-section-11-instructions.md) | Known problems and risks | Optional |
-| **12** | [Glossary](instructions/arc42-section-12-instructions.md) | Domain and technical terminology | Recommended |
+| Section | Name | Skill | Required? |
+|---------|------|-------|----------|
+| **1** | Introduction and Goals | `/arc42-section-01` | **Quality goals mandatory** |
+| **2** | Constraints | `/arc42-section-02` | Optional |
+| **3** | Context and Scope | `/arc42-section-03` | Recommended |
+| **4** | Solution Strategy | `/arc42-section-04` | Recommended |
+| **5** | Building Block View | `/arc42-section-05` | **Level-1 mandatory** |
+| **6** | Runtime View | `/arc42-section-06` | Optional |
+| **7** | Deployment View | `/arc42-section-07` | Optional |
+| **8** | Crosscutting Concepts | `/arc42-section-08` | Optional |
+| **9** | Architecture Decisions | `/arc42-section-09` | Recommended |
+| **10** | Quality Requirements | `/arc42-section-10` | Recommended |
+| **11** | Risks and Technical Debt | `/arc42-section-11` | Optional |
+| **12** | Glossary | `/arc42-section-12` | Recommended |
+
+Use `/arc42-review` at any point to validate one section, a related set, or the full document.
 
 ---
 
-## 🎨 Three Documentation Approaches
+## Three Depth Levels
 
-### 🏃 LEAN (Agile/Minimal)
+Every skill supports three depth levels. Choose based on your project's needs — you can use different levels for different sections.
+
+### LEAN (Agile / Minimal)
 **Best for:** Agile teams, time-constrained projects, evolving systems
 
-**Characteristics:**
-- 1-3 pages per section maximum
-- Focus on essential information only
-- "Dare to leave gaps" philosophy
+- 1–3 pages per section maximum
+- Essential information only — "dare to leave gaps"
+- Minimum viable documentation: §1.2, §3, §5 Level-1, §9, §12
 
-**Minimum sections:**
-- Section 1.2: Quality Goals
-- Section 3: Context
-- Section 5.1: Building Block Level-1
-- Section 9: Key Decisions
-- Section 12: Glossary
+### ESSENTIAL (Core Information)
+**Best for:** Most projects — the balanced default
 
-### 📋 ESSENTIAL (Core Information)
-**Best for:** Most projects - balanced approach
-
-**Characteristics:**
 - Non-negotiable minimum for production systems
-- Critical architectural information
-- Enables basic understanding
+- Critical architectural information enabling team understanding
+- Includes LEAN content plus requirements overview, stakeholders, black-box descriptions
 
-**Includes:** LEAN plus requirements overview, stakeholders, constraints, solution strategy
+### THOROUGH (Comprehensive)
+**Best for:** Critical systems, regulated environments, audit requirements, large teams
 
-### 📚 THOROUGH (Comprehensive)
-**Best for:** Critical systems, formal environments, audit requirements, large teams
-
-**Characteristics:**
 - Complete documentation across all sections
-- Detailed scenarios and specifications
-- Multiple refinement levels
-- Extensive validation
-
-**Includes:** All 12 sections fully documented
+- Detailed scenarios, multiple diagram levels, extensive validation
+- Full Q42 quality scenario coverage
 
 ---
 
-## 🔧 How to Use with AI Tools
-
-### GitHub Copilot
-```markdown
-1. Open prompt file in your editor
-2. Fill in project-specific details
-3. Use Copilot Chat to generate documentation
-4. Refine with follow-up prompts
-```
-
-### Cursor
-```markdown
-1. Open prompt file in Cursor
-2. Select the prompt template
-3. Use Cursor's AI to fill in details
-4. Iterate until satisfied
-```
+## How to Use with AI Tools
 
 ### Claude Code
-```markdown
-1. Reference prompt file in your project
-2. Provide project context
-3. Ask Claude to generate section
-4. Review and validate output
+
+```
+/arc42-section-01
 ```
 
-### Other LLM Tools
-The prompts are designed to work with any LLM tool that supports:
-- Markdown understanding
-- Structured templates
-- Context-aware generation
+Skills are automatically available as slash commands when `AGENT.md` and `.agents/` are in your project.
+
+### GitHub Copilot
+
+```
+#arc42-section-01
+```
+
+Use in Copilot Chat. Copilot reads `AGENT.md` for project context automatically.
+
+### Cursor
+
+Open `.agents/arc42-section-01/SKILL.md` in the Composer context, or reference it with `@SKILL.md` in chat.
+
+### Codex / ChatGPT / Other LLMs
+
+Paste the content of the relevant `SKILL.md` file as a system prompt or context message. All skills are plain markdown — they work with any LLM that understands structured text.
 
 ---
 
-## 🌟 Key Benefits
+## Key Benefits
 
 ### For Architects
-- ✅ Save 60-80% documentation time
-- ✅ Consistent, high-quality output
-- ✅ Standards-compliant documentation
-- ✅ Focus on decisions, not formatting
+- Save documentation time through guided, structured generation
+- Consistent, high-quality output across all sections
+- Standards-compliant documentation without needing to memorise arc42 rules
+- Focus on architectural decisions, not formatting
 
 ### For Teams
-- ✅ Shared vocabulary and structure
-- ✅ Easy onboarding for new members
-- ✅ Reduced documentation debt
-- ✅ Better stakeholder communication
+- Shared vocabulary and structure across the organisation
+- Easy onboarding — new members understand the system faster
+- Reduced documentation debt through iterative, incremental documentation
+- Better stakeholder communication with consistent artifact format
 
 ### For Organizations
-- ✅ Standardized architecture documentation
-- ✅ Knowledge preservation
-- ✅ Improved audit readiness
-- ✅ Scalable documentation process
+- Standardized architecture documentation across projects
+- Knowledge preservation — decisions and rationale are captured, not just the outcome
+- Improved audit readiness
+- Scalable process that works from startup to enterprise
 
 ---
 
-## 📊 Q42 Quality Model Integration
+## Q42 Quality Model Integration
 
-This system integrates the **Q42 quality model** - a comprehensive framework with 492 quality attributes organized into 8 properties:
+The skills integrate the **Q42 quality model** — a comprehensive framework with 492 quality attributes in 8 properties. Quality goals from Section 1 are traced through constraints, solution strategy, deployment, crosscutting concepts, and quality scenarios.
 
 | Property | Attributes | Focus |
 |----------|-----------|-------|
@@ -234,150 +218,128 @@ This system integrates the **Q42 quality model** - a comprehensive framework wit
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-We welcome contributions! Here's how you can help:
+Contributions are welcome. Here is how you can help:
 
-- 🐛 **Report bugs** - Found an issue? Open a bug report
-- 💡 **Suggest improvements** - Have ideas? Share them in discussions
-- 📝 **Improve documentation** - Fix typos, add examples, clarify instructions
-- 🌟 **Share examples** - Submit real-world usage examples
-- 🔧 **Enhance prompts** - Improve LLM prompt effectiveness
+- **Report issues** — found a problem with a skill? Open a bug report
+- **Improve skills** — better questions, clearer checklists, sharper output templates
+- **Add examples** — submit real-world arc42 documentation produced with this toolkit
+- **Domain-specific variants** — skills tuned for microservices, embedded systems, data platforms
+- **Share feedback** — used it on a real project? Tell us what worked and what did not
 
-**[📖 Read our Contributing Guide →](CONTRIBUTING.md)** for detailed guidelines on how to get started.
+**[Read our Contributing Guide](CONTRIBUTING.md)** for detailed guidelines.
 
 ---
 
-## 📄 License
+## License
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
 **Note:** arc42® is a registered trademark of Dr. Gernot Starke and Dr. Peter Hruschka. This project is based on the freely available arc42 template and is not officially affiliated with arc42.org.
 
 ---
 
-## ⚠️ How This Project Was Created
+## How This Project Was Created
 
-This repository is itself a demonstration of AI-assisted technical writing. The instructions and prompts were created through an iterative collaboration between a human architect (Marco) and Claude (Anthropic's AI assistant).
+This repository is a demonstration of AI-assisted technical content development. The arc42 skills were created through iterative collaboration between a human architect (Marco) and Claude (Anthropic's AI assistant), grounded in official arc42 sources throughout.
 
-### Creation Process:
+### Process
 
-1. **Research Phase** - Extensive review of official arc42 sources (arc42.org, docs.arc42.org, quality.arc42.org, faq.arc42.org)
-2. **Instruction Development** - Section-by-section creation of comprehensive guidelines based on official arc42 standards
-3. **LLM Optimization** - Crafting prompts specifically designed for AI coding assistants
-4. **Quality Assurance** - Systematic review against arc42 standards using a structured validation protocol
-5. **Iterative Refinement** - Multiple review cycles to ensure accuracy and completeness
+1. **Research** — Extensive review of arc42.org, docs.arc42.org, quality.arc42.org, faq.arc42.org
+2. **Skill development** — Section-by-section creation of interactive skills following the agentskills.io specification
+3. **Quality assurance** — Systematic review against arc42 standards for accuracy and completeness
+4. **Iterative refinement** — Multiple review and improvement cycles, including Copilot code review
+5. **Provider-agnostic refactor** — Migrated from Copilot-specific prompts to the AGENT.md + skills standard
 
-### Key Principles:
+### Principles
 
-- ✅ **Authenticity First** - All content based on official arc42 sources, not invented
-- ✅ **Standards Compliance** - Validated against docs.arc42.org and quality.arc42.org
-- ✅ **Human Oversight** - Human architect provided direction, requirements, and validation
-- ✅ **AI Efficiency** - AI assistant handled research, synthesis, and structured content creation
-- ✅ **Systematic Quality** - Built-in review protocol ensures ongoing accuracy
+- **Authenticity first** — all content based on official arc42 sources, nothing invented
+- **Standards compliance** — validated against docs.arc42.org and quality.arc42.org
+- **Human oversight** — human architect provided direction, requirements, and validation
+- **AI efficiency** — AI assistant handled research, synthesis, and structured content creation
 
-This collaboration model demonstrates how AI can accelerate documentation work while maintaining professional standards - exactly what this repository enables for architecture documentation.
+### Transparency
 
-### Transparency Note:
-
-We believe in transparency about AI involvement in content creation. This repository was:
-- **Researched** by AI from authoritative arc42 sources
-- **Structured** by AI following arc42 methodology
-- **Directed** by human expertise in software architecture
-- **Validated** through systematic quality reviews
-- **Maintained** with ongoing human oversight
-
-The result is production-ready content that respects the original arc42 creators' work while making it more accessible through modern AI tools.
+This repository was researched and structured by AI from authoritative arc42 sources, directed by human expertise in software architecture, validated through systematic quality reviews, and is maintained with ongoing human oversight.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
-- **arc42 Template** - Created by Dr. Gernot Starke and Dr. Peter Hruschka
+- **arc42 Template** — Created by Dr. Gernot Starke and Dr. Peter Hruschka
 - **Official Sources:**
-  - [arc42.org](https://arc42.org) - Main website
-  - [docs.arc42.org](https://docs.arc42.org) - Official documentation
-  - [quality.arc42.org](https://quality.arc42.org) - Q42 quality model
-  - [faq.arc42.org](https://faq.arc42.org) - Frequently asked questions
-- **Claude (Anthropic)** - AI assistant used in creating this repository's content
-- **Contributors** - See [CONTRIBUTORS.md](CONTRIBUTORS.md) for everyone who has helped make this project better
+  - [arc42.org](https://arc42.org) — Main website
+  - [docs.arc42.org](https://docs.arc42.org) — Official documentation
+  - [quality.arc42.org](https://quality.arc42.org) — Q42 quality model
+  - [faq.arc42.org](https://faq.arc42.org) — Frequently asked questions
+- **Claude (Anthropic)** — AI assistant used in creating and refining this repository's content
+- **Contributors** — See [CONTRIBUTORS.md](CONTRIBUTORS.md) for everyone who has helped
 
 ---
 
-## 🔗 Related Resources
+## Related Resources
 
 - [Architecture Decision Records (ADR)](https://adr.github.io)
-- [C4 Model](https://c4model.com) - Recommended for diagrams
+- [C4 Model](https://c4model.com) — Recommended diagramming approach (used throughout this toolkit)
+- [agentskills.io](https://agentskills.io) — Skills specification this toolkit follows
 
 ---
 
-## 📞 Support
+## Support
 
-- **Issues:** [GitHub Issues](https://github.com/[your-username]/awesome-arc42-copilot/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/[your-username]/awesome-arc42-copilot/discussions)
+- **Issues:** [GitHub Issues](https://github.com/MSiccDev/arc42-toolkit/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/MSiccDev/arc42-toolkit/discussions)
 - **Questions:** Open a discussion or issue
 
 ---
 
-## ⭐ Star History
+## Project Status
 
-If you find this project helpful, please consider giving it a star! ⭐
-
----
-
-## 📈 Project Status
-
-- ✅ **Version 1.0** - Complete arc42 coverage (all 12 sections)
-- ✅ **Production Ready** - Quality assured and validated
-- ✅ **Actively Maintained** - Regular updates and improvements
-- ✅ **Community Driven** - Open to contributions
+- **v1.0** — Complete arc42 coverage, all 12 sections + review skill
+- **Skills-based** — Migrated to provider-agnostic AGENT.md + skills standard
+- **Actively maintained** — Regular improvements based on real-world usage
+- **Community driven** — Open to contributions
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
-### Phase 1: Quality Refinement (In Progress)
-**Goal:** Incorporate improvements identified during systematic quality reviews
+### Phase 1: Skills Refactor — Done
 
-- 🔄 **Refine Instructions** - Address findings from section-by-section validation
-- 🔄 **Enhance Prompts** - Improve LLM effectiveness based on review feedback
-- 🔄 **Update Examples** - Add more concrete, real-world examples
-- 🔄 **Cross-Section Consistency** - Ensure perfect alignment between related sections
+Migrated from a Copilot-specific prompt library to a provider-agnostic skills toolkit following the agentskills.io standard. All 12 section skills and the review skill are complete with:
+
+- Interactive question-first approach
+- LEAN / ESSENTIAL / THOROUGH depth levels
+- C4 PlantUML diagram generation
+- Cross-section consistency checks
+- Actionable quality checklists
 
 ### Phase 2: Real-World Validation (Next)
-**Goal:** Battle-test the system on an actual project
+**Goal:** Battle-test the toolkit on an actual project
 
-- 📋 **Use Case: persona-template MCP Server**
-  - Project: Developer tool for managing persona preferences and projects across AI providers
-  - Purpose: Document MCP (Model Context Protocol) server architecture
-  - Benefit: Validate arc42-copilot system on real infrastructure project
-  - Output: Complete example arc42 documentation in repository
-
-**What is persona-template?**
-An upcoming project that provides developers an easy way to move persona preferences and software projects between AI providers (GitHub Copilot, Cursor, Claude, etc.). The MCP server architecture will be documented using this arc42-copilot system, serving as both:
-- Real-world validation of our methodology
-- Reference implementation for others
-- Example of arc42 documentation for AI infrastructure
+- **Use case: persona-template MCP Server** — a developer tool for managing persona preferences and software projects across AI providers
+- Purpose: document the MCP (Model Context Protocol) server architecture using this toolkit
+- Output: complete example arc42 documentation in the repository, serving as a reference implementation
 
 ### Phase 3: Community Growth (Future)
 **Goal:** Expand examples and community contributions
 
-- 📚 **More Examples** - Additional real-world documentation samples
-- 🎯 **Domain-Specific Templates** - Variations for microservices, embedded systems, data platforms
-- 🌍 **Community Contributions** - User-submitted examples and improvements
-- 📖 **Tutorial Content** - Video walkthroughs and step-by-step guides
-- 🔌 **Tool Integrations** - Plugins for popular IDEs and documentation tools
+- More real-world documentation examples
+- Domain-specific skill variants (microservices, embedded systems, data platforms)
+- Community-submitted examples and improvements
+- Tutorial content and walkthroughs
 
 ### How You Can Help
 
-- 🧪 **Test it** - Use the system on your project and share feedback
-- 📝 **Contribute examples** - Submit your arc42 documentation as examples
-- 🐛 **Report issues** - Help us identify and fix problems
-- 💡 **Suggest improvements** - Share ideas for better prompts or instructions
-- ⭐ **Star the repo** - Help others discover this resource
+- **Test it** — use the toolkit on your project and share feedback
+- **Contribute examples** — submit your arc42 documentation as reference material
+- **Report issues** — help identify and fix problems
+- **Suggest improvements** — share ideas for better skills or output templates
+- **Star the repo** — help others discover this resource
 
 ---
 
-**Made with ❤️ for the software architecture community**
+*Made for the software architecture community.*
 
-*Bringing AI-powered efficiency to architecture documentation while maintaining the highest standards of quality and compliance.*
+*Bringing structured, AI-assisted efficiency to architecture documentation while maintaining standards compliance.*
