@@ -1,5 +1,6 @@
 ---
 name: arc42-section-06
+version: 1.0.0
 description: Interactively guides the documentation of arc42 Section 6 (Runtime View). Asks about key dynamic scenarios and involved components before generating C4 PlantUML sequence diagrams or step-by-step descriptions. Iterates until the user is satisfied.
 ---
 

@@ -1,5 +1,6 @@
 ---
 name: arc42-section-02
+version: 1.0.0
 description: Interactively guides the documentation of arc42 Section 2 (Constraints). Asks about technical, organizational, regulatory, and convention-based boundaries before generating a structured draft. Iterates until the user is satisfied.
 ---
 

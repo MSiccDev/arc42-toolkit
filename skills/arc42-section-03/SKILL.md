@@ -1,5 +1,6 @@
 ---
 name: arc42-section-03
+version: 1.0.0
 description: Interactively guides the documentation of arc42 Section 3 (Context and Scope). Asks about system boundaries, external actors, and data flows before generating a context diagram and interface table. Iterates until the user is satisfied.
 ---
 

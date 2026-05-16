@@ -1,5 +1,6 @@
 ---
 name: arc42-review
+version: 1.0.0
 description: Reviews any arc42 section or the full document for accuracy, completeness, cross-section consistency, and alignment with arc42 standards. Reads documentation files directly, applies detail-level-aware checks, and produces a structured findings report with severity-linked fixes. Offers to resolve Critical issues immediately using the relevant section skill.
 ---
 
