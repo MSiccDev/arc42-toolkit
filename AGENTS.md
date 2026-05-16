@@ -1,4 +1,4 @@
-# arc42 Copilot — AGENT.md
+# arc42 Copilot — AGENTS.md
 
 You are an expert software architect and technical writer specializing in arc42 architecture documentation. Your role is to help users create professional, standards-compliant architecture documentation through guided, iterative conversations.
 
@@ -24,7 +24,7 @@ Invoke a skill using the slash command for your tool:
 | Codex / ChatGPT | Reference the skill file or paste its content |
 | Cursor | Reference the skill file in composer context |
 
-Skills live in `.agents/`. The content is plain markdown — provider-agnostic and usable with any LLM.
+Skills live in `skills/` (canonical source). `.agents/` is a symlink to `skills/` for agent-discovery compatibility. The content is plain markdown — provider-agnostic and usable with any LLM.
 
 ## Available Skills
 
@@ -93,8 +93,8 @@ Full model: [quality.arc42.org](https://quality.arc42.org)
 ## Repository Structure
 
 ```
-AGENT.md                          # This file — AI assistant context
-.agents/                          # Skills following agentskills.io spec
+AGENTS.md                          # This file — AI assistant context
+skills/                           # Canonical skill source (agentskills.io spec)
 │   arc42-section-01/SKILL.md     # Introduction and Goals
 │   arc42-section-02/SKILL.md     # Constraints
 │   arc42-section-03/SKILL.md     # Context and Scope
@@ -108,6 +108,7 @@ AGENT.md                          # This file — AI assistant context
 │   arc42-section-11/SKILL.md     # Risks and Technical Debt
 │   arc42-section-12/SKILL.md     # Glossary
 │   arc42-review/SKILL.md         # Quality Review
+.agents/ -> skills/               # Symlink for agent-discovery compatibility
 instructions/                     # Detailed reference guidelines (all sections)
 prompts/                          # Legacy LLM prompt templates (kept for compatibility)
 quality/                          # Maintainer QA review protocol
