@@ -17,7 +17,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). Eac
 | Artifact | Description |
 |---|---|
 | `scripts/arc42-lint.py` | Standalone Python linter (stdlib only) — validates cross-section ID consistency across 5 rules: IF-xx Section 3↔Section 5, building block names Section 5↔Section 7, Q42 tags Section 1↔Section 10, RISK-xx references Section 9↔Section 11, aspirational scenarios Section 10↔Section 11 |
-| `.github/workflows/arc42-lint.yml` | GitHub Actions workflow — runs the linter on `docs/**` changes; also serves as a copy-paste template for user projects |
+| `templates/arc42-lint.yml` | GitHub Actions workflow template — copy to `.github/workflows/` in your project to run the linter automatically on `docs/**` changes |
 | `skills/arc42-lint/` | New skill — AI-assisted consistency linting via `/arc42-lint`; runs the script when available, applies rules manually when not, and offers to fix any issues found |
 
 ---

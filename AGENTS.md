@@ -113,8 +113,8 @@ skills/                           # Canonical skill source (agentskills.io spec)
 .agents/ -> skills/               # Symlink for agent-discovery compatibility
 scripts/
 │   arc42-lint.py                 # Standalone linter script (stdlib only)
-.github/workflows/
-│   arc42-lint.yml                # GitHub Actions workflow
+templates/
+│   arc42-lint.yml                # GitHub Actions workflow template (copy to your project)
 ```
 
 ## Official arc42 Resources

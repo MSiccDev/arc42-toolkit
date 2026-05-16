@@ -104,9 +104,8 @@ arc42-toolkit/
 ├── scripts/
 │   └── arc42-lint.py                  # Standalone linter (stdlib only, CI-ready)
 │
-├── .github/
-│   └── workflows/
-│       └── arc42-lint.yml             # GitHub Actions workflow (copy to your project)
+├── templates/
+│   └── arc42-lint.yml                 # GitHub Actions workflow template (copy to your project)
 │
 └── .agents/ -> skills/                # Symlink for agent-discovery compatibility
 ```
@@ -264,14 +263,9 @@ Exit code `0` = clean, `1` = issues found.
 
 ### GitHub Actions
 
-The included workflow runs automatically when files under `docs/**` change:
+Copy `templates/arc42-lint.yml` from this repo to `.github/workflows/arc42-lint.yml` in your project. It runs automatically when files under `docs/**` change.
 
-```yaml
-# Already configured in .github/workflows/arc42-lint.yml
-# Just make sure docs/ is where your arc42 files live.
-```
-
-**To use in your own project:** copy `scripts/arc42-lint.py` and `.github/workflows/arc42-lint.yml` to the same paths in your repo. No Python dependencies to install — stdlib only.
+**To use in your own project:** copy `scripts/arc42-lint.py` to the same path in your repo, and copy `templates/arc42-lint.yml` to `.github/workflows/arc42-lint.yml`. No Python dependencies to install — stdlib only.
 
 ### AI-assisted linting
 
