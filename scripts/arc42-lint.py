@@ -8,7 +8,7 @@ Exit codes:
     0  no issues (or only warnings in non-strict mode)
     1  one or more errors found (or warnings with --strict)
 
-Language files live in languages/ next to this script's parent directory.
+Language files live in scripts/languages/ alongside this script.
 Default language is English (en). Run with --lang de, fr, it, es, or pt for
 other built-in languages, or add a new JSON file to contribute a language.
 """
@@ -60,8 +60,8 @@ _HEADING_RE = re.compile(r"^#{1,3}\s+(.+)$", re.MULTILINE)
 def _section_from_number(heading_text: str) -> int | None:
     """Detect section from the numeric prefix of a heading — language-agnostic.
 
-    Matches: '1. Title', '10 Title', '3: Title'
-    Returns None for sub-section numbers like '5.1'.
+    Matches: '1. Title', '10 Title', '3: Title', '5.1 Sub-title' (returns 5).
+    Only recognises section numbers 1–12.
     """
     m = re.match(r"^(\d+)[.\s:]", heading_text.strip())
     if m:
@@ -199,7 +199,7 @@ def extract_sec5_data(content: str, lang: dict) -> tuple[dict[str, int], set[str
     """
     interfaces: dict[str, int] = {}
     names: set[str] = set()
-    header_names = [h.lower() for h in lang["patterns"]["section5_header_names"]]
+    header_names = lang["patterns"]["section5_header_names"]
 
     for m in re.finditer(
         r"^\|\s*([^|*\-:][^|]*?)\s*\|\s*([^|]+)\s*\|\s*([^|]+)\s*\|",
@@ -211,7 +211,7 @@ def extract_sec5_data(content: str, lang: dict) -> tuple[dict[str, int], set[str
 
         if re.match(r"^[-:\s]+$", name_cell):
             continue
-        if name_cell.lower() in header_names:
+        if _matches_any(name_cell, header_names):
             continue
 
         names.add(name_cell)
@@ -519,9 +519,13 @@ def format_github(issues: list[LintIssue]) -> str:
     for issue in issues:
         level = "error" if issue.severity == "error" else "warning"
         title = RULE_DESCRIPTIONS.get(issue.rule, issue.rule)
-        file_part = f"file={issue.file}" if issue.file else ""
-        line_part = f",line={issue.line}" if issue.line > 0 else ""
-        lines.append(f"::{level} {file_part}{line_part},title={title}::{issue.message}")
+        loc_parts = []
+        if issue.file:
+            loc_parts.append(f"file={issue.file}")
+        if issue.line > 0:
+            loc_parts.append(f"line={issue.line}")
+        loc_parts.append(f"title={title}")
+        lines.append(f"::{level} {','.join(loc_parts)}::{issue.message}")
     return "\n".join(lines)
 
 

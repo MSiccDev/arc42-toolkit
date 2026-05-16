@@ -283,7 +283,7 @@ Copy `templates/arc42-lint.yml` from this repo to `.github/workflows/arc42-lint.
 
 ### Adding a language
 
-Copy any file from `languages/` as a starting point, name it `languages/{code}.json`, and translate the keyword patterns. All values are case-insensitive regular expressions — plain text works too. Multiple alternatives are supported per pattern. Once merged, the new language is available via `--lang {code}`.
+Copy any file from `scripts/languages/` as a starting point, name it `scripts/languages/{code}.json`, and translate the keyword patterns. All values are case-insensitive regular expressions — plain text works too. Multiple alternatives are supported per pattern. Once merged, the new language is available via `--lang {code}`.
 
 ### AI-assisted linting
 

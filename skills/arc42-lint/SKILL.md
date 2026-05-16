@@ -27,7 +27,8 @@ This skill checks that identifiers defined in one section are correctly referenc
 **Do not start linting yet.** Ask the user:
 
 1. **Where are the arc42 docs?** — What is the path to the documentation directory (e.g. `docs/`, `architecture/`, or a single monolithic file)?
-2. **Is `scripts/arc42-lint.py` present?** — Check whether the automated linter script exists in the project. If it does, prefer running it. If not, apply the rules manually.
+2. **What language are the docs written in?** — Default is English (`en`). Built-in options: `de`, `fr`, `it`, `es`, `pt`. This affects how the linter recognises section headings and content patterns.
+3. **Is `scripts/arc42-lint.py` present?** — Check whether the automated linter script exists in the project. If it does, prefer running it. If not, apply the rules manually.
 
 If the user is unsure about the docs path, look for `.md` files in `docs/`, `architecture/`, `arc42/`, or the project root.
 
@@ -39,10 +40,10 @@ Choose the path based on what is available:
 
 ### Path A — Automated script is present
 
-Run the linter:
+Run the linter, passing the language the user confirmed in Step 1:
 
 ```bash
-python scripts/arc42-lint.py <docs_path> --format text
+python scripts/arc42-lint.py <docs_path> --lang <lang> --format text
 ```
 
 Capture the output. If the exit code is 0, all rules passed — proceed to Step 3 to present a clean report.
@@ -51,14 +52,14 @@ If there are errors or warnings, parse the output and continue to Step 3.
 
 **Strict mode** (treat warnings as errors):
 ```bash
-python scripts/arc42-lint.py <docs_path> --format text --strict
+python scripts/arc42-lint.py <docs_path> --lang <lang> --format text --strict
 ```
 
 ---
 
 ### Path B — No script available (manual check)
 
-Read the relevant documentation sections. Apply each rule in order:
+Read the relevant documentation sections. Apply each rule in order. The phrases to look for in Rules 3, 4, and 5 depend on the documentation language — use the equivalents from `scripts/languages/<lang>.json` if the docs are not in English.
 
 **Rule 1 — Section 3 ↔ Section 5 Interface IDs**
 1. Read Section 3: collect every `IF-xx` from the interface table (first column)
