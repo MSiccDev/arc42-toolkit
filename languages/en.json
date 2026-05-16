@@ -1,0 +1,24 @@
+{
+  "language": "en",
+  "name": "English",
+  "section_keywords": {
+    "1":  ["introduction.*goals"],
+    "2":  ["constraints"],
+    "3":  ["context.*scope", "scope.*context"],
+    "4":  ["solution.*strat"],
+    "5":  ["building.*block"],
+    "6":  ["runtime.*view"],
+    "7":  ["deployment.*view"],
+    "8":  ["crosscutting", "cross.cutting"],
+    "9":  ["architecture.*decision"],
+    "10": ["quality.*req", "quality.*scenario", "quality.*requirement"],
+    "11": ["risk.*technical.*debt", "technical.*debt"],
+    "12": ["glossary"]
+  },
+  "patterns": {
+    "quality_property_label": ["quality property"],
+    "risks_created_label":    ["risks created"],
+    "not_measured":           ["not measured"],
+    "section5_header_names":  ["name", "component", "building block", "element"]
+  }
+}

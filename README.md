@@ -104,6 +104,14 @@ arc42-toolkit/
 ├── scripts/
 │   └── arc42-lint.py                  # Standalone linter (stdlib only, CI-ready)
 │
+├── languages/
+│   ├── en.json                        # English (default)
+│   ├── de.json                        # Deutsch
+│   ├── fr.json                        # Français
+│   ├── it.json                        # Italiano
+│   ├── es.json                        # Español
+│   └── pt.json                        # Português
+│
 ├── templates/
 │   └── arc42-lint.yml                 # GitHub Actions workflow template (copy to your project)
 │
@@ -249,11 +257,18 @@ The arc42 toolkit ships a standalone linter that validates cross-section ID cons
 ### Run locally
 
 ```bash
-# Check docs/ directory (default)
+# Check docs/ in English (default)
 python scripts/arc42-lint.py
 
+# Check docs written in another language
+python scripts/arc42-lint.py --lang de
+python scripts/arc42-lint.py --lang fr
+python scripts/arc42-lint.py --lang it
+python scripts/arc42-lint.py --lang es
+python scripts/arc42-lint.py --lang pt
+
 # Check a custom path
-python scripts/arc42-lint.py path/to/your/docs
+python scripts/arc42-lint.py path/to/your/docs --lang de
 
 # Treat warnings as errors (useful in CI)
 python scripts/arc42-lint.py --strict
@@ -265,7 +280,11 @@ Exit code `0` = clean, `1` = issues found.
 
 Copy `templates/arc42-lint.yml` from this repo to `.github/workflows/arc42-lint.yml` in your project. It runs automatically when files under `docs/**` change.
 
-**To use in your own project:** copy `scripts/arc42-lint.py` to the same path in your repo, and copy `templates/arc42-lint.yml` to `.github/workflows/arc42-lint.yml`. No Python dependencies to install — stdlib only.
+**To use in your own project:** copy `scripts/arc42-lint.py`, the `languages/` directory, and `templates/arc42-lint.yml` (to `.github/workflows/arc42-lint.yml`) into your repo. No Python dependencies to install — stdlib only.
+
+### Adding a language
+
+Copy any file from `languages/` as a starting point, name it `languages/{code}.json`, and translate the keyword patterns. All values are case-insensitive regular expressions — plain text works too. Multiple alternatives are supported per pattern. Once merged, the new language is available via `--lang {code}`.
 
 ### AI-assisted linting
 

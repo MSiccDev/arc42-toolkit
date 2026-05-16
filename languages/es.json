@@ -1,0 +1,24 @@
+{
+  "language": "es",
+  "name": "Español",
+  "section_keywords": {
+    "1":  ["introducci.n.*objetivos"],
+    "2":  ["restricciones"],
+    "3":  ["contexto.*alcance", "alcance.*contexto"],
+    "4":  ["estrategia.*soluci.n"],
+    "5":  ["bloques.*construcci.n", "vista.*bloques"],
+    "6":  ["vista.*ejecuci.n", "vista.*runtime"],
+    "7":  ["vista.*despliegue"],
+    "8":  ["conceptos.*transversales"],
+    "9":  ["decisiones.*arquitectura"],
+    "10": ["requisitos.*calidad", "escenarios.*calidad"],
+    "11": ["riesgos.*deuda.*t.cnica", "deuda.*t.cnica"],
+    "12": ["glosario"]
+  },
+  "patterns": {
+    "quality_property_label": ["propiedad de calidad", "atributo de calidad"],
+    "risks_created_label":    ["riesgos creados", "riesgos generados"],
+    "not_measured":           ["no medido", "no medida", "sin medir"],
+    "section5_header_names":  ["nombre", "componente", "bloque de construcci.n", "elemento"]
+  }
+}
