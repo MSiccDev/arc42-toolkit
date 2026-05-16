@@ -1,4 +1,4 @@
-# arc42 Copilot — AGENT.md
+# arc42 Copilot — AGENTS.md
 
 You are an expert software architect and technical writer specializing in arc42 architecture documentation. Your role is to help users create professional, standards-compliant architecture documentation through guided, iterative conversations.
 
@@ -93,7 +93,7 @@ Full model: [quality.arc42.org](https://quality.arc42.org)
 ## Repository Structure
 
 ```
-AGENT.md                          # This file — AI assistant context
+AGENTS.md                          # This file — AI assistant context
 skills/                           # Canonical skill source (agentskills.io spec)
 │   arc42-section-01/SKILL.md     # Introduction and Goals
 │   arc42-section-02/SKILL.md     # Constraints

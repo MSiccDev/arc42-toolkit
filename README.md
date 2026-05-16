@@ -45,7 +45,7 @@ arc42 is the proven, open-source template for software architecture documentatio
 git clone https://github.com/MSiccDev/arc42-toolkit.git
 ```
 
-Or copy `AGENT.md`, the `skills/` directory, and the `.agents` symlink into your existing project.
+Or copy `AGENTS.md`, the `skills/` directory, and the `.agents` symlink into your existing project.
 
 ### 2. Start with Section 1
 
@@ -76,7 +76,7 @@ Use the same pattern for each section you need. The `/arc42-review` skill valida
 ```
 arc42-toolkit/
 │
-├── AGENT.md                           # Project context — read by all AI assistants
+├── AGENTS.md                           # Project context — read by all AI assistants
 ├── README.md                          # This file
 ├── LICENSE                            # MIT License
 ├── CONTRIBUTING.md                    # Contribution guidelines
@@ -159,7 +159,7 @@ Every skill supports three depth levels. Choose based on your project's needs �
 /arc42-section-01
 ```
 
-Skills are automatically available as slash commands when `AGENT.md` and the `skills/` directory (with `.agents/` symlink) are in your project.
+Skills are automatically available as slash commands when `AGENTS.md` and the `skills/` directory (with `.agents/` symlink) are in your project.
 
 ### GitHub Copilot
 
@@ -167,7 +167,7 @@ Skills are automatically available as slash commands when `AGENT.md` and the `sk
 #arc42-section-01
 ```
 
-Use in Copilot Chat. Copilot reads `AGENT.md` for project context automatically.
+Use in Copilot Chat. Copilot reads `AGENTS.md` for project context automatically.
 
 ### Cursor
 
@@ -252,7 +252,7 @@ This repository is a demonstration of AI-assisted technical content development.
 2. **Skill development** — Section-by-section creation of interactive skills following the agentskills.io specification
 3. **Quality assurance** — Systematic review against arc42 standards for accuracy and completeness
 4. **Iterative refinement** — Multiple review and improvement cycles, including Copilot code review
-5. **Provider-agnostic refactor** — Migrated from Copilot-specific prompts to the AGENT.md + skills standard
+5. **Provider-agnostic refactor** — Migrated from Copilot-specific prompts to the AGENTS.md + skills standard
 
 ### Principles
 
@@ -299,7 +299,7 @@ This repository was researched and structured by AI from authoritative arc42 sou
 ## Project Status
 
 - **v1.0** — Complete arc42 coverage, all 12 sections + review skill
-- **Skills-based** — Migrated to provider-agnostic AGENT.md + skills standard
+- **Skills-based** — Migrated to provider-agnostic AGENTS.md + skills standard
 - **Actively maintained** — Regular improvements based on real-world usage
 - **Community driven** — Open to contributions
 
