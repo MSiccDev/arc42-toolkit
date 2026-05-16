@@ -45,7 +45,7 @@ arc42 is the proven, open-source template for software architecture documentatio
 git clone https://github.com/MSiccDev/arc42-toolkit.git
 ```
 
-Or copy `AGENT.md` and the `.agents/` directory into your existing project.
+Or copy `AGENT.md`, the `skills/` directory, and the `.agents` symlink into your existing project.
 
 ### 2. Start with Section 1
 
@@ -55,7 +55,7 @@ Invoke the skill for your AI tool:
 |------|----------|
 | Claude Code | `/arc42-section-01` |
 | GitHub Copilot Chat | `#arc42-section-01` |
-| Cursor / Codex | Reference `.agents/arc42-section-01/SKILL.md` in context |
+| Cursor / Codex | Reference `skills/arc42-section-01/SKILL.md` in context |
 
 ### 3. Answer the questions
 
@@ -81,20 +81,22 @@ arc42-toolkit/
 ├── LICENSE                            # MIT License
 ├── CONTRIBUTING.md                    # Contribution guidelines
 │
-└── .agents/                           # Skills (slash commands)
-    ├── arc42-section-01/SKILL.md      # Introduction and Goals
-    ├── arc42-section-02/SKILL.md      # Constraints
-    ├── arc42-section-03/SKILL.md      # Context and Scope
-    ├── arc42-section-04/SKILL.md      # Solution Strategy
-    ├── arc42-section-05/SKILL.md      # Building Block View
-    ├── arc42-section-06/SKILL.md      # Runtime View
-    ├── arc42-section-07/SKILL.md      # Deployment View
-    ├── arc42-section-08/SKILL.md      # Crosscutting Concepts
-    ├── arc42-section-09/SKILL.md      # Architecture Decisions
-    ├── arc42-section-10/SKILL.md      # Quality Requirements
-    ├── arc42-section-11/SKILL.md      # Risks and Technical Debt
-    ├── arc42-section-12/SKILL.md      # Glossary
-    └── arc42-review/SKILL.md          # Quality review (any section or full doc)
+├── skills/                            # Canonical skill source (agentskills.io spec)
+│   ├── arc42-section-01/SKILL.md      # Introduction and Goals
+│   ├── arc42-section-02/SKILL.md      # Constraints
+│   ├── arc42-section-03/SKILL.md      # Context and Scope
+│   ├── arc42-section-04/SKILL.md      # Solution Strategy
+│   ├── arc42-section-05/SKILL.md      # Building Block View
+│   ├── arc42-section-06/SKILL.md      # Runtime View
+│   ├── arc42-section-07/SKILL.md      # Deployment View
+│   ├── arc42-section-08/SKILL.md      # Crosscutting Concepts
+│   ├── arc42-section-09/SKILL.md      # Architecture Decisions
+│   ├── arc42-section-10/SKILL.md      # Quality Requirements
+│   ├── arc42-section-11/SKILL.md      # Risks and Technical Debt
+│   ├── arc42-section-12/SKILL.md      # Glossary
+│   └── arc42-review/SKILL.md          # Quality review (any section or full doc)
+│
+└── .agents/ -> skills/                # Symlink for agent-discovery compatibility
 ```
 
 Generated documentation goes in your project's `docs/` directory. Architecture diagrams are stored as `.puml` files in `docs/diagrams/`.
@@ -157,7 +159,7 @@ Every skill supports three depth levels. Choose based on your project's needs �
 /arc42-section-01
 ```
 
-Skills are automatically available as slash commands when `AGENT.md` and `.agents/` are in your project.
+Skills are automatically available as slash commands when `AGENT.md` and the `skills/` directory (with `.agents/` symlink) are in your project.
 
 ### GitHub Copilot
 
@@ -169,7 +171,7 @@ Use in Copilot Chat. Copilot reads `AGENT.md` for project context automatically.
 
 ### Cursor
 
-Open `.agents/arc42-section-01/SKILL.md` in the Composer context, or reference it with `@SKILL.md` in chat.
+Open `skills/arc42-section-01/SKILL.md` in the Composer context, or reference it with `@SKILL.md` in chat.
 
 ### Codex / ChatGPT / Other LLMs
 
