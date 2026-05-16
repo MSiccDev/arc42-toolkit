@@ -102,15 +102,14 @@ arc42-toolkit/
 │   └── arc42-lint/SKILL.md            # Cross-section consistency linter
 │
 ├── scripts/
-│   └── arc42-lint.py                  # Standalone linter (stdlib only, CI-ready)
-│
-├── languages/
-│   ├── en.json                        # English (default)
-│   ├── de.json                        # Deutsch
-│   ├── fr.json                        # Français
-│   ├── it.json                        # Italiano
-│   ├── es.json                        # Español
-│   └── pt.json                        # Português
+│   ├── arc42-lint.py                  # Standalone linter (stdlib only, CI-ready)
+│   └── languages/
+│       ├── en.json                    # English (default)
+│       ├── de.json                    # Deutsch
+│       ├── fr.json                    # Français
+│       ├── it.json                    # Italiano
+│       ├── es.json                    # Español
+│       └── pt.json                    # Português
 │
 ├── templates/
 │   └── arc42-lint.yml                 # GitHub Actions workflow template (copy to your project)
@@ -280,7 +279,7 @@ Exit code `0` = clean, `1` = issues found.
 
 Copy `templates/arc42-lint.yml` from this repo to `.github/workflows/arc42-lint.yml` in your project. It runs automatically when files under `docs/**` change.
 
-**To use in your own project:** copy `scripts/arc42-lint.py`, the `languages/` directory, and `templates/arc42-lint.yml` (to `.github/workflows/arc42-lint.yml`) into your repo. No Python dependencies to install — stdlib only.
+**To use in your own project:** copy the entire `scripts/` directory (script + languages) and `templates/arc42-lint.yml` (to `.github/workflows/arc42-lint.yml`) into your repo. No Python dependencies to install — stdlib only.
 
 ### Adding a language
 

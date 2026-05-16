@@ -27,7 +27,7 @@ from pathlib import Path
 
 def load_language(lang_code: str, script_path: Path) -> dict:
     """Load language definition from languages/{lang_code}.json."""
-    lang_dir = script_path.parent.parent / "languages"
+    lang_dir = script_path.parent / "languages"
     lang_file = lang_dir / f"{lang_code}.json"
 
     if not lang_file.exists():
