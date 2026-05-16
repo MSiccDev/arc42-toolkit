@@ -1,0 +1,7 @@
+interface:
+  display_name: "Consistency Linter"
+  short_description: "Validate cross-section ID consistency across IF-xx, QS-xx, ADR-xxx, and RISK-xx references"
+  default_prompt: "Use arc42-lint to check cross-section consistency in generated arc42 documentation, validating interface IDs, quality scenario tags, ADR risk references, and aspirational scenario traceability"
+
+policy:
+  allow_implicit_invocation: true

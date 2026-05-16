@@ -12,13 +12,14 @@ Create professional software architecture documentation through guided, interact
 
 ## Features
 
-- **13 interactive skills** — one per arc42 section, plus a cross-cutting quality review skill
+- **14 interactive skills** — one per arc42 section, plus quality review and consistency linting
 - **Provider-agnostic** — works with Claude Code, GitHub Copilot, Cursor, Codex, and any LLM tool
 - **Ask-first approach** — every skill gathers your project details before generating anything
 - **Three depth levels** — LEAN, ESSENTIAL, or THOROUGH, chosen per section based on your needs
 - **C4 PlantUML diagrams** — architecture diagrams as separate `.puml` files, never inlined
 - **Q42 quality model** — 492 quality attributes across 8 properties integrated into relevant skills
 - **Cross-section consistency** — skills check related sections and flag contradictions
+- **Automated consistency linting** — catch IF-xx, QS-xx, ADR, and RISK-xx mismatches before they accumulate
 - **Standards-based** — grounded in arc42.org, docs.arc42.org, and quality.arc42.org
 
 ---
@@ -97,7 +98,15 @@ arc42-toolkit/
 │   ├── arc42-section-10/SKILL.md      # Quality Requirements
 │   ├── arc42-section-11/SKILL.md      # Risks and Technical Debt
 │   ├── arc42-section-12/SKILL.md      # Glossary
-│   └── arc42-review/SKILL.md          # Quality review (any section or full doc)
+│   ├── arc42-review/SKILL.md          # Quality review (any section or full doc)
+│   └── arc42-lint/SKILL.md            # Cross-section consistency linter
+│
+├── scripts/
+│   └── arc42-lint.py                  # Standalone linter (stdlib only, CI-ready)
+│
+├── .github/
+│   └── workflows/
+│       └── arc42-lint.yml             # GitHub Actions workflow (copy to your project)
 │
 └── .agents/ -> skills/                # Symlink for agent-discovery compatibility
 ```
@@ -124,6 +133,7 @@ Generated documentation goes in your project's `docs/` directory. Architecture d
 | **12** | Glossary | `/arc42-section-12` | Recommended |
 
 Use `/arc42-review` at any point to validate one section, a related set, or the full document.
+Use `/arc42-lint` to check cross-section ID consistency automatically.
 
 ---
 
@@ -220,6 +230,52 @@ The skills integrate the **Q42 quality model** — a comprehensive framework wit
 | **#operable** | 55 | Installability, Monitorability, Deployability |
 
 **Learn more:** [quality.arc42.org](https://quality.arc42.org)
+
+---
+
+## Consistency Linting
+
+The arc42 toolkit ships a standalone linter that validates cross-section ID consistency in your generated documentation. It catches mismatches that accumulate silently over time — interface IDs renamed in one section but not another, ADR risks never registered, quality scenarios with no matching goal.
+
+### What it checks
+
+| Rule | Sections | Validates |
+|------|----------|-----------|
+| 1 | §3 ↔ §5 | `IF-xx` interface IDs match between the context diagram and Level-1 building blocks |
+| 2 | §5 ↔ §7 | Every building block name appears in the deployment mapping |
+| 3 | §1 ↔ §10 | Every Q42 tag used in quality scenarios is present in §1.2 quality goals |
+| 4 | §9 ↔ §11 | Every `RISK-xx` in an ADR's "Risks created" field has a §11 risk matrix entry |
+| 5 | §10 ↔ §11 | Every aspirational (not yet met) scenario from §10.3 is referenced in §11 |
+
+### Run locally
+
+```bash
+# Check docs/ directory (default)
+python scripts/arc42-lint.py
+
+# Check a custom path
+python scripts/arc42-lint.py path/to/your/docs
+
+# Treat warnings as errors (useful in CI)
+python scripts/arc42-lint.py --strict
+```
+
+Exit code `0` = clean, `1` = issues found.
+
+### GitHub Actions
+
+The included workflow runs automatically when files under `docs/**` change:
+
+```yaml
+# Already configured in .github/workflows/arc42-lint.yml
+# Just make sure docs/ is where your arc42 files live.
+```
+
+**To use in your own project:** copy `scripts/arc42-lint.py` and `.github/workflows/arc42-lint.yml` to the same paths in your repo. No Python dependencies to install — stdlib only.
+
+### AI-assisted linting
+
+Use `/arc42-lint` to run the linter interactively through your AI tool. The skill runs the script when available, or applies the five rules manually when not. It also offers to fix any issues it finds.
 
 ---
 

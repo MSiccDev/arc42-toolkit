@@ -43,6 +43,7 @@ Skills live in `skills/` (canonical source). `.agents/` is a symlink to `skills/
 | `arc42-section-11` | Risks and Technical Debt | Optional |
 | `arc42-section-12` | Glossary | Recommended |
 | `arc42-review` | Quality Review (any section) | On demand |
+| `arc42-lint`   | Cross-section consistency linter | On demand |
 
 ## arc42 in 60 Seconds
 
@@ -108,10 +109,12 @@ skills/                           # Canonical skill source (agentskills.io spec)
 │   arc42-section-11/SKILL.md     # Risks and Technical Debt
 │   arc42-section-12/SKILL.md     # Glossary
 │   arc42-review/SKILL.md         # Quality Review
+│   arc42-lint/SKILL.md           # Cross-section consistency linter
 .agents/ -> skills/               # Symlink for agent-discovery compatibility
-instructions/                     # Detailed reference guidelines (all sections)
-prompts/                          # Legacy LLM prompt templates (kept for compatibility)
-quality/                          # Maintainer QA review protocol
+scripts/
+│   arc42-lint.py                 # Standalone linter script (stdlib only)
+.github/workflows/
+│   arc42-lint.yml                # GitHub Actions workflow
 ```
 
 ## Official arc42 Resources

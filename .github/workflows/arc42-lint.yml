@@ -1,0 +1,55 @@
+# ============================================================
+# arc42 Consistency Linter — GitHub Actions Workflow
+# ============================================================
+# This workflow runs the arc42 cross-section consistency linter
+# automatically whenever documentation files change.
+#
+# To use this in your own project:
+#   1. Copy scripts/arc42-lint.py to the same path in your repo
+#   2. Copy this file to .github/workflows/arc42-lint.yml
+#   3. Adjust the 'paths' filter below if your docs live somewhere
+#      other than docs/
+#
+# No Python dependencies to install — the linter uses stdlib only.
+# ubuntu-latest ships Python 3.12+, so no setup-python step is needed.
+# ============================================================
+
+name: arc42 Consistency Check
+
+on:
+  push:
+    paths:
+      - 'docs/**'
+  pull_request:
+    paths:
+      - 'docs/**'
+  workflow_dispatch:
+    inputs:
+      docs_path:
+        description: 'Path to arc42 docs directory'
+        required: false
+        default: 'docs'
+      strict:
+        description: 'Treat warnings as errors'
+        type: boolean
+        default: false
+
+jobs:
+  arc42-lint:
+    name: Cross-section consistency
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run arc42 consistency linter
+        run: |
+          DOCS_PATH="${{ github.event.inputs.docs_path || 'docs' }}"
+          STRICT_FLAG=""
+          if [ "${{ github.event.inputs.strict }}" = "true" ]; then
+            STRICT_FLAG="--strict"
+          fi
+          python scripts/arc42-lint.py "$DOCS_PATH" --format github $STRICT_FLAG
