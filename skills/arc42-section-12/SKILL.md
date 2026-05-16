@@ -1,5 +1,6 @@
 ---
 name: arc42-section-12
+version: 1.0.0
 description: Interactively guides the documentation of arc42 Section 12 (Glossary). Scans other sections for undefined terms, asks about domain vocabulary and ambiguous terminology, and generates a structured glossary with consistent preferred terms. Iterates until the user is satisfied.
 ---
 

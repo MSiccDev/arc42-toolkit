@@ -1,5 +1,6 @@
 ---
 name: arc42-section-09
+version: 1.0.0
 description: Interactively guides the documentation of arc42 Section 9 (Architecture Decisions) using ADR format. Asks about significant decisions, alternatives considered, and consequences before generating structured ADRs. Iterates until the user is satisfied.
 ---
 

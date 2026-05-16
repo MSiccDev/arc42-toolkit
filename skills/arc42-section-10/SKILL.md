@@ -1,5 +1,6 @@
 ---
 name: arc42-section-10
+version: 1.0.0
 description: Interactively guides the documentation of arc42 Section 10 (Quality Requirements). Elaborates quality goals from Section 1.2 into concrete, measurable scenarios organized in a quality tree. Coaches against vague metrics and checks coverage against architectural decisions. Iterates until the user is satisfied.
 ---
 
