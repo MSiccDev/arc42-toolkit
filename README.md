@@ -45,7 +45,10 @@ arc42 is the proven, open-source template for software architecture documentatio
 git clone https://github.com/MSiccDev/arc42-toolkit.git
 ```
 
-Or copy `AGENTS.md`, the `skills/` directory, and the `.agents` symlink into your existing project.
+Or copy `AGENTS.md`, the `skills/` directory, and the `.agents/` symlink into your existing project.
+
+> **Windows / ZIP installs:** If symlinks are unavailable, create a directory junction instead:
+> `mklink /J .agents skills` (Windows CMD) — or simply copy the `skills/` directory to `.agents/`.
 
 ### 2. Start with Section 1
 
