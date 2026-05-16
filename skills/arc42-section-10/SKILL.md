@@ -126,7 +126,7 @@ Quality
 <!-- THOROUGH only: -->
 **Testability:** [How would you verify this in a test or in production? What tooling or observation method?]
 
-**References:** [→ §7 infrastructure mechanism / §8 crosscutting concept / §9 ADR-XXX that addresses this]
+**References:** [→ Section 7 infrastructure mechanism / Section 8 crosscutting concept / Section 9 ADR-XXX that addresses this]
 
 ---
 

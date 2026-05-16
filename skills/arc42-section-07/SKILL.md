@@ -122,14 +122,14 @@ Rel(compA, broker, "AMQP", "5671")
 
 ### Software-to-Infrastructure Mapping
 
-| Building Block (§5) | Deployed On | Instances | Notes |
+| Building Block (Section 5) | Deployed On | Instances | Notes |
 |--------------------|-------------|-----------|-------|
 | [Component A] | [K8s pod / VM / serverless] | [N, auto-scales to M] | [Image, resource limits] |
 | [Component B] | [K8s pod / VM / serverless] | [N replicas] | [Any special config] |
 
 ### Quality Goal Realisation
 
-| Quality Goal (§1.2) | Infrastructure Mechanism |
+| Quality Goal (Section 1.2) | Infrastructure Mechanism |
 |--------------------|--------------------------|
 | [#reliable — e.g. 99.9% uptime] | [e.g. 2-AZ deployment, automated failover in < 30s] |
 | [#efficient — e.g. < 200ms p95] | [e.g. Redis cache, CDN for static assets] |

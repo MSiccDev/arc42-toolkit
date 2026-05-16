@@ -138,7 +138,7 @@ def _line_of(content: str, match_start: int) -> int:
 
 
 def extract_sec1_quality_tags(content: str) -> set[str]:
-    """Q42 tags from the §1.2 quality goals table (second column)."""
+    """Q42 tags from the Section 1.2 quality goals table (second column)."""
     tags: set[str] = set()
     for m in re.finditer(r"^\|\s*\d+\s*\|\s*(#\w+)", content, re.MULTILINE):
         tags.add(m.group(1))
@@ -146,7 +146,7 @@ def extract_sec1_quality_tags(content: str) -> set[str]:
 
 
 def extract_sec3_interfaces(content: str) -> dict[str, int]:
-    """IF-xx IDs from §3 interface table (first column)."""
+    """IF-xx IDs from Section 3 interface table (first column)."""
     result: dict[str, int] = {}
     for m in re.finditer(r"^\|\s*(IF-\d+)\s*\|", content, re.MULTILINE):
         if_id = m.group(1)
@@ -157,7 +157,7 @@ def extract_sec3_interfaces(content: str) -> dict[str, int]:
 
 def extract_sec5_data(content: str) -> tuple[dict[str, int], set[str]]:
     """
-    Returns (interfaces, component_names) from §5 building block table.
+    Returns (interfaces, component_names) from Section 5 building block table.
     Table format: | Name | Responsibility | Interfaces |
     Skips header/separator rows.
     """
@@ -188,7 +188,7 @@ def extract_sec5_data(content: str) -> tuple[dict[str, int], set[str]]:
 
 
 def extract_sec9_adr_risks(content: str) -> dict[str, list[str]]:
-    """Map ADR_ID → [RISK_IDs] from §9 Implications blocks."""
+    """Map ADR_ID → [RISK_IDs] from Section 9 Implications blocks."""
     result: dict[str, list[str]] = {}
     current_adr: str | None = None
 
@@ -199,7 +199,7 @@ def extract_sec9_adr_risks(content: str) -> dict[str, list[str]]:
             result.setdefault(current_adr, [])
             continue
 
-        if current_adr and re.search(r"Risks created\s*\(→\s*§11\)", line, re.IGNORECASE):
+        if current_adr and re.search(r"Risks created\s*\(→\s*(§11|Section 11)\)", line, re.IGNORECASE):
             risks = re.findall(r"RISK-\d+", line)
             result[current_adr].extend(risks)
 
@@ -210,7 +210,7 @@ def extract_sec10_data(content: str) -> tuple[dict[str, str], set[str]]:
     """
     Returns (quality_tags, aspirational_ids).
     quality_tags: {QS_ID: "#tag"} from Quality property rows.
-    aspirational_ids: QS-xx IDs from §10.3 'not measured' rows.
+    aspirational_ids: QS-xx IDs from Section 10.3 'not measured' rows.
     """
     quality_tags: dict[str, str] = {}
     aspirational: set[str] = set()
@@ -235,7 +235,7 @@ def extract_sec10_data(content: str) -> tuple[dict[str, str], set[str]]:
         if tag_match and current_qs:
             quality_tags[current_qs] = tag_match.group(1)
 
-        # §10.3 aspirational row: | QS-xx | ... | not measured | ...
+        # Section 10.3 aspirational row: | QS-xx | ... | not measured | ...
         asp_match = re.match(r"^\|\s*(QS-\d+)\s*\|[^|]*\|\s*not measured", line, re.IGNORECASE)
         if asp_match:
             aspirational.add(asp_match.group(1))
@@ -244,7 +244,7 @@ def extract_sec10_data(content: str) -> tuple[dict[str, str], set[str]]:
 
 
 def extract_sec11_risks(content: str) -> set[str]:
-    """RISK-xx IDs from §11 risk matrix."""
+    """RISK-xx IDs from Section 11 risk matrix."""
     return set(re.findall(r"^\|\s*(RISK-\d+)\s*\|", content, re.MULTILINE))
 
 
@@ -312,7 +312,7 @@ def _populate(data: SectionData, sec: int, content: str, src: str) -> None:
 # ---------------------------------------------------------------------------
 
 def rule_interface_consistency(data: SectionData) -> list[LintIssue]:
-    """Rule 1: IF-xx IDs must be identical in §3 and §5."""
+    """Rule 1: IF-xx IDs must be identical in Section 3 and Section 5."""
     issues: list[LintIssue] = []
 
     if not data.sec3_interfaces and not data.sec5_interfaces:
@@ -320,26 +320,26 @@ def rule_interface_consistency(data: SectionData) -> list[LintIssue]:
 
     if not data.sec3_interfaces:
         return [LintIssue("RULE-1", "warning", data.sec5_path, -1,
-                          "§3 not found; cannot verify interface ID consistency with §5")]
+                          "Section 3 not found; cannot verify interface ID consistency with Section 5")]
     if not data.sec5_interfaces:
         return [LintIssue("RULE-1", "warning", data.sec3_path, -1,
-                          "§5 not found; cannot verify interface ID consistency with §3")]
+                          "Section 5 not found; cannot verify interface ID consistency with Section 3")]
 
     for if_id in sorted(data.sec3_interfaces.keys() - data.sec5_interfaces.keys()):
         issues.append(LintIssue(
             "RULE-1", "error", data.sec3_path, data.sec3_interfaces[if_id],
-            f"{if_id} defined in §3 but missing from §5 Level-1 building blocks",
+            f"{if_id} defined in Section 3 but missing from Section 5 Level-1 building blocks",
         ))
     for if_id in sorted(data.sec5_interfaces.keys() - data.sec3_interfaces.keys()):
         issues.append(LintIssue(
             "RULE-1", "error", data.sec5_path, data.sec5_interfaces[if_id],
-            f"{if_id} referenced in §5 but not defined in §3 interface table",
+            f"{if_id} referenced in Section 5 but not defined in Section 3 interface table",
         ))
     return issues
 
 
 def rule_component_in_deployment(data: SectionData) -> list[LintIssue]:
-    """Rule 2: Every §5 building block name must appear in §7."""
+    """Rule 2: Every Section 5 building block name must appear in Section 7."""
     issues: list[LintIssue] = []
 
     if not data.sec5_component_names:
@@ -347,20 +347,20 @@ def rule_component_in_deployment(data: SectionData) -> list[LintIssue]:
 
     if data.sec7_content is None:
         return [LintIssue("RULE-2", "warning", data.sec5_path, -1,
-                          "§7 not found; cannot verify building block deployment coverage")]
+                          "Section 7 not found; cannot verify building block deployment coverage")]
 
     sec7_lower = data.sec7_content.lower()
     for name in sorted(data.sec5_component_names):
         if name.lower() not in sec7_lower:
             issues.append(LintIssue(
                 "RULE-2", "error", data.sec5_path, -1,
-                f'Building block "{name}" (§5) not found in §7 deployment view',
+                f'Building block "{name}" (Section 5) not found in Section 7 deployment view',
             ))
     return issues
 
 
 def rule_quality_tag_coverage(data: SectionData) -> list[LintIssue]:
-    """Rule 3: Every Q42 tag used in §10 scenarios must appear in §1.2 quality goals."""
+    """Rule 3: Every Q42 tag used in Section 10 scenarios must appear in Section 1.2 quality goals."""
     issues: list[LintIssue] = []
 
     if not data.sec10_quality_tags:
@@ -368,21 +368,21 @@ def rule_quality_tag_coverage(data: SectionData) -> list[LintIssue]:
 
     if not data.sec1_quality_tags:
         return [LintIssue("RULE-3", "warning", data.sec10_path, -1,
-                          "§1 not found; cannot verify quality tag coverage")]
+                          "Section 1 not found; cannot verify quality tag coverage")]
 
     tags_in_10 = set(data.sec10_quality_tags.values())
     for tag in sorted(tags_in_10 - data.sec1_quality_tags):
         qs_ids = [qs for qs, t in data.sec10_quality_tags.items() if t == tag]
         issues.append(LintIssue(
             "RULE-3", "error", data.sec10_path, -1,
-            f"Q42 tag {tag} used in {', '.join(sorted(qs_ids))} (§10) "
-            f"but not present in §1.2 quality goals",
+            f"Q42 tag {tag} used in {', '.join(sorted(qs_ids))} (Section 10) "
+            f"but not present in Section 1.2 quality goals",
         ))
     return issues
 
 
 def rule_adr_risks_in_register(data: SectionData) -> list[LintIssue]:
-    """Rule 4: Every RISK-xx in §9 ADR 'Risks created' must exist in §11."""
+    """Rule 4: Every RISK-xx in Section 9 ADR 'Risks created' must exist in Section 11."""
     issues: list[LintIssue] = []
 
     if not data.sec9_adr_risks:
@@ -390,21 +390,21 @@ def rule_adr_risks_in_register(data: SectionData) -> list[LintIssue]:
 
     if not data.sec11_risks and not data.sec11_content:
         return [LintIssue("RULE-4", "warning", data.sec9_path, -1,
-                          "§11 not found; cannot verify ADR risk references")]
+                          "Section 11 not found; cannot verify ADR risk references")]
 
     for adr_id, risk_ids in sorted(data.sec9_adr_risks.items()):
         for risk_id in sorted(risk_ids):
             if risk_id not in data.sec11_risks:
                 issues.append(LintIssue(
                     "RULE-4", "error", data.sec9_path, -1,
-                    f"{risk_id} referenced in {adr_id} §9 'Risks created' "
-                    f"but not found in §11 risk matrix",
+                    f"{risk_id} referenced in {adr_id} Section 9 'Risks created' "
+                    f"but not found in Section 11 risk matrix",
                 ))
     return issues
 
 
 def rule_aspirational_in_risks(data: SectionData) -> list[LintIssue]:
-    """Rule 5: Every §10 aspirational scenario must be referenced in §11."""
+    """Rule 5: Every Section 10 aspirational scenario must be referenced in Section 11."""
     issues: list[LintIssue] = []
 
     if not data.sec10_aspirational:
@@ -412,13 +412,13 @@ def rule_aspirational_in_risks(data: SectionData) -> list[LintIssue]:
 
     if not data.sec11_content:
         return [LintIssue("RULE-5", "warning", data.sec10_path, -1,
-                          "§11 not found; cannot verify aspirational scenario traceability")]
+                          "Section 11 not found; cannot verify aspirational scenario traceability")]
 
     for qs_id in sorted(data.sec10_aspirational):
         if qs_id not in data.sec11_content:
             issues.append(LintIssue(
                 "RULE-5", "error", data.sec10_path, -1,
-                f"Aspirational scenario {qs_id} (§10.3) not referenced in §11 risks/debt",
+                f"Aspirational scenario {qs_id} (Section 10.3) not referenced in Section 11 risks/debt",
             ))
     return issues
 
@@ -432,11 +432,11 @@ ALL_RULES = [
 ]
 
 RULE_DESCRIPTIONS = {
-    "RULE-1": "§3 ↔ §5  Interface IDs (IF-xx)",
-    "RULE-2": "§5 ↔ §7  Building block deployment coverage",
-    "RULE-3": "§1 ↔ §10 Quality goal tag coverage (Q42)",
-    "RULE-4": "§9 ↔ §11 ADR risk references (RISK-xx)",
-    "RULE-5": "§10 ↔ §11 Aspirational scenario traceability",
+    "RULE-1": "Section 3 ↔ Section 5  Interface IDs (IF-xx)",
+    "RULE-2": "Section 5 ↔ Section 7  Building block deployment coverage",
+    "RULE-3": "Section 1 ↔ Section 10 Quality goal tag coverage (Q42)",
+    "RULE-4": "Section 9 ↔ Section 11 ADR risk references (RISK-xx)",
+    "RULE-5": "Section 10 ↔ Section 11 Aspirational scenario traceability",
 }
 
 

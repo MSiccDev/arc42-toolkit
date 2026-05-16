@@ -146,7 +146,7 @@ Every skill supports three depth levels. Choose based on your project's needs �
 
 - 1–3 pages per section maximum
 - Essential information only — "dare to leave gaps"
-- Minimum viable documentation: §1.2, §3, §5 Level-1, §9, §12
+- Minimum viable documentation: Section 1.2, Section 3, Section 5 Level-1, Section 9, Section 12
 
 ### ESSENTIAL (Core Information)
 **Best for:** Most projects — the balanced default
@@ -241,11 +241,11 @@ The arc42 toolkit ships a standalone linter that validates cross-section ID cons
 
 | Rule | Sections | Validates |
 |------|----------|-----------|
-| 1 | §3 ↔ §5 | `IF-xx` interface IDs match between the context diagram and Level-1 building blocks |
-| 2 | §5 ↔ §7 | Every building block name appears in the deployment mapping |
-| 3 | §1 ↔ §10 | Every Q42 tag used in quality scenarios is present in §1.2 quality goals |
-| 4 | §9 ↔ §11 | Every `RISK-xx` in an ADR's "Risks created" field has a §11 risk matrix entry |
-| 5 | §10 ↔ §11 | Every aspirational (not yet met) scenario from §10.3 is referenced in §11 |
+| 1 | Section 3 ↔ Section 5 | `IF-xx` interface IDs match between the context diagram and Level-1 building blocks |
+| 2 | Section 5 ↔ Section 7 | Every building block name appears in the deployment mapping |
+| 3 | Section 1 ↔ Section 10 | Every Q42 tag used in quality scenarios is present in Section 1.2 quality goals |
+| 4 | Section 9 ↔ Section 11 | Every `RISK-xx` in an ADR's "Risks created" field has a Section 11 risk matrix entry |
+| 5 | Section 10 ↔ Section 11 | Every aspirational (not yet met) scenario from Section 10.3 is referenced in Section 11 |
 
 ### Run locally
 

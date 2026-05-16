@@ -1,7 +1,7 @@
 ---
 name: arc42-lint
 version: 1.0.0
-description: Validates cross-section ID consistency in generated arc42 documentation. Checks IF-xx interface IDs (§3↔§5), building block deployment coverage (§5↔§7), Q42 quality tag traceability (§1↔§10), ADR risk references (§9↔§11), and aspirational scenario linkage (§10↔§11). Runs the automated linter script when available, or applies rules manually when not.
+description: Validates cross-section ID consistency in generated arc42 documentation. Checks IF-xx interface IDs (Section 3↔Section 5), building block deployment coverage (Section 5↔Section 7), Q42 quality tag traceability (Section 1↔Section 10), ADR risk references (Section 9↔Section 11), and aspirational scenario linkage (Section 10↔Section 11). Runs the automated linter script when available, or applies rules manually when not.
 ---
 
 # arc42 Consistency Linter
@@ -14,11 +14,11 @@ This skill checks that identifiers defined in one section are correctly referenc
 
 | Rule | Sections | What is checked |
 |------|----------|-----------------|
-| 1 | §3 ↔ §5 | IF-xx interface IDs defined in §3 must appear in §5 Level-1, and vice versa |
-| 2 | §5 ↔ §7 | Every §5 building block name must appear in the §7 deployment mapping |
-| 3 | §1 ↔ §10 | Every Q42 tag used in §10 quality scenarios must appear in §1.2 quality goals |
-| 4 | §9 ↔ §11 | Every RISK-xx in an ADR's "Risks created" field must have a §11 risk matrix entry |
-| 5 | §10 ↔ §11 | Every aspirational (unmet) scenario from §10.3 must be referenced in §11 |
+| 1 | Section 3 ↔ Section 5 | IF-xx interface IDs defined in Section 3 must appear in Section 5 Level-1, and vice versa |
+| 2 | Section 5 ↔ Section 7 | Every Section 5 building block name must appear in the Section 7 deployment mapping |
+| 3 | Section 1 ↔ Section 10 | Every Q42 tag used in Section 10 quality scenarios must appear in Section 1.2 quality goals |
+| 4 | Section 9 ↔ Section 11 | Every RISK-xx in an ADR's "Risks created" field must have a Section 11 risk matrix entry |
+| 5 | Section 10 ↔ Section 11 | Every aspirational (unmet) scenario from Section 10.3 must be referenced in Section 11 |
 
 ---
 
@@ -60,31 +60,31 @@ python scripts/arc42-lint.py <docs_path> --format text --strict
 
 Read the relevant documentation sections. Apply each rule in order:
 
-**Rule 1 — §3 ↔ §5 Interface IDs**
-1. Read §3: collect every `IF-xx` from the interface table (first column)
-2. Read §5 Level-1: collect every `IF-xx` from the Interfaces column of the building block table
-3. Check both directions — each IF-xx in §3 must appear in §5, and each IF-xx in §5 must appear in §3
+**Rule 1 — Section 3 ↔ Section 5 Interface IDs**
+1. Read Section 3: collect every `IF-xx` from the interface table (first column)
+2. Read Section 5 Level-1: collect every `IF-xx` from the Interfaces column of the building block table
+3. Check both directions — each IF-xx in Section 3 must appear in Section 5, and each IF-xx in Section 5 must appear in Section 3
 4. Record any orphan IDs as errors
 
-**Rule 2 — §5 ↔ §7 Building Block Coverage**
-1. Read §5: collect every component name (Name column of the building block table)
-2. Read §7: search for each component name in the deployment view text and tables
-3. Any component name absent from §7 is an error
+**Rule 2 — Section 5 ↔ Section 7 Building Block Coverage**
+1. Read Section 5: collect every component name (Name column of the building block table)
+2. Read Section 7: search for each component name in the deployment view text and tables
+3. Any component name absent from Section 7 is an error
 
-**Rule 3 — §1 ↔ §10 Quality Tag Coverage**
-1. Read §1.2: collect every Q42 tag (`#reliable`, `#efficient`, `#secure`, etc.) from the Quality Goal column
-2. Read §10: collect the Q42 tag from every quality scenario's "Quality property" row
-3. Any tag used in §10 that does not appear in §1.2 is an error
+**Rule 3 — Section 1 ↔ Section 10 Quality Tag Coverage**
+1. Read Section 1.2: collect every Q42 tag (`#reliable`, `#efficient`, `#secure`, etc.) from the Quality Goal column
+2. Read Section 10: collect the Q42 tag from every quality scenario's "Quality property" row
+3. Any tag used in Section 10 that does not appear in Section 1.2 is an error
 
-**Rule 4 — §9 ↔ §11 ADR Risk References**
-1. Read §9: for each ADR, find the `Risks created (→ §11):` line in its Implications block; collect all `RISK-xx` IDs mentioned
-2. Read §11: collect every `RISK-xx` from the risk matrix (ID column)
-3. Any RISK-xx mentioned in §9 but absent from §11 is an error
+**Rule 4 — Section 9 ↔ Section 11 ADR Risk References**
+1. Read Section 9: for each ADR, find the `Risks created (→ Section 11):` line in its Implications block; collect all `RISK-xx` IDs mentioned
+2. Read Section 11: collect every `RISK-xx` from the risk matrix (ID column)
+3. Any RISK-xx mentioned in Section 9 but absent from Section 11 is an error
 
-**Rule 5 — §10.3 ↔ §11 Aspirational Scenarios**
-1. Read §10.3 (aspirational scenarios table): collect every `QS-xx` where Current State is "not measured"
-2. Read §11: check that each aspirational QS-xx is referenced somewhere in the risks/debt section
-3. Any aspirational QS-xx absent from §11 is an error
+**Rule 5 — Section 10.3 ↔ Section 11 Aspirational Scenarios**
+1. Read Section 10.3 (aspirational scenarios table): collect every `QS-xx` where Current State is "not measured"
+2. Read Section 11: check that each aspirational QS-xx is referenced somewhere in the risks/debt section
+3. Any aspirational QS-xx absent from Section 11 is an error
 
 ---
 
@@ -104,11 +104,11 @@ Present results in this format:
 
 | Rule | Sections | Status | Details |
 |------|----------|--------|---------|
-| 1 | §3 ↔ §5  IF-xx | PASS / FAIL | [e.g. "IF-03 missing from §5"] |
-| 2 | §5 ↔ §7  Building blocks | PASS / FAIL / SKIP | [detail or "§7 not found"] |
-| 3 | §1 ↔ §10 Q42 tags | PASS / FAIL | [e.g. "#usable used in QS-04 but absent from §1.2"] |
-| 4 | §9 ↔ §11 RISK-xx | PASS / FAIL | [e.g. "RISK-02 in ADR-003 missing from §11"] |
-| 5 | §10 ↔ §11 Aspirational | PASS / FAIL / SKIP | [detail or "no aspirational scenarios found"] |
+| 1 | Section 3 ↔ Section 5  IF-xx | PASS / FAIL | [e.g. "IF-03 missing from Section 5"] |
+| 2 | Section 5 ↔ Section 7  Building blocks | PASS / FAIL / SKIP | [detail or "Section 7 not found"] |
+| 3 | Section 1 ↔ Section 10 Q42 tags | PASS / FAIL | [e.g. "#usable used in QS-04 but absent from Section 1.2"] |
+| 4 | Section 9 ↔ Section 11 RISK-xx | PASS / FAIL | [e.g. "RISK-02 in ADR-003 missing from Section 11"] |
+| 5 | Section 10 ↔ Section 11 Aspirational | PASS / FAIL / SKIP | [detail or "no aspirational scenarios found"] |
 
 ---
 

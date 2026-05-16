@@ -103,7 +103,7 @@ Customer "1" o-- "0..*" Order
 
 ### Key Entities
 
-| Entity | Description | Used In (Building Blocks §5) |
+| Entity | Description | Used In (Building Blocks Section 5) |
 |--------|-------------|------------------------------|
 | [Entity] | [What it represents in the domain] | [Component A, Component B] |
 

@@ -56,7 +56,7 @@ This section makes known problems and risks visible. It is an act of professiona
 7. **Detail level** — LEAN, ESSENTIAL, or THOROUGH?
    - **LEAN:** risk summary matrix only — one row per risk and debt item
    - **ESSENTIAL:** adds individual RISK-xx tables with mitigation details
-   - **THOROUGH:** adds detailed debt section with remediation plans and traces to §9 ADRs and §10 scenarios
+   - **THOROUGH:** adds detailed debt section with remediation plans and traces to Section 9 ADRs and Section 10 scenarios
 
 ---
 
@@ -101,10 +101,10 @@ Once all answers are in, produce Section 11. Order risks by priority — Critica
 | **Mitigation** | [Current or planned mitigation strategy — be specific] |
 | **Status** | Open / Mitigated / Accepted |
 
-**Context:** [What makes this a risk? What conditions trigger it? Reference §9 ADR or §10 scenario if applicable.]
+**Context:** [What makes this a risk? What conditions trigger it? Reference Section 9 ADR or Section 10 scenario if applicable.]
 
 <!-- THOROUGH only: -->
-**Traces to:** [→ ADR-XXX (§9) / QS-XX (§10) / Constraint §2]
+**Traces to:** [→ ADR-XXX (Section 9) / QS-XX (Section 10) / Constraint Section 2]
 
 ---
 
@@ -123,7 +123,7 @@ Once all answers are in, produce Section 11. Order risks by priority — Critica
 | Attribute | Value |
 |-----------|-------|
 | **Type** | Accidental / Deliberate / Legacy |
-| **Affected component** | [Component from §5] |
+| **Affected component** | [Component from Section 5] |
 | **Priority** | High / Medium / Low |
 | **Status** | Open / In Progress / Closed |
 
