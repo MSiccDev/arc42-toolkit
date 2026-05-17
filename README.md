@@ -40,7 +40,44 @@ arc42 is the proven, open-source template for software architecture documentatio
 
 ## Quick Start
 
-### 1. Clone the repository into your project
+### 1. Install the toolkit
+
+**Claude Code**
+
+```bash
+claude plugin install MSiccDev/arc42-toolkit
+```
+
+Skills are available as slash commands immediately.
+
+**GitHub Copilot CLI**
+
+```bash
+copilot plugin install arc42-toolkit
+```
+
+If the arc42-toolkit marketplace is not yet registered, add it first:
+
+```bash
+copilot plugin marketplace add MSiccDev/arc42-toolkit
+copilot plugin install arc42-toolkit
+```
+
+**OpenAI Codex**
+
+Use the built-in `$skill-installer` inside Codex and provide the repository URL, or install for your user account:
+
+```bash
+# User-wide (available in all your projects)
+git clone https://github.com/MSiccDev/arc42-toolkit.git ~/.codex/skills/arc42-toolkit
+
+# Project-wide (checked into the repo)
+git clone https://github.com/MSiccDev/arc42-toolkit.git .codex/skills/arc42-toolkit
+```
+
+**Cursor, Copilot Chat, and other tools**
+
+Clone or copy into your project:
 
 ```bash
 git clone https://github.com/MSiccDev/arc42-toolkit.git
