@@ -7,9 +7,9 @@
 # To use this in your own project:
 #   1. Copy the entire scripts/ directory (script + languages/) to your repo
 #   2. Copy this file to .github/workflows/arc42-lint.yml
-#   4. Adjust the 'paths' filter and docs_path default below if your
-#      docs live somewhere other than docs/
-#   5. Set the lang input default to match your documentation language
+#   3. Adjust the 'paths' filter AND the docs_path default below to match
+#      where your arc42 docs live — both must point to the same directory
+#   4. Set the lang input default to match your documentation language
 #      (en, de, fr, it, es, pt — or any language file you added)
 #
 # No Python dependencies to install — the linter uses stdlib only.
@@ -54,9 +54,9 @@ jobs:
       - name: Run arc42 consistency linter
         run: |
           DOCS_PATH="${{ github.event.inputs.docs_path || 'docs' }}"
-          LANG="${{ github.event.inputs.lang || 'en' }}"
+          DOC_LANG="${{ github.event.inputs.lang || 'en' }}"
           STRICT_FLAG=""
           if [ "${{ github.event.inputs.strict }}" = "true" ]; then
             STRICT_FLAG="--strict"
           fi
-          python scripts/arc42-lint.py "$DOCS_PATH" --lang "$LANG" --format github $STRICT_FLAG
+          python scripts/arc42-lint.py "$DOCS_PATH" --lang "$DOC_LANG" --format github $STRICT_FLAG

@@ -8,10 +8,12 @@ Exit codes:
     0  no issues (or only warnings in non-strict mode)
     1  one or more errors found (or warnings with --strict)
 
-Language files live in scripts/languages/ alongside this script.
+Requires Python 3.8+. Language files live in scripts/languages/ alongside this script.
 Default language is English (en). Run with --lang de, fr, it, es, or pt for
 other built-in languages, or add a new JSON file to contribute a language.
 """
+
+from __future__ import annotations
 
 import argparse
 import json
@@ -87,7 +89,7 @@ def detect_section(path: Path, content: str, lang: dict) -> int | None:
       2. Numeric prefix in the first heading (language-agnostic)
       3. Keyword match in the first heading (language-specific fallback)
     """
-    m = re.search(r"(?<!\d)(0[1-9]|1[0-2])(?!\d)", path.stem)
+    m = re.search(r"(?<!\d)(1[0-2]|0?[1-9])(?!\d)", path.stem)
     if m:
         return int(m.group(1))
 
@@ -194,45 +196,68 @@ def extract_sec3_interfaces(content: str) -> dict[str, int]:
 def extract_sec5_data(content: str, lang: dict) -> tuple[dict[str, int], set[str]]:
     """IF-xx IDs and component names from Section 5 building block table.
 
-    Table format: | Name | Responsibility | Interfaces |
-    Header row is skipped using language-specific header names.
+    Only extracts from the specific building-block table (the one whose header
+    row matches the language-specific name-column label), ignoring any other
+    3-column tables that may appear in the section.
     """
     interfaces: dict[str, int] = {}
     names: set[str] = set()
     header_names = lang["patterns"]["section5_header_names"]
 
-    for m in re.finditer(
-        r"^\|\s*([^|*\-:][^|]*?)\s*\|\s*([^|]+)\s*\|\s*([^|]+)\s*\|",
-        content,
-        re.MULTILINE,
-    ):
-        name_cell = m.group(1).strip()
-        iface_cell = m.group(3).strip()
+    in_bb_table = False
+    for line_num, line in enumerate(content.splitlines(), start=1):
+        if not line.strip().startswith("|"):
+            if in_bb_table:
+                in_bb_table = False
+            continue
 
+        cells = [c.strip() for c in line.split("|")[1:-1]]
+        if len(cells) < 3:
+            continue
+
+        name_cell = cells[0]
+        iface_cell = cells[2]
+
+        # Separator row
         if re.match(r"^[-:\s]+$", name_cell):
             continue
+
+        # Header row — marks the start of the building-block table
         if _matches_any(name_cell, header_names):
+            in_bb_table = True
+            continue
+
+        if not in_bb_table or not name_cell:
             continue
 
         names.add(name_cell)
         for if_id in re.findall(r"IF-\d+", iface_cell):
             if if_id not in interfaces:
-                interfaces[if_id] = _line_of(content, m.start())
+                interfaces[if_id] = line_num
 
     return interfaces, names
 
 
 def extract_sec9_adr_risks(content: str, lang: dict) -> dict[str, list[str]]:
-    """Map ADR_ID → [RISK_IDs] from Section 9 ADR Implications blocks."""
+    """Map ADR_ID → [RISK_IDs] from Section 9 ADR Implications blocks.
+
+    Any heading resets the current ADR context so stray 'risks created'
+    references after the last ADR are never mis-attributed.
+    The trailing colon in ADR headings is optional (## ADR-001 Title works).
+    """
     result: dict[str, list[str]] = {}
     current_adr: str | None = None
     risks_labels = lang["patterns"]["risks_created_label"]
 
     for line in content.splitlines():
-        adr_match = re.match(r"^#{1,3}\s+(ADR-\d+)\s*:", line)
-        if adr_match:
-            current_adr = adr_match.group(1)
-            result.setdefault(current_adr, [])
+        heading_m = re.match(r"^#{1,3}\s+(.+)$", line)
+        if heading_m:
+            adr_m = re.search(r"(ADR-\d+)", heading_m.group(1))
+            if adr_m:
+                current_adr = adr_m.group(1)
+                result.setdefault(current_adr, [])
+            else:
+                current_adr = None
             continue
 
         if current_adr and _matches_any(line, risks_labels):
@@ -259,10 +284,12 @@ def extract_sec10_data(content: str, lang: dict) -> tuple[dict[str, str], set[st
             current_qs = qs_match.group(1)
             continue
 
-        # Also pick up QS IDs from quality tree lines: "├── QS-01: Title"
-        tree_match = re.search(r"\b(QS-\d+)\s*:", line)
-        if tree_match and current_qs is None:
-            current_qs = tree_match.group(1)
+        # Pick up QS IDs from quality tree lines (lines with box-drawing chars)
+        # Restricting to tree lines avoids mis-attributing QS refs in prose or tables
+        if re.search(r"[├└│]", line) and current_qs is None:
+            tree_match = re.search(r"\b(QS-\d+)\s*:", line)
+            if tree_match:
+                current_qs = tree_match.group(1)
 
         # Quality property row: | Quality property | #efficient |
         if current_qs and _matches_any(line, quality_prop_labels):
@@ -318,6 +345,17 @@ def load_docs(docs_path: Path, lang: dict) -> SectionData:
 
 
 def _populate(data: SectionData, sec: int, content: str, src: str, lang: dict) -> None:
+    existing_path = {
+        1: data.sec1_path, 3: data.sec3_path, 5: data.sec5_path,
+        7: data.sec7_path, 9: data.sec9_path, 10: data.sec10_path, 11: data.sec11_path,
+    }.get(sec)
+    if existing_path:
+        print(
+            f"arc42-lint: warning: Section {sec} detected in both '{existing_path}' and '{src}'"
+            f" — data from '{src}' will be used.",
+            file=sys.stderr,
+        )
+
     if sec == 1:
         data.sec1_quality_tags = extract_sec1_quality_tags(content)
         data.sec1_path = src
@@ -363,7 +401,7 @@ def rule_interface_consistency(data: SectionData) -> list[LintIssue]:
     for if_id in sorted(data.sec3_interfaces.keys() - data.sec5_interfaces.keys()):
         issues.append(LintIssue(
             "RULE-1", "error", data.sec3_path, data.sec3_interfaces[if_id],
-            f"{if_id} defined in Section 3 but missing from Section 5 Level-1 building blocks",
+            f"{if_id} defined in Section 3 but missing from Section 5 building blocks",
         ))
     for if_id in sorted(data.sec5_interfaces.keys() - data.sec3_interfaces.keys()):
         issues.append(LintIssue(
@@ -384,9 +422,9 @@ def rule_component_in_deployment(data: SectionData) -> list[LintIssue]:
         return [LintIssue("RULE-2", "warning", data.sec5_path, -1,
                           "Section 7 not found; cannot verify building block deployment coverage")]
 
-    sec7_lower = data.sec7_content.lower()
     for name in sorted(data.sec5_component_names):
-        if name.lower() not in sec7_lower:
+        pattern = r"\b" + re.escape(name) + r"\b"
+        if not re.search(pattern, data.sec7_content, re.IGNORECASE):
             issues.append(LintIssue(
                 "RULE-2", "error", data.sec5_path, -1,
                 f'Building block "{name}" (Section 5) not found in Section 7 deployment view',
