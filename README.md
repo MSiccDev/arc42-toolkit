@@ -40,7 +40,17 @@ arc42 is the proven, open-source template for software architecture documentatio
 
 ## Quick Start
 
-### 1. Clone the repository into your project
+### 1. Install the toolkit
+
+**Claude Code** — install directly from the plugin registry:
+
+```bash
+claude plugin install MSiccDev/arc42-toolkit
+```
+
+Skills become available as slash commands immediately — no restart needed.
+
+**Other AI tools** (GitHub Copilot, Cursor, Codex) — clone or copy into your project:
 
 ```bash
 git clone https://github.com/MSiccDev/arc42-toolkit.git
