@@ -43,6 +43,7 @@ Skills live in `skills/` (canonical source). `.agents/` is a symlink to `skills/
 | `arc42-section-11` | Risks and Technical Debt | Optional |
 | `arc42-section-12` | Glossary | Recommended |
 | `arc42-review` | Quality Review (any section) | On demand |
+| `arc42-lint`   | Cross-section consistency linter | On demand |
 
 ## arc42 in 60 Seconds
 
@@ -69,16 +70,16 @@ These are the most common consistency traps — watch for them across all sectio
 
 ## Diagram Convention
 
-Architecture diagrams use **C4 PlantUML** notation. The single exception is the §8 domain model, which uses standard PlantUML class diagram notation (C4 does not cover domain-level class relationships). All diagrams are stored as individual `.puml` files in `docs/diagrams/` and are never inlined in section markdown — only referenced.
+Architecture diagrams use **C4 PlantUML** notation. The single exception is the Section 8 domain model, which uses standard PlantUML class diagram notation (C4 does not cover domain-level class relationships). All diagrams are stored as individual `.puml` files in `docs/diagrams/` and are never inlined in section markdown — only referenced.
 
 | Diagram | File |
 |---------|------|
-| Business context (§3) | `docs/diagrams/context-business.puml` |
-| Technical context (§3) | `docs/diagrams/context-technical.puml` |
-| Building block Level-1 (§5) | `docs/diagrams/building-blocks-level1.puml` |
-| Building block Level-2+ (§5) | `docs/diagrams/building-blocks-level2-[name].puml` |
-| Runtime scenario (§6) | `docs/diagrams/runtime-[scenario-name].puml` |
-| Deployment (§7) | `docs/diagrams/deployment-[environment].puml` |
+| Business context (Section 3) | `docs/diagrams/context-business.puml` |
+| Technical context (Section 3) | `docs/diagrams/context-technical.puml` |
+| Building block Level-1 (Section 5) | `docs/diagrams/building-blocks-level1.puml` |
+| Building block Level-2+ (Section 5) | `docs/diagrams/building-blocks-level2-[name].puml` |
+| Runtime scenario (Section 6) | `docs/diagrams/runtime-[scenario-name].puml` |
+| Deployment (Section 7) | `docs/diagrams/deployment-[environment].puml` |
 
 Reference diagrams in markdown as: `![Title](diagrams/[filename].puml)` — this path is relative to the section markdown file. If section files live directly in `docs/`, the path resolves correctly. If stored in a subdirectory (e.g. `docs/arc42/`), adjust to `../diagrams/[filename].puml`.
 
@@ -108,10 +109,13 @@ skills/                           # Canonical skill source (agentskills.io spec)
 │   arc42-section-11/SKILL.md     # Risks and Technical Debt
 │   arc42-section-12/SKILL.md     # Glossary
 │   arc42-review/SKILL.md         # Quality Review
+│   arc42-lint/SKILL.md           # Cross-section consistency linter
 .agents/ -> skills/               # Symlink for agent-discovery compatibility
-instructions/                     # Detailed reference guidelines (all sections)
-prompts/                          # Legacy LLM prompt templates (kept for compatibility)
-quality/                          # Maintainer QA review protocol
+scripts/
+│   arc42-lint.py                 # Standalone linter script (stdlib only)
+│   languages/                    # Language definitions (en, de, fr, it, es, pt)
+templates/
+│   arc42-lint.yml                # GitHub Actions workflow template (copy to your project)
 ```
 
 ## Official arc42 Resources

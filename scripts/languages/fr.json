@@ -1,0 +1,24 @@
+{
+  "language": "fr",
+  "name": "Français",
+  "section_keywords": {
+    "1":  ["introduction.*objectifs", "introduction.*buts"],
+    "2":  ["contraintes"],
+    "3":  ["contexte.*port.e", "port.e.*contexte", "contexte.*p.rim.tre"],
+    "4":  ["strat.gie.*solution"],
+    "5":  ["blocs.*construction", "vue.*blocs"],
+    "6":  ["vue.*ex.cution", "vue.*runtime"],
+    "7":  ["vue.*d.ploiement"],
+    "8":  ["concepts.*transversaux"],
+    "9":  ["d.cisions.*architecture"],
+    "10": ["exigences.*qualit.", "sc.narios.*qualit."],
+    "11": ["risques.*dette.*technique", "dette.*technique"],
+    "12": ["glossaire"]
+  },
+  "patterns": {
+    "quality_property_label": ["propri.t. de qualit.", "attribut de qualit."],
+    "risks_created_label":    ["risques cr..s", "risques g.n.r.s"],
+    "not_measured":           ["non mesur.e?", "pas mesur.e?"],
+    "section5_header_names":  ["nom", "composant", "bloc de construction", ".l.ment"]
+  }
+}

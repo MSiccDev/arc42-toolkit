@@ -1,0 +1,24 @@
+{
+  "language": "pt",
+  "name": "Português",
+  "section_keywords": {
+    "1":  ["introdu..o.*objetivos"],
+    "2":  ["restri..es"],
+    "3":  ["contexto.*escopo", "escopo.*contexto", "contexto.*per.metro"],
+    "4":  ["estrat.gia.*solu..o"],
+    "5":  ["blocos.*constru..o", "vis.o.*blocos"],
+    "6":  ["vis.o.*execu..o", "vis.o.*runtime"],
+    "7":  ["vis.o.*implanta..o", "vis.o.*deployment"],
+    "8":  ["conceitos.*transversais"],
+    "9":  ["decis.es.*arquitetura"],
+    "10": ["requisitos.*qualidade", "cen.rios.*qualidade"],
+    "11": ["riscos.*d.vida.*t.cnica", "d.vida.*t.cnica"],
+    "12": ["gloss.rio"]
+  },
+  "patterns": {
+    "quality_property_label": ["propriedade de qualidade", "atributo de qualidade"],
+    "risks_created_label":    ["riscos criados", "riscos gerados"],
+    "not_measured":           ["n.o medido", "n.o medida", "sem medi..o"],
+    "section5_header_names":  ["nome", "componente", "bloco de constru..o", "elemento"]
+  }
+}

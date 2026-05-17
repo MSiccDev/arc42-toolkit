@@ -127,10 +127,10 @@ Negative:
 - [Drawback 2]
 
 **Implications:**
-- Building blocks affected (→ §5): [Which components]
-- Quality goals supported (→ §1.2): [Which goals and how]
-- Constraints created (→ §2): [Any new constraints this decision introduces]
-- Risks created (→ §11): [Any risks or technical debt this decision introduces]
+- Building blocks affected (→ Section 5): [Which components]
+- Quality goals supported (→ Section 1.2): [Which goals and how]
+- Constraints created (→ Section 2): [Any new constraints this decision introduces]
+- Risks created (→ Section 11): [Any risks or technical debt this decision introduces]
 
 <!-- THOROUGH only: -->
 **Validation:**

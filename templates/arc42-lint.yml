@@ -1,0 +1,62 @@
+# ============================================================
+# arc42 Consistency Linter — GitHub Actions Workflow
+# ============================================================
+# This workflow runs the arc42 cross-section consistency linter
+# automatically whenever documentation files change.
+#
+# To use this in your own project:
+#   1. Copy the entire scripts/ directory (script + languages/) to your repo
+#   2. Copy this file to .github/workflows/arc42-lint.yml
+#   3. Adjust the 'paths' filter AND the docs_path default below to match
+#      where your arc42 docs live — both must point to the same directory
+#   4. Set the lang input default to match your documentation language
+#      (en, de, fr, it, es, pt — or any language file you added)
+#
+# No Python dependencies to install — the linter uses stdlib only.
+# ubuntu-latest ships Python 3.12+, so no setup-python step is needed.
+# ============================================================
+
+name: arc42 Consistency Check
+
+on:
+  push:
+    paths:
+      - 'docs/**'
+  pull_request:
+    paths:
+      - 'docs/**'
+  workflow_dispatch:
+    inputs:
+      docs_path:
+        description: 'Path to arc42 docs directory'
+        required: false
+        default: 'docs'
+      lang:
+        description: 'Documentation language (en, de, fr, it, es, pt)'
+        required: false
+        default: 'en'
+      strict:
+        description: 'Treat warnings as errors'
+        type: boolean
+        default: false
+
+jobs:
+  arc42-lint:
+    name: Cross-section consistency
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run arc42 consistency linter
+        run: |
+          DOCS_PATH="${{ github.event.inputs.docs_path || 'docs' }}"
+          DOC_LANG="${{ github.event.inputs.lang || 'en' }}"
+          STRICT_FLAG=""
+          if [ "${{ github.event.inputs.strict }}" = "true" ]; then
+            STRICT_FLAG="--strict"
+          fi
+          python scripts/arc42-lint.py "$DOCS_PATH" --lang "$DOC_LANG" --format github $STRICT_FLAG

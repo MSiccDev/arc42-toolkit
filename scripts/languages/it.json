@@ -1,0 +1,24 @@
+{
+  "language": "it",
+  "name": "Italiano",
+  "section_keywords": {
+    "1":  ["introduzione.*obiettivi"],
+    "2":  ["vincoli"],
+    "3":  ["contesto.*ambito", "ambito.*contesto"],
+    "4":  ["strategia.*soluzione"],
+    "5":  ["blocchi.*costruttivi", "vista.*blocchi"],
+    "6":  ["vista.*runtime", "vista.*esecuzione"],
+    "7":  ["vista.*deployment", "vista.*distribuzione"],
+    "8":  ["concetti.*trasversali"],
+    "9":  ["decisioni.*architetturali", "decisioni.*architettura"],
+    "10": ["requisiti.*qualit.", "scenari.*qualit."],
+    "11": ["rischi.*debito.*tecnico", "debito.*tecnico"],
+    "12": ["glossario"]
+  },
+  "patterns": {
+    "quality_property_label": ["propriet. di qualit.", "attributo di qualit."],
+    "risks_created_label":    ["rischi creati", "rischi generati"],
+    "not_measured":           ["non misurato", "non misurata"],
+    "section5_header_names":  ["nome", "componente", "blocco costruttivo", "elemento"]
+  }
+}

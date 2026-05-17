@@ -12,13 +12,14 @@ Create professional software architecture documentation through guided, interact
 
 ## Features
 
-- **13 interactive skills** — one per arc42 section, plus a cross-cutting quality review skill
+- **14 interactive skills** — one per arc42 section, plus quality review and consistency linting
 - **Provider-agnostic** — works with Claude Code, GitHub Copilot, Cursor, Codex, and any LLM tool
 - **Ask-first approach** — every skill gathers your project details before generating anything
 - **Three depth levels** — LEAN, ESSENTIAL, or THOROUGH, chosen per section based on your needs
 - **C4 PlantUML diagrams** — architecture diagrams as separate `.puml` files, never inlined
 - **Q42 quality model** — 492 quality attributes across 8 properties integrated into relevant skills
 - **Cross-section consistency** — skills check related sections and flag contradictions
+- **Automated consistency linting** — catch IF-xx, QS-xx, ADR, and RISK-xx mismatches before they accumulate
 - **Standards-based** — grounded in arc42.org, docs.arc42.org, and quality.arc42.org
 
 ---
@@ -97,7 +98,21 @@ arc42-toolkit/
 │   ├── arc42-section-10/SKILL.md      # Quality Requirements
 │   ├── arc42-section-11/SKILL.md      # Risks and Technical Debt
 │   ├── arc42-section-12/SKILL.md      # Glossary
-│   └── arc42-review/SKILL.md          # Quality review (any section or full doc)
+│   ├── arc42-review/SKILL.md          # Quality review (any section or full doc)
+│   └── arc42-lint/SKILL.md            # Cross-section consistency linter
+│
+├── scripts/
+│   ├── arc42-lint.py                  # Standalone linter (stdlib only, CI-ready)
+│   └── languages/
+│       ├── en.json                    # English (default)
+│       ├── de.json                    # Deutsch
+│       ├── fr.json                    # Français
+│       ├── it.json                    # Italiano
+│       ├── es.json                    # Español
+│       └── pt.json                    # Português
+│
+├── templates/
+│   └── arc42-lint.yml                 # GitHub Actions workflow template (copy to your project)
 │
 └── .agents/ -> skills/                # Symlink for agent-discovery compatibility
 ```
@@ -124,6 +139,7 @@ Generated documentation goes in your project's `docs/` directory. Architecture d
 | **12** | Glossary | `/arc42-section-12` | Recommended |
 
 Use `/arc42-review` at any point to validate one section, a related set, or the full document.
+Use `/arc42-lint` to check cross-section ID consistency automatically.
 
 ---
 
@@ -136,7 +152,7 @@ Every skill supports three depth levels. Choose based on your project's needs �
 
 - 1–3 pages per section maximum
 - Essential information only — "dare to leave gaps"
-- Minimum viable documentation: §1.2, §3, §5 Level-1, §9, §12
+- Minimum viable documentation: Section 1.2, Section 3, Section 5 Level-1, Section 9, Section 12
 
 ### ESSENTIAL (Core Information)
 **Best for:** Most projects — the balanced default
@@ -220,6 +236,58 @@ The skills integrate the **Q42 quality model** — a comprehensive framework wit
 | **#operable** | 55 | Installability, Monitorability, Deployability |
 
 **Learn more:** [quality.arc42.org](https://quality.arc42.org)
+
+---
+
+## Consistency Linting
+
+The arc42 toolkit ships a standalone linter that validates cross-section ID consistency in your generated documentation. It catches mismatches that accumulate silently over time — interface IDs renamed in one section but not another, ADR risks never registered, quality scenarios with no matching goal.
+
+### What it checks
+
+| Rule | Sections | Validates |
+|------|----------|-----------|
+| 1 | Section 3 ↔ Section 5 | `IF-xx` interface IDs match between the context diagram and Level-1 building blocks |
+| 2 | Section 5 ↔ Section 7 | Every building block name appears in the deployment mapping |
+| 3 | Section 1 ↔ Section 10 | Every Q42 tag used in quality scenarios is present in Section 1.2 quality goals |
+| 4 | Section 9 ↔ Section 11 | Every `RISK-xx` in an ADR's "Risks created" field has a Section 11 risk matrix entry |
+| 5 | Section 10 ↔ Section 11 | Every aspirational (not yet met) scenario from Section 10.3 is referenced in Section 11 |
+
+### Run locally
+
+```bash
+# Check docs/ in English (default)
+python scripts/arc42-lint.py
+
+# Check docs written in another language
+python scripts/arc42-lint.py --lang de
+python scripts/arc42-lint.py --lang fr
+python scripts/arc42-lint.py --lang it
+python scripts/arc42-lint.py --lang es
+python scripts/arc42-lint.py --lang pt
+
+# Check a custom path
+python scripts/arc42-lint.py path/to/your/docs --lang de
+
+# Treat warnings as errors (useful in CI)
+python scripts/arc42-lint.py --strict
+```
+
+Exit code `0` = clean, `1` = issues found.
+
+### GitHub Actions
+
+Copy `templates/arc42-lint.yml` from this repo to `.github/workflows/arc42-lint.yml` in your project. It runs automatically when files under `docs/**` change.
+
+**To use in your own project:** copy the entire `scripts/` directory (script + languages) and `templates/arc42-lint.yml` (to `.github/workflows/arc42-lint.yml`) into your repo. No Python dependencies to install — stdlib only.
+
+### Adding a language
+
+Copy any file from `scripts/languages/` as a starting point, name it `scripts/languages/{code}.json`, and translate the keyword patterns. All values are case-insensitive regular expressions — plain text works too. Multiple alternatives are supported per pattern. Once merged, the new language is available via `--lang {code}`.
+
+### AI-assisted linting
+
+Use `/arc42-lint` to run the linter interactively through your AI tool. The skill runs the script when available, or applies the five rules manually when not. It also offers to fix any issues it finds.
 
 ---
 

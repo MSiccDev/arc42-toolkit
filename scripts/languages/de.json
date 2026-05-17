@@ -1,0 +1,24 @@
+{
+  "language": "de",
+  "name": "Deutsch",
+  "section_keywords": {
+    "1":  ["einf.hrung.*ziele", "einleitung.*ziele"],
+    "2":  ["randbedingungen"],
+    "3":  ["kontextabgrenzung", "kontext.*umfang"],
+    "4":  ["l.sungsstrategie"],
+    "5":  ["bausteinsicht", "bausteine"],
+    "6":  ["laufzeitsicht"],
+    "7":  ["verteilungssicht"],
+    "8":  ["querschnittliche.*konzepte", "querschnittskonzepte"],
+    "9":  ["architekturentscheidungen", "entwurfsentscheidungen"],
+    "10": ["qualit.tsanforderungen", "qualit.tsszenarien"],
+    "11": ["risiken.*technische.*schulden", "technische.*schulden"],
+    "12": ["glossar"]
+  },
+  "patterns": {
+    "quality_property_label": ["qualit.tseigenschaft", "qualit.tsmerkmal"],
+    "risks_created_label":    ["erzeugte risiken", "neue risiken", "risiken.*erstellt"],
+    "not_measured":           ["nicht gemessen", "nicht ermittelt"],
+    "section5_header_names":  ["name", "komponente", "baustein", "element"]
+  }
+}

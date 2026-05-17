@@ -20,7 +20,7 @@ This skill reviews one or more sections of arc42 documentation for accuracy, com
 
 1. **Scope** — Which of the following?
    - A single section (which number?)
-   - A related set (e.g. structure: §5 + §6 + §7; quality: §1 + §10; decisions: §4 + §9 + §11)
+   - A related set (e.g. structure: Section 5 + Section 6 + Section 7; quality: Section 1 + Section 10; decisions: Section 4 + Section 9 + Section 11)
    - The full document
 
 2. **Where are the files?** — What is the path to the arc42 documentation? (e.g. `docs/arc42/`, `architecture/`, or a single file.) Do not ask the user to paste content — read the files directly.
@@ -145,20 +145,20 @@ Apply when multiple sections are in scope.
 
 | Check | Sections | What to Verify |
 |-------|----------|----------------|
-| Interface IDs | §3 ↔ §5 | IF-xx IDs in §3 match IF-xx IDs used at §5 Level-1 exactly |
-| Component names | §5 ↔ §6 | Every component name in runtime scenarios matches §5 name exactly |
-| Component names | §5 ↔ §7 | Every component in §5 appears in §7 deployment mapping |
-| Component names | §5 ↔ §8 | Building blocks referenced in crosscutting concepts match §5 names |
-| Quality goals | §1.2 ↔ §4 | Every quality goal has a solution approach in §4 |
-| Quality goals | §1.2 ↔ §7 | `#reliable`, `#efficient`, `#operable` goals have infrastructure mechanisms in §7 |
-| Quality goals | §1.2 ↔ §10 | Every quality goal has at least one scenario in §10 |
-| Constraints | §2 ↔ §5 | No component structure violates a §2 constraint |
-| Constraints | §2 ↔ §7 | No infrastructure choice violates a §2 constraint |
-| Decisions | §4 ↔ §9 | Every significant decision in §4 has a full ADR in §9 |
-| Risks | §9 ↔ §11 | Every "Risks created" field in §9 ADRs has a RISK-xx entry in §11 |
-| Risks | §10 ↔ §11 | Aspirational scenarios in §10 have corresponding RISK-xx entries in §11 |
-| Crosscutting | §8 ↔ §4 | Crosscutting patterns are consistent with §4 solution strategy |
-| Terminology | §12 ↔ all | Preferred terms in §12 are used consistently across all sections |
+| Interface IDs | Section 3 ↔ Section 5 | IF-xx IDs in Section 3 match IF-xx IDs used at Section 5 Level-1 exactly |
+| Component names | Section 5 ↔ Section 6 | Every component name in runtime scenarios matches Section 5 name exactly |
+| Component names | Section 5 ↔ Section 7 | Every component in Section 5 appears in Section 7 deployment mapping |
+| Component names | Section 5 ↔ Section 8 | Building blocks referenced in crosscutting concepts match Section 5 names |
+| Quality goals | Section 1.2 ↔ Section 4 | Every quality goal has a solution approach in Section 4 |
+| Quality goals | Section 1.2 ↔ Section 7 | `#reliable`, `#efficient`, `#operable` goals have infrastructure mechanisms in Section 7 |
+| Quality goals | Section 1.2 ↔ Section 10 | Every quality goal has at least one scenario in Section 10 |
+| Constraints | Section 2 ↔ Section 5 | No component structure violates a Section 2 constraint |
+| Constraints | Section 2 ↔ Section 7 | No infrastructure choice violates a Section 2 constraint |
+| Decisions | Section 4 ↔ Section 9 | Every significant decision in Section 4 has a full ADR in Section 9 |
+| Risks | Section 9 ↔ Section 11 | Every "Risks created" field in Section 9 ADRs has a RISK-xx entry in Section 11 |
+| Risks | Section 10 ↔ Section 11 | Aspirational scenarios in Section 10 have corresponding RISK-xx entries in Section 11 |
+| Crosscutting | Section 8 ↔ Section 4 | Crosscutting patterns are consistent with Section 4 solution strategy |
+| Terminology | Section 12 ↔ all | Preferred terms in Section 12 are used consistently across all sections |
 
 ---
 
@@ -204,8 +204,8 @@ Present the review results in this format:
 
 | Check | Status | Detail |
 |-------|--------|--------|
-| §3 interfaces ↔ §5 Level-1 | PASS / FAIL | [Detail if FAIL] |
-| §1.2 goals ↔ §4 approaches | PASS / FAIL | [Detail if FAIL] |
+| Section 3 interfaces ↔ Section 5 Level-1 | PASS / FAIL | [Detail if FAIL] |
+| Section 1.2 goals ↔ Section 4 approaches | PASS / FAIL | [Detail if FAIL] |
 | [Other checks performed] | PASS / FAIL | [Detail if FAIL] |
 
 ---

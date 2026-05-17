@@ -94,11 +94,11 @@ See Section 5 for the detailed building block view.
 
 ## 4.3 Approaches to Quality Goals
 
-| Quality Goal (§1.2) | Architectural Approach | Where Detailed |
+| Quality Goal (Section 1.2) | Architectural Approach | Where Detailed |
 |--------------------|----------------------|----------------|
-| [#tag Goal 1] | [Primary mechanism] | [§6 / §7 / §8 / §9] |
-| [#tag Goal 2] | [Primary mechanism] | [§6 / §7 / §8 / §9] |
-| [#tag Goal 3] | [Primary mechanism] | [§6 / §7 / §8 / §9] |
+| [#tag Goal 1] | [Primary mechanism] | [Section 6 / Section 7 / Section 8 / Section 9] |
+| [#tag Goal 2] | [Primary mechanism] | [Section 6 / Section 7 / Section 8 / Section 9] |
+| [#tag Goal 3] | [Primary mechanism] | [Section 6 / Section 7 / Section 8 / Section 9] |
 
 ---
 

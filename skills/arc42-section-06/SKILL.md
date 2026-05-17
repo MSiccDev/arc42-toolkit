@@ -89,9 +89,9 @@ Rel_Back(actor, compA, "4. responds", "[protocol/format]")
 
 **Trigger:** [What starts this scenario?]
 
-**Participants:** [Components from §5 and external actors from §3]
+**Participants:** [Components from Section 5 and external actors from Section 3]
 
-**Quality goal illustrated:** [Which goal from §1.2, or "none" if this is a structural scenario]
+**Quality goal illustrated:** [Which goal from Section 1.2, or "none" if this is a structural scenario]
 
 ### Sequence
 
