@@ -1,0 +1,4 @@
+name: arc42-toolkit
+version: 0.1.0
+description: arc42-inspired AI skills for generating, reviewing, and linting architecture documentation
+license: MIT

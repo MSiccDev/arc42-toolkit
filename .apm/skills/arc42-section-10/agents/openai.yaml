@@ -1,0 +1,7 @@
+interface:
+  display_name: "Quality Requirements"
+  short_description: "Define measurable quality scenarios with concrete metrics for arc42 Section 10"
+  default_prompt: "Use arc42-section-10 to interactively elaborate quality goals into concrete, measurable scenarios with a quality requirements overview and optional quality tree"
+
+policy:
+  allow_implicit_invocation: true

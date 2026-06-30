@@ -1,0 +1,7 @@
+interface:
+  display_name: "Solution Strategy"
+  short_description: "Summarize fundamental architectural decisions and technology choices for arc42 Section 4"
+  default_prompt: "Use arc42-section-04 to interactively document the solution strategy, including technology decisions, decomposition approach, and how quality goals are achieved"
+
+policy:
+  allow_implicit_invocation: true
