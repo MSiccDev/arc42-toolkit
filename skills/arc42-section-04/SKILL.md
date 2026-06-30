@@ -21,7 +21,7 @@ This section is the executive summary of all key architectural decisions. It ans
 **Do not generate any documentation yet.** Ask all questions below and wait for the answers.
 
 **Context check — ask first:**
-- Does Section 1.2 exist? If yes, retrieve the quality goals — every goal must have a corresponding approach in this section. If not, ask the user to state the top 3–5 quality goals now before continuing.
+- Does Section 1.2 exist? If yes, retrieve the quality goals and check whether this section explains the architectural approaches that address them. If not, ask the user to state the top 3 to 5 quality goals now before continuing.
 - Does Section 2 exist? If yes, note all constraints — the solution strategy must not violate any of them.
 - Does Section 9 exist? If yes, significant decisions here should already have ADRs there — check for gaps.
 

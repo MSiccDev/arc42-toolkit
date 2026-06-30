@@ -1,7 +1,7 @@
 ---
 name: arc42-section-10
 version: 1.0.0
-description: Interactively guides the documentation of arc42 Section 10 (Quality Requirements). Elaborates quality goals from Section 1.2 into concrete, measurable scenarios organized in a quality tree. Coaches against vague metrics and checks coverage against architectural decisions. Iterates until the user is satisfied.
+description: Interactively guides the documentation of arc42 Section 10 (Quality Requirements). Elaborates quality goals from Section 1.2 into concrete, measurable scenarios, with a quality requirements overview and optional quality tree. Coaches against vague metrics and checks coverage against architectural decisions. Iterates until the user is satisfied.
 ---
 
 # arc42 Section 10: Quality Requirements
@@ -27,7 +27,7 @@ This section elaborates on the quality goals from Section 1.2 with concrete, mea
 **Do not generate any documentation yet.** Ask all questions below and wait for the answers.
 
 **Context check — ask first:**
-- Does Section 1.2 exist? If yes, retrieve the quality goals and their Q42 tags (`#reliable`, `#efficient`, `#secure`, etc.) — these are the mandatory starting point. List them for the user and ask them to confirm.
+- Does Section 1.2 exist? If yes, retrieve the quality goals and their Q42 tags (`#reliable`, `#efficient`, `#secure`, etc.) — these are the foundational starting point. List them for the user and ask them to confirm.
 - Does Section 7 exist? If yes, check which quality goals already have an infrastructure mechanism documented there. Note them — scenarios here should verify those mechanisms, not re-describe them.
 - Does Section 8 exist? If yes, check which quality goals are addressed by crosscutting concepts there. Same rule — don't duplicate descriptions, write verification scenarios.
 - Does Section 9 exist? If yes, scan ADR consequences for any quality-related risks or constraints — those are candidates for scenarios here.
@@ -65,8 +65,8 @@ This section elaborates on the quality goals from Section 1.2 with concrete, mea
 6. **Aspirational scenarios (not yet met)** — Are there quality targets the team has agreed to but not yet achieved? If yes: what is the current state vs. target, and what needs to change?
 
 7. **Detail level** — LEAN, ESSENTIAL, or THOROUGH?
-   - **LEAN:** quality scenario tables only — no quality tree, no aspirational section
-   - **ESSENTIAL:** adds the quality tree showing how scenarios map to quality properties
+   - **LEAN:** quality scenario tables only, no quality requirements overview details, no aspirational section
+   - **ESSENTIAL:** adds a quality requirements overview. A quality tree is one possible representation.
    - **THOROUGH:** adds aspirational scenarios table and testability notes per scenario
 
 ---
@@ -88,7 +88,7 @@ See Section 1.2 for the top-priority quality goals that drive the key architectu
 
 <!-- ESSENTIAL and THOROUGH only: -->
 
-## 10.1 Quality Tree
+## 10.1 Quality Requirements Overview
 
 [Maps Q42 properties to the scenarios below. Keep IDs in sync with the scenario tables.]
 
@@ -168,8 +168,8 @@ After presenting the draft, work through this checklist. For any item that fails
 - [ ] Q42 property tags match those used in Section 1.2 exactly → if they differ, align them
 - [ ] QS IDs are stable — never renumber existing IDs; if an ID appears to be missing, verify the scenario is marked "Retired" in both the tree and tables → assign new IDs only to new scenarios, never reuse or renumber existing ones
 
-**Quality tree (ESSENTIAL/THOROUGH):**
-- [ ] Every QS ID in the tree appears in the scenario tables, and vice versa → if the tree and tables are out of sync, correct both
+**Quality requirements overview (ESSENTIAL/THOROUGH):**
+- [ ] Every QS ID in the overview appears in the scenario tables, and vice versa → if the overview and tables are out of sync, correct both
 
 **Aspirational section (THOROUGH):**
 - [ ] If an aspirational scenario is listed, it has a current state, a target, and a concrete gap description → vague gaps ("needs more work") must be made specific

@@ -10,9 +10,9 @@ You are an expert arc42 architect helping document **Section 6: Runtime View**.
 
 This section describes the dynamic behavior of the system — how building blocks cooperate at runtime to fulfill important scenarios. It complements the static structure of Section 5.
 
-**Selection rule:** 3–5 scenarios only. Choose what is architecturally interesting, not what is exhaustive. Every scenario must have a reason for being here.
+**Selection rule:** Prefer a representative set of architecturally relevant scenarios. The toolkit default is 3 to 5 scenarios, chosen for architectural interest rather than exhaustive coverage. Every scenario must have a reason for being here.
 
-**Mandatory scenario mix:** Always include at least one happy-path scenario, at least one error or recovery scenario, and at least one scenario that directly demonstrates a quality goal from Section 1.2.
+**Recommended scenario mix:** Include at least one happy-path scenario, at least one error or recovery scenario, and at least one scenario that directly demonstrates a quality goal from Section 1.2 when those scenarios are relevant.
 
 ---
 
@@ -130,10 +130,10 @@ Steps:
 After presenting the draft, work through this checklist. For any item that fails, tell the user what is wrong and what to do — do not just flag it silently.
 
 **Scenario set:**
-- [ ] 3–5 scenarios present — not fewer (too thin), not more (too exhaustive)
-- [ ] At least one happy-path scenario → if missing, ask the user which use case is the primary one
-- [ ] At least one error or recovery scenario → if missing, ask what happens when the most critical step fails
-- [ ] At least one scenario connects to a quality goal from Section 1.2 → if missing, ask which goal is best demonstrated at runtime
+- [ ] Scenario count is appropriate for the chosen detail level. Toolkit default is 3 to 5, but relevance matters more than count
+- [ ] Recommended: at least one happy-path scenario → if missing, ask the user which use case is the primary one
+- [ ] Recommended: at least one error or recovery scenario → if missing, ask what happens when the most critical step fails
+- [ ] Recommended: at least one scenario connects to a quality goal from Section 1.2 → if missing, ask which goal is best demonstrated at runtime
 
 **Per scenario:**
 - [ ] Every component referenced exists in Section 5 → if not, either add it to Section 5 or correct the name

@@ -1,16 +1,16 @@
 ---
 name: arc42-review
 version: 1.0.0
-description: Reviews any arc42 section or the full document for accuracy, completeness, cross-section consistency, and alignment with arc42 standards. Reads documentation files directly, applies detail-level-aware checks, and produces a structured findings report with severity-linked fixes. Offers to resolve Critical issues immediately using the relevant section skill.
+description: Reviews any arc42 section or the full document for accuracy, completeness, cross-section consistency, and alignment with official arc42 guidance and declared toolkit conventions. Reads documentation files directly, applies detail-level-aware checks, and produces a structured findings report with severity-linked fixes. Offers to resolve Critical issues immediately using the relevant section skill.
 ---
 
 # arc42 Quality Review
 
 You are an expert arc42 architect performing a quality review of architecture documentation.
 
-This skill reviews one or more sections of arc42 documentation for accuracy, completeness, consistency, and alignment with arc42 standards.
+This skill reviews one or more sections of arc42 documentation for accuracy, completeness, consistency, and alignment with official arc42 guidance and declared toolkit conventions.
 
-**Detail-level awareness:** Before flagging anything as incomplete, establish the stated detail level of the section (LEAN / ESSENTIAL / THOROUGH). A LEAN section intentionally omits diagrams, deep black-box descriptions, and aspirational content — do not flag omissions that are correct for that level.
+**Toolkit detail-level awareness:** Before flagging anything as incomplete, establish the stated detail level of the section (LEAN / ESSENTIAL / THOROUGH). A LEAN section intentionally omits diagrams, deep black-box descriptions, and aspirational content — do not flag omissions that are correct for that level.
 
 ---
 
@@ -26,7 +26,7 @@ This skill reviews one or more sections of arc42 documentation for accuracy, com
 2. **Where are the files?** — What is the path to the arc42 documentation? (e.g. `docs/arc42/`, `architecture/`, or a single file.) Do not ask the user to paste content — read the files directly.
 
 3. **Review focus** — Should the review prioritize all dimensions equally, or focus on one?
-   - **Completeness** — Is mandatory content present for the stated detail level?
+   - **Completeness** — Is official mandatory content and declared toolkit content present for the stated detail level?
    - **Consistency** — Do cross-section references, names, and IDs match?
    - **Quality** — Are quality goals, metrics, and risk assessments concrete and testable?
    - **All of the above** (default)
@@ -39,10 +39,10 @@ Read the specified files. For each section reviewed, determine the stated detail
 
 ### Universal Checks (Every Section)
 
-- [ ] Mandatory content for this section is present at the stated detail level → if missing, identify exactly what is absent
+- [ ] Official mandatory content and declared toolkit content for this section are present at the stated detail level → if missing, identify exactly what is absent and classify it as official arc42 guidance or toolkit convention
 - [ ] No vague claims without measurable criteria — especially for quality statements ("fast", "reliable", "secure" without numbers) → flag every instance
 - [ ] Writing is clear and free of unexplained jargon → flag terms that belong in Section 12 but are not defined there
-- [ ] Tables have headers; diagrams are referenced by file path, not inlined → if a diagram is inlined, note the file it should be extracted to
+- [ ] Tables have headers. If following the toolkit diagram convention, diagrams are referenced by file path, not inlined → if a diagram is inlined, note the file it should be extracted to
 
 ---
 
@@ -51,9 +51,9 @@ Read the specified files. For each section reviewed, determine the stated detail
 Apply only for sections included in the review scope.
 
 **Section 1 (Introduction and Goals):**
-- [ ] Section 1.2 quality goals are present — this is the only mandatory content in arc42 → if absent, the whole document is at risk
+- [ ] Section 1.2 quality goals are present as foundational architecture drivers → if absent, the whole document is at risk
 - [ ] 3–5 quality goals maximum → if more, ask the user which to promote and which to demote to Section 10
-- [ ] Every quality goal has a Q42 property tag (`#reliable`, `#efficient`, `#secure`, `#usable`, `#safe`, `#flexible`, `#suitable`, `#operable`) → if missing, suggest the correct tag
+- [ ] Every quality goal has a Q42 property tag when following the toolkit convention (`#reliable`, `#efficient`, `#secure`, `#usable`, `#safe`, `#flexible`, `#suitable`, `#operable`) → if missing, suggest the correct tag
 - [ ] Every quality goal has a concrete metric or measurable scenario — not "the system should be fast" → flag vague statements
 - [ ] All relevant stakeholders are listed with their expectations → if a stakeholder group appears in other sections but not here, flag the gap
 - [ ] Requirements overview is under 1 page (ESSENTIAL/THOROUGH) → if longer, suggest splitting into summary vs. reference
@@ -68,29 +68,29 @@ Apply only for sections included in the review scope.
 - [ ] The system boundary is clear — no internal components appear in the context diagram → flag any building block from Section 5 that appears inside the system boundary in the context diagram
 - [ ] Business context does not contain technical details (protocols, data formats, port numbers) → those belong in the technical context
 - [ ] All external actors and systems are shown → check against Section 5 Level-1 interfaces
-- [ ] C4 PlantUML context diagram exists as a separate `.puml` file in `docs/diagrams/` (ESSENTIAL/THOROUGH) → if inlined or absent, flag with the expected file path
+- [ ] When following the toolkit diagram convention, a C4 PlantUML context diagram exists as a separate `.puml` file in `docs/diagrams/` (ESSENTIAL/THOROUGH) → if inlined or absent, flag with the expected file path
 
 **Section 4 (Solution Strategy):**
 - [ ] Every quality goal from Section 1.2 has a corresponding approach described here → list any unaddressed goals
 - [ ] Each technology decision has a clear rationale — not just "we use X" but "we use X because Y" → flag decisions without rationale
-- [ ] Significant decisions are flagged for Section 9 ADRs → if a major decision is described here without a corresponding ADR, flag it
+- [ ] Significant decisions are flagged for Section 9 decision documentation. If using the toolkit default, that means ADRs. If a major decision is described here without corresponding decision documentation, flag it
 - [ ] Decomposition strategy is stated and consistent with Section 5 component structure → flag mismatches
 
 **Section 5 (Building Block View):**
-- [ ] Level-1 diagram and component table are present — this is mandatory at all detail levels → if absent, this is Critical
-- [ ] All external interfaces from Section 3 appear at Level-1 with matching IF-xx IDs → list any missing or renamed interfaces
+- [ ] Level-1 diagram and component table are present. This is the toolkit starting point for the official mandatory Building Block View → if absent, this is Critical
+- [ ] All external interfaces from Section 3 appear at Level-1. If using the toolkit IF-xx convention, IDs match exactly → list any missing or renamed interfaces
 - [ ] No circular dependencies between components → if any are present, flag them as Critical
 - [ ] No building block maps to an individual file, class, or method — only modules, services, libraries, or subsystems → if too granular, flag it
 - [ ] Source code locations are specified for each component (ESSENTIAL/THOROUGH) → if missing, ask the user to provide them
-- [ ] C4 PlantUML diagrams exist as separate `.puml` files in `docs/diagrams/` → if inlined or absent, flag with expected file paths
+- [ ] When following the toolkit diagram convention, C4 PlantUML diagrams exist as separate `.puml` files in `docs/diagrams/` → if inlined or absent, flag with expected file paths
 
 **Section 6 (Runtime View):**
-- [ ] 3–5 scenarios — not fewer (too thin), not more (too exhaustive) → flag if outside this range
-- [ ] At least one happy-path scenario, one error/recovery scenario, and one scenario demonstrating a quality goal → flag any missing type
+- [ ] Scenario set is representative and architecturally relevant. Toolkit default is 3 to 5 scenarios → flag if the set is too thin or too exhaustive
+- [ ] Recommended toolkit mix: at least one happy-path scenario, one error/recovery scenario, and one scenario demonstrating a quality goal → flag missing types as suggestions unless the chosen detail level requires them
 - [ ] All components referenced exist in Section 5 — exact name match → list any name mismatches
 - [ ] All external actors referenced exist in Section 3 → list any that don't
 - [ ] Error handling documented for scenarios on the critical path → flag missing error handling
-- [ ] C4 Dynamic PlantUML diagrams in `docs/diagrams/runtime-[name].puml` (ESSENTIAL/THOROUGH) → flag if absent or inlined
+- [ ] When following the toolkit diagram convention, C4 Dynamic PlantUML diagrams exist in `docs/diagrams/runtime-[name].puml` (ESSENTIAL/THOROUGH) → flag if absent or inlined
 
 **Section 7 (Deployment View):**
 - [ ] Every Section 5 building block appears in the software-to-infrastructure mapping → list any missing
@@ -98,7 +98,7 @@ Apply only for sections included in the review scope.
 - [ ] TLS termination point is identified → if absent, flag as a security gap
 - [ ] At least one `#reliable`, `#efficient`, or `#operable` goal from Section 1.2 has a corresponding infrastructure mechanism → if none are mapped, flag it
 - [ ] No infrastructure choice violates a constraint from Section 2 → flag any conflict
-- [ ] C4 Deployment PlantUML diagrams in `docs/diagrams/deployment-[env].puml` (ESSENTIAL/THOROUGH) → flag if absent or inlined
+- [ ] When following the toolkit diagram convention, C4 Deployment PlantUML diagrams exist in `docs/diagrams/deployment-[env].puml` (ESSENTIAL/THOROUGH) → flag if absent or inlined
 
 **Section 8 (Crosscutting Concepts):**
 - [ ] Every documented concept applies to 2 or more building blocks — apply the crosscutting test → flag any concept that only affects one component
@@ -108,26 +108,26 @@ Apply only for sections included in the review scope.
 - [ ] Domain model (if present) uses standard PlantUML class diagram notation, stored as `docs/diagrams/domain-model.puml` → C4 is not appropriate for domain models
 
 **Section 9 (Architecture Decisions):**
-- [ ] Every significant decision flagged in Section 4 has a corresponding ADR → list any missing
-- [ ] Every ADR has context, decision, alternatives with rejection reasons, and consequences (positive AND negative) → flag ADRs with only benefits listed
-- [ ] ADR lifecycle rule: no ADR has been edited to change a past decision — superseded decisions must be marked "Superseded by ADR-XXX" with a new ADR created → if an ADR appears to have been overwritten, flag it
-- [ ] Status and date are set on every ADR → flag any missing
+- [ ] Every significant decision flagged in Section 4 has corresponding decision documentation. If using the toolkit default, that means an ADR → list any missing
+- [ ] Every ADR or decision record has context, decision, alternatives when genuinely considered, and consequences (positive AND negative) → flag ADRs with only benefits listed
+- [ ] Toolkit ADR lifecycle rule: no ADR has been edited to change a past decision — superseded decisions must be marked "Superseded by ADR-XXX" with a new ADR created → if an ADR appears to have been overwritten, flag it
+- [ ] Status and date are set on every ADR or decision record → flag any missing
 - [ ] "Risks created" field is populated and each risk appears in Section 11 → flag any gap
 
 **Section 10 (Quality Requirements):**
 - [ ] Every Section 1.2 quality goal has at least one scenario → list any unaddressed goals
 - [ ] Every scenario has a quantified, testable success measure — no vague criteria → flag every instance of "fast", "reliable", "secure" without a number
 - [ ] Every scenario has an environment context (normal / peak / degraded) → flag any missing
-- [ ] QS IDs are sequential and stable — no gaps unless a scenario is marked "Retired" → flag renumbering
-- [ ] Quality tree (if present) is in sync with the scenario tables — every QS ID appears in both → flag mismatches
+- [ ] If using the toolkit QS ID convention, QS IDs are sequential and stable, with no gaps unless a scenario is marked "Retired" → flag renumbering
+- [ ] Quality requirements overview or quality tree (if present) is in sync with the scenario tables — every QS ID appears in both → flag mismatches
 
 **Section 11 (Risks and Technical Debt):**
-- [ ] Every "Risks created" entry from Section 9 ADRs appears as a RISK-xx entry → list any missing
+- [ ] Every "Risks created" entry from Section 9 decision records appears as a RISK-xx entry when using the toolkit convention → list any missing
 - [ ] Every aspirational scenario from Section 10 that is not yet met has a corresponding risk entry → list any missing
 - [ ] Risks are ordered Critical → High → Medium → Low → flag if out of order
 - [ ] Priority is consistent with probability × impact — flag any mismatch
 - [ ] No risk is marked "Mitigated" without a concrete mitigation strategy → flag vague or empty mitigations
-- [ ] RISK-xx and DEBT-xx IDs are stable — no gaps unless an item is marked "Closed" → flag renumbering
+- [ ] If using the toolkit ID convention, RISK-xx and DEBT-xx IDs are stable — no gaps unless an item is marked "Closed" → flag renumbering
 - [ ] Technical debt items reference a specific component from Section 5 → flag any that don't
 
 **Section 12 (Glossary):**
@@ -145,7 +145,7 @@ Apply when multiple sections are in scope.
 
 | Check | Sections | What to Verify |
 |-------|----------|----------------|
-| Interface IDs | Section 3 ↔ Section 5 | IF-xx IDs in Section 3 match IF-xx IDs used at Section 5 Level-1 exactly |
+| Interface IDs | Section 3 ↔ Section 5 | Toolkit IF-xx IDs in Section 3 match IF-xx IDs used at Section 5 Level-1 exactly |
 | Component names | Section 5 ↔ Section 6 | Every component name in runtime scenarios matches Section 5 name exactly |
 | Component names | Section 5 ↔ Section 7 | Every component in Section 5 appears in Section 7 deployment mapping |
 | Component names | Section 5 ↔ Section 8 | Building blocks referenced in crosscutting concepts match Section 5 names |
@@ -154,9 +154,9 @@ Apply when multiple sections are in scope.
 | Quality goals | Section 1.2 ↔ Section 10 | Every quality goal has at least one scenario in Section 10 |
 | Constraints | Section 2 ↔ Section 5 | No component structure violates a Section 2 constraint |
 | Constraints | Section 2 ↔ Section 7 | No infrastructure choice violates a Section 2 constraint |
-| Decisions | Section 4 ↔ Section 9 | Every significant decision in Section 4 has a full ADR in Section 9 |
-| Risks | Section 9 ↔ Section 11 | Every "Risks created" field in Section 9 ADRs has a RISK-xx entry in Section 11 |
-| Risks | Section 10 ↔ Section 11 | Aspirational scenarios in Section 10 have corresponding RISK-xx entries in Section 11 |
+| Decisions | Section 4 ↔ Section 9 | Every significant decision in Section 4 has corresponding decision documentation in Section 9. Toolkit default is a full ADR |
+| Risks | Section 9 ↔ Section 11 | Every toolkit "Risks created" field in Section 9 decision records has a RISK-xx entry in Section 11 |
+| Risks | Section 10 ↔ Section 11 | Toolkit aspirational scenarios in Section 10 have corresponding RISK-xx entries in Section 11 |
 | Crosscutting | Section 8 ↔ Section 4 | Crosscutting patterns are consistent with Section 4 solution strategy |
 | Terminology | Section 12 ↔ all | Preferred terms in Section 12 are used consistently across all sections |
 

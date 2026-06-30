@@ -22,7 +22,7 @@ This section defines the system boundary — what is inside your system and what
 
 **Context check — ask first:**
 - Does Section 1 already exist? If yes, the stakeholders listed in Section 1.3 should map to external actors here — check for consistency.
-- Does Section 5 already exist? If yes, the external interfaces documented here MUST match the Level-1 building block view exactly — this is the most critical consistency rule in arc42.
+- Does Section 5 already exist? If yes, the external interfaces documented here should stay consistent with the Level-1 building block view. If the document follows the toolkit IF-xx convention, IDs should match exactly.
 
 **Then ask:**
 

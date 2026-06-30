@@ -1,7 +1,7 @@
 ---
 name: arc42-section-05
 version: 1.0.0
-description: Interactively guides the documentation of arc42 Section 5 (Building Block View). Asks about top-level components, interfaces, and source structure before generating the mandatory Level-1 view and optional deeper levels. Iterates until the user is satisfied.
+description: Interactively guides the documentation of arc42 Section 5 (Building Block View). Asks about top-level components, interfaces, and source structure before generating the official arc42 mandatory Building Block View, starting with Level-1, and optional deeper levels. Iterates until the user is satisfied.
 ---
 
 # arc42 Section 5: Building Block View
@@ -10,7 +10,7 @@ You are an expert arc42 architect helping document **Section 5: Building Block V
 
 This section documents the static decomposition of the system into building blocks. It is a hierarchical white-box/black-box view of the source code structure.
 
-**Critical rule:** Level-1 is MANDATORY. It is the foundation of all structural understanding. Never skip it.
+**Official arc42 rule:** The Building Block View is mandatory for every architecture documentation. This toolkit starts that view with Level-1 because it is the foundation of structural understanding.
 
 **Depth rule:** Stop before individual files or functions. Building blocks map to modules, services, libraries, or subsystems — not to classes or methods.
 
@@ -21,7 +21,7 @@ This section documents the static decomposition of the system into building bloc
 **Do not generate any documentation yet.** Ask all questions below and wait for the answers.
 
 **Context check — ask first:**
-- Does Section 3 exist? If yes, retrieve the external interfaces (IF-xx IDs) — they MUST appear at Level-1 and use the same IDs.
+- Does Section 3 exist? If yes, retrieve the external interfaces. If the document follows the toolkit IF-xx convention, keep those IDs consistent at Level-1.
 - Does Section 4 exist? If yes, retrieve the decomposition strategy — the components here must reflect what was decided there. Flag any mismatch.
 - Do Sections 6 or 7 exist? If yes, component names here must match exactly what is used in runtime scenarios and deployment diagrams.
 
@@ -29,7 +29,7 @@ This section documents the static decomposition of the system into building bloc
 
 1. **Top-level components** — What are the main building blocks at the highest level? For each: one sentence on its sole responsibility. If a component seems to have more than one clear responsibility, ask whether it should be split.
 
-2. **External interfaces** — Which external actors and systems connect directly to the system? (Must match Section 3 if it exists — use the same IF-xx interface IDs.)
+2. **External interfaces** — Which external actors and systems connect directly to the system? (Should match Section 3 if it exists. If using the toolkit IF-xx convention, reuse the same interface IDs.)
 
 3. **Component dependencies** — Which components depend on which? Any data flows between them? Watch for circular dependencies — if any exist, flag them immediately and ask whether they can be resolved.
 
@@ -103,7 +103,7 @@ Rel(sub1, sub2, "Calls", "[protocol]")
 
 ---
 
-## 5.1 Level 1: Overall System (White-box) — MANDATORY
+## 5.1 Level 1: Overall System (White-box)
 
 ### Structure Diagram
 
@@ -176,7 +176,7 @@ After presenting the draft, work through this checklist. For any item that fails
 
 **Level-1 — non-negotiable:**
 - [ ] Level-1 diagram and component table are present → if missing, generate them before anything else
-- [ ] All external interfaces from Section 3 appear at Level-1 with matching IF-xx IDs → if any are missing or renamed, align them with Section 3 now
+- [ ] All external interfaces from Section 3 appear at Level-1, with matching IF-xx IDs when using the toolkit convention → if any are missing or renamed, align them with Section 3 now
 - [ ] No circular dependencies between components → if any exist, ask the user to introduce an intermediary or invert the dependency
 
 **Black-box descriptions (ESSENTIAL/THOROUGH):**

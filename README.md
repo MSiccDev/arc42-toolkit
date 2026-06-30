@@ -1,6 +1,6 @@
 # arc42 Toolkit
 
-[![arc42](https://img.shields.io/badge/arc42-compliant-brightgreen)](https://arc42.org)
+[![arc42](https://img.shields.io/badge/arc42-inspired-blue)](https://arc42.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
@@ -16,11 +16,11 @@ Create professional software architecture documentation through guided, interact
 - **Provider-agnostic** — works with Claude Code, GitHub Copilot, Cursor, Codex, and any LLM tool
 - **Ask-first approach** — every skill gathers your project details before generating anything
 - **Three depth levels** — LEAN, ESSENTIAL, or THOROUGH, chosen per section based on your needs
-- **C4 PlantUML diagrams** — architecture diagrams as separate `.puml` files, never inlined
-- **Q42 quality model** — 492 quality attributes across 8 properties integrated into relevant skills
+- **C4 PlantUML diagrams** — recommended toolkit default for architecture diagrams, stored as separate `.puml` files, never inlined
+- **Q42 quality model** — integrates the official Q42 quality model without hardcoded attribute counts
 - **Cross-section consistency** — skills check related sections and flag contradictions
-- **Automated consistency linting** — catch IF-xx, QS-xx, ADR, and RISK-xx mismatches before they accumulate
-- **Standards-based** — grounded in arc42.org, docs.arc42.org, and quality.arc42.org
+- **Automated consistency linting** — catch toolkit convention mismatches such as IF-xx, QS-xx, ADR, and RISK-xx references before they accumulate
+- **Official-source grounded** — distinguishes official arc42 guidance from opinionated toolkit conventions
 
 ---
 
@@ -31,10 +31,10 @@ arc42 is the proven, open-source template for software architecture documentatio
 **Core philosophy:**
 - Document economically but continuously
 - "Painless documentation" — only what stakeholders truly need
-- All sections are optional — use what fits your project
+- Use the sections that fit your project and stakeholder needs
 - Suitable for agile and traditional environments
 
-**One mandatory exception:** Section 1.2 (Quality Goals) must exist before any other architecture work begins.
+**Important official guidance:** The Building Block View (Section 5) is mandatory for every architecture documentation in the official arc42 template. Quality goals in Section 1.2 are foundational and should be established early because they influence fundamental architectural decisions.
 
 ---
 
@@ -162,11 +162,11 @@ Generated documentation goes in your project's `docs/` directory. Architecture d
 
 | Section | Name | Skill | Required? |
 |---------|------|-------|----------|
-| **1** | Introduction and Goals | `/arc42-section-01` | **Quality goals mandatory** |
+| **1** | Introduction and Goals | `/arc42-section-01` | Quality goals foundational |
 | **2** | Constraints | `/arc42-section-02` | Optional |
 | **3** | Context and Scope | `/arc42-section-03` | Recommended |
 | **4** | Solution Strategy | `/arc42-section-04` | Recommended |
-| **5** | Building Block View | `/arc42-section-05` | **Level-1 mandatory** |
+| **5** | Building Block View | `/arc42-section-05` | **Mandatory in official arc42** |
 | **6** | Runtime View | `/arc42-section-06` | Optional |
 | **7** | Deployment View | `/arc42-section-07` | Optional |
 | **8** | Crosscutting Concepts | `/arc42-section-08` | Optional |
@@ -189,7 +189,7 @@ Every skill supports three depth levels. Choose based on your project's needs �
 
 - 1–3 pages per section maximum
 - Essential information only — "dare to leave gaps"
-- Minimum viable documentation: Section 1.2, Section 3, Section 5 Level-1, Section 9, Section 12
+- Toolkit recommended minimum: Section 1.2, Section 3, Section 5 Level-1, Section 9, Section 12
 
 ### ESSENTIAL (Core Information)
 **Best for:** Most projects — the balanced default
@@ -203,7 +203,7 @@ Every skill supports three depth levels. Choose based on your project's needs �
 
 - Complete documentation across all sections
 - Detailed scenarios, multiple diagram levels, extensive validation
-- Full Q42 quality scenario coverage
+- Broad quality scenario coverage guided by the Q42 quality model
 
 ---
 
@@ -240,7 +240,7 @@ Paste the content of the relevant `SKILL.md` file as a system prompt or context 
 ### For Architects
 - Save documentation time through guided, structured generation
 - Consistent, high-quality output across all sections
-- Standards-compliant documentation without needing to memorise arc42 rules
+- Official-source-grounded documentation without needing to memorise every arc42 detail
 - Focus on architectural decisions, not formatting
 
 ### For Teams
@@ -259,35 +259,28 @@ Paste the content of the relevant `SKILL.md` file as a system prompt or context 
 
 ## Q42 Quality Model Integration
 
-The skills integrate the **Q42 quality model** — a comprehensive framework with 492 quality attributes in 8 properties. Quality goals from Section 1 are traced through constraints, solution strategy, deployment, crosscutting concepts, and quality scenarios.
+The skills integrate the official **Q42 quality model** as a vocabulary for quality goals and scenarios. To avoid stale documentation, this toolkit does not hardcode quality characteristic counts. Check the current model directly at [quality.arc42.org](https://quality.arc42.org).
 
-| Property | Attributes | Focus |
-|----------|-----------|-------|
-| **#reliable** | 97 | Availability, Fault Tolerance, Accuracy |
-| **#flexible** | 50 | Adaptability, Maintainability, Extensibility |
-| **#efficient** | 71 | Response Time, Throughput, Resource Usage |
-| **#usable** | 103 | Learnability, Operability, Accessibility |
-| **#safe** | 28 | Risk-free, Fail-safe, Hazard Warnings |
-| **#secure** | 36 | Confidentiality, Integrity, Authentication |
-| **#suitable** | 52 | Functional Completeness, Testability |
-| **#operable** | 55 | Installability, Monitorability, Deployability |
+The toolkit uses these high-level Q42 tags as pragmatic labels in generated documentation:
 
-**Learn more:** [quality.arc42.org](https://quality.arc42.org)
+`#reliable` `#flexible` `#efficient` `#usable` `#safe` `#secure` `#suitable` `#operable`
+
+Quality goals from Section 1 are traced through constraints, solution strategy, deployment, crosscutting concepts, and quality scenarios.
 
 ---
 
 ## Consistency Linting
 
-The arc42 toolkit ships a standalone linter that validates cross-section ID consistency in your generated documentation. It catches mismatches that accumulate silently over time — interface IDs renamed in one section but not another, ADR risks never registered, quality scenarios with no matching goal.
+The arc42 toolkit ships a standalone linter that validates cross-section ID consistency in generated documentation that follows this toolkit's conventions. It catches mismatches that accumulate silently over time, such as interface IDs renamed in one section but not another, ADR risks never registered, or quality scenarios with no matching goal.
 
 ### What it checks
 
 | Rule | Sections | Validates |
 |------|----------|-----------|
-| 1 | Section 3 ↔ Section 5 | `IF-xx` interface IDs match between the context diagram and Level-1 building blocks |
+| 1 | Section 3 ↔ Section 5 | Toolkit `IF-xx` interface IDs match between context and Level-1 building blocks |
 | 2 | Section 5 ↔ Section 7 | Every building block name appears in the deployment mapping |
 | 3 | Section 1 ↔ Section 10 | Every Q42 tag used in quality scenarios is present in Section 1.2 quality goals |
-| 4 | Section 9 ↔ Section 11 | Every `RISK-xx` in an ADR's "Risks created" field has a Section 11 risk matrix entry |
+| 4 | Section 9 ↔ Section 11 | Every toolkit `RISK-xx` in an ADR's "Risks created" field has a Section 11 risk matrix entry |
 | 5 | Section 10 ↔ Section 11 | Every aspirational (not yet met) scenario from Section 10.3 is referenced in Section 11 |
 
 ### Run locally
@@ -364,8 +357,8 @@ This repository is a demonstration of AI-assisted technical content development.
 
 ### Principles
 
-- **Authenticity first** — all content based on official arc42 sources, nothing invented
-- **Standards compliance** — validated against docs.arc42.org and quality.arc42.org
+- **Authenticity first** — all official arc42 guidance is grounded in official sources
+- **Clear provenance** — official arc42 guidance is separated from toolkit-specific conventions
 - **Human oversight** — human architect provided direction, requirements, and validation
 - **AI efficiency** — AI assistant handled research, synthesis, and structured content creation
 
@@ -391,7 +384,7 @@ This repository was researched and structured by AI from authoritative arc42 sou
 ## Related Resources
 
 - [Architecture Decision Records (ADR)](https://adr.github.io)
-- [C4 Model](https://c4model.com) — Recommended diagramming approach (used throughout this toolkit)
+- [C4 Model](https://c4model.com) — Toolkit-recommended diagramming approach
 - [agentskills.io](https://agentskills.io) — Skills specification this toolkit follows
 
 ---

@@ -17,7 +17,7 @@ This section describes the technical infrastructure and how software building bl
 **Do not generate any documentation yet.** Ask all questions below and wait for the answers.
 
 **Context check — ask first:**
-- Does Section 5 exist? If yes, retrieve all building block names — every one of them must appear in the software-to-infrastructure mapping.
+- Does Section 5 exist? If yes, retrieve all building block names and map the deployable or infrastructure-relevant ones to the software-to-infrastructure mapping.
 - Does Section 2 exist? If yes, check for infrastructure-related constraints (e.g. mandated cloud provider, on-premise requirement, data residency rules). The deployment view must not violate these.
 - Does Section 1.2 exist? If yes, retrieve quality goals — `#reliable`, `#efficient`, and `#operable` goals are directly realised through infrastructure choices. Ask how each applies.
 

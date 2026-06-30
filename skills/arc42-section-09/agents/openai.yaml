@@ -1,7 +1,7 @@
 interface:
   display_name: "Architecture Decisions"
-  short_description: "Create Architecture Decision Records (ADRs) for arc42 Section 9"
-  default_prompt: "Use arc42-section-09 to interactively document architecture decisions as ADRs, including alternatives considered, rationale, and consequences"
+  short_description: "Create architecture decision documentation for arc42 Section 9, using ADRs as the toolkit default"
+  default_prompt: "Use arc42-section-09 to interactively document architecture decisions, using ADRs as the toolkit default, including alternatives considered, rationale, and consequences"
 
 policy:
   allow_implicit_invocation: true

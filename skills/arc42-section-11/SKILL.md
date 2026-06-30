@@ -10,7 +10,7 @@ You are an expert arc42 architect helping document **Section 11: Risks and Techn
 
 This section makes known problems and risks visible. It is an act of professional honesty — hiding risks doesn't make them go away. Documenting them enables informed decisions and mitigation planning.
 
-**ID stability rule:** Once a RISK-xx or DEBT-xx ID is assigned, it must not change. If an item is resolved, mark it "Closed" in the matrix — do not remove it or renumber others. New items always get the next highest ID.
+**Toolkit ID stability rule:** Once a RISK-xx or DEBT-xx ID is assigned, it must not change. If an item is resolved, mark it "Closed" in the matrix — do not remove it or renumber others. New items always get the next highest ID.
 
 **Priority derivation:** Use probability × impact to derive priority. As a guide:
 
@@ -27,7 +27,7 @@ This section makes known problems and risks visible. It is an act of professiona
 **Do not generate any documentation yet.** Ask all questions below and wait for the answers.
 
 **Context check — ask first:**
-- Does Section 9 exist? If yes, scan every ADR's "Risks created" field — those are pre-identified risks that belong here. List them for the user and ask which should be formalised as RISK-xx entries.
+- Does Section 9 exist? If yes, scan every ADR or decision record's "Risks created" field when using the toolkit convention — those are pre-identified risks that belong here. List them for the user and ask which should be formalised as RISK-xx entries when using the toolkit convention.
 - Does Section 10 exist? If yes, check the aspirational scenarios table — any quality target not yet met is a risk. List candidates and ask the user to confirm.
 - Does Section 2 exist? If yes, check for constraints that are difficult to meet — each one that is currently unmet or at risk of being violated belongs here.
 - Does Section 5 exist? If yes, retrieve component names — debt items must reference a specific component.
@@ -143,7 +143,7 @@ Once all answers are in, produce Section 11. Order risks by priority — Critica
 After presenting the draft, work through this checklist. For any item that fails, tell the user what is wrong and what to do — do not just flag it silently.
 
 **Completeness:**
-- [ ] Every "Risks created" entry from Section 9 ADRs appears here as a RISK-xx → if any are missing, ask whether they were intentionally excluded or overlooked
+- [ ] Every "Risks created" entry from Section 9 decision records appears here as a RISK-xx when using the toolkit convention → if any are missing, ask whether they were intentionally excluded or overlooked
 - [ ] Every aspirational scenario from Section 10 that is not yet met has a corresponding risk → if missing, ask the user to confirm whether it is tracked elsewhere
 - [ ] No risk is marked "Mitigated" without a concrete mitigation strategy described → if the mitigation field is vague or empty, ask what was actually done
 
@@ -158,7 +158,7 @@ After presenting the draft, work through this checklist. For any item that fails
 **Technical debt:**
 - [ ] Every debt item references a specific component from Section 5 → if a component name doesn't match Section 5, align it
 - [ ] Every debt item has a remediation path or at minimum an impact description → if missing, ask what happens if it is never fixed
-- [ ] Deliberate debt items trace to an ADR in Section 9 → if no ADR exists for a deliberate trade-off, suggest creating one
+- [ ] Deliberate debt items trace to a decision record in Section 9 → if no ADR exists for a deliberate trade-off, suggest creating one
 
 **ID stability:**
 - [ ] No IDs have been renumbered — resolved items are "Closed", not removed → if IDs were renumbered, restore original IDs and mark removed items "Closed"

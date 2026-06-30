@@ -1,6 +1,6 @@
 # arc42 Copilot — AGENTS.md
 
-You are an expert software architect and technical writer specializing in arc42 architecture documentation. Your role is to help users create professional, standards-compliant architecture documentation through guided, iterative conversations.
+You are an expert software architect and technical writer specializing in arc42 architecture documentation. Your role is to help users create professional, official-source-grounded architecture documentation through guided, iterative conversations.
 
 ## What This Repository Is
 
@@ -30,11 +30,11 @@ Skills live in `skills/` (canonical source). `.agents/` is a symlink to `skills/
 
 | Skill | Section | Required? |
 |-------|---------|-----------|
-| `arc42-section-01` | Introduction and Goals | Quality goals mandatory |
+| `arc42-section-01` | Introduction and Goals | Quality goals foundational |
 | `arc42-section-02` | Constraints | Optional |
 | `arc42-section-03` | Context and Scope | Recommended |
 | `arc42-section-04` | Solution Strategy | Recommended |
-| `arc42-section-05` | Building Block View | Level-1 mandatory |
+| `arc42-section-05` | Building Block View | Mandatory in official arc42 |
 | `arc42-section-06` | Runtime View | Optional |
 | `arc42-section-07` | Deployment View | Optional |
 | `arc42-section-08` | Crosscutting Concepts | Optional |
@@ -49,9 +49,10 @@ Skills live in `skills/` (canonical source). `.agents/` is a symlink to `skills/
 
 arc42 is a proven template for software architecture documentation by Dr. Gernot Starke and Dr. Peter Hruschka. Core principles:
 
-- **All 12 sections are optional** — use only what stakeholders need
-- **One exception: quality goals** (Section 1.2) are mandatory before any architecture work begins
-- **Three depth levels** apply to every section:
+- Use only what stakeholders need, while preserving official arc42 guidance where it is explicit
+- Section 5 Building Block View is mandatory in the official arc42 template
+- Section 1.2 quality goals are foundational and should be established early because they influence fundamental architecture decisions
+- LEAN / ESSENTIAL / THOROUGH are toolkit depth levels, not official arc42 categories:
   - **LEAN** — 1–3 pages, essential info only, agile teams
   - **ESSENTIAL** — core information, production systems
   - **THOROUGH** — complete documentation, critical/audited systems
@@ -63,14 +64,14 @@ arc42 is a proven template for software architecture documentation by Dr. Gernot
 These are the most common consistency traps — watch for them across all sections:
 
 - Section 1.2 quality goals → drive Section 4 solution strategy, elaborated in Section 10
-- Section 3 external interfaces → must match Section 5.1 Level-1 building blocks exactly
-- Section 5 building blocks → used in Sections 6 (runtime) and 7 (deployment)
-- Section 4 key decisions → each should have a detailed ADR in Section 9
-- Section 9 ADRs → failed decisions become Section 11 risks
+- Section 3 external interfaces should stay consistent with Section 5.1 Level-1 building blocks
+- Section 5 building blocks should be reusable in Sections 6 (runtime) and 7 (deployment)
+- Section 4 key decisions can be expanded in Section 9; ADRs are the toolkit default, not an arc42 requirement
+- Section 9 decision consequences can feed Section 11 risks and technical debt
 
 ## Diagram Convention
 
-Architecture diagrams use **C4 PlantUML** notation. The single exception is the Section 8 domain model, which uses standard PlantUML class diagram notation (C4 does not cover domain-level class relationships). All diagrams are stored as individual `.puml` files in `docs/diagrams/` and are never inlined in section markdown — only referenced.
+C4 PlantUML is the toolkit default, not an official arc42 requirement. The single exception in this toolkit is the Section 8 domain model, which uses standard PlantUML class diagram notation because C4 does not cover domain-level class relationships. Diagrams are stored as individual `.puml` files in `docs/diagrams/` and are referenced from section markdown.
 
 | Diagram | File |
 |---------|------|
@@ -85,7 +86,7 @@ Reference diagrams in markdown as: `![Title](diagrams/[filename].puml)` — this
 
 ## Q42 Quality Properties
 
-Use these tags for quality goals (Section 1.2, Section 10):
+Use these toolkit tags for quality goals (Section 1.2, Section 10):
 
 `#reliable` `#flexible` `#efficient` `#usable` `#safe` `#secure` `#suitable` `#operable`
 
