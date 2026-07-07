@@ -65,7 +65,7 @@ Read the relevant documentation sections. Apply each rule in order. The phrases 
 1. Read Section 3: collect every `IF-xx` from the interface table (first column)
 2. Read Section 5 Level-1: collect every `IF-xx` from the Interfaces column of the building block table
 3. Check both directions according to the toolkit convention: each IF-xx in Section 3 should appear in Section 5, and each IF-xx in Section 5 should appear in Section 3
-4. Record any orphan IDs as errors
+4. Record any orphan IDs as toolkit convention deviations
 
 **Rule 2 — Section 5 ↔ Section 7 Building Block Coverage**
 1. Read Section 5: collect every component name (Name column of the building block table)

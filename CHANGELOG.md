@@ -14,7 +14,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). Eac
 
 ### Fixed
 
-Clarified the boundary between official arc42 guidance and toolkit conventions throughout all skills and documentation. No behavioral changes — wording and attribution corrections only.
+Clarified the boundary between official arc42 guidance and toolkit conventions throughout all skills and documentation. No changes to executable code or scripts. Skill prompt wording changes may affect generated output structure (e.g., Section 10 overview format is now flexible rather than a forced quality tree; Section 9 alternatives table is now conditional on real alternatives existing).
 
 | Artifact | Change |
 |---|---|

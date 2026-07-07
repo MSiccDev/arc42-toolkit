@@ -1,7 +1,7 @@
 ---
 name: arc42-section-05
 version: 1.0.1
-description: Interactively guides the documentation of arc42 Section 5 (Building Block View). Asks about top-level components, interfaces, and source structure before generating the mandatory Level-1 view and optional deeper levels. Iterates until the user is satisfied.
+description: Interactively guides the documentation of arc42 Section 5 (Building Block View). Asks about top-level components, interfaces, and source structure before generating the Level-1 view (toolkit convention: minimum expected output) and optional deeper levels. Iterates until the user is satisfied.
 ---
 
 # arc42 Section 5: Building Block View
