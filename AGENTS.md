@@ -50,8 +50,8 @@ Skills live in `skills/` (canonical source). `.agents/` is a symlink to `skills/
 arc42 is a proven template for software architecture documentation by Dr. Gernot Starke and Dr. Peter Hruschka. Core principles:
 
 - **All 12 sections are optional** — use only what stakeholders need
-- **One exception: quality goals** (Section 1.2) are mandatory before any architecture work begins
-- **Three depth levels** apply to every section:
+- **Toolkit recommendation:** start with Section 1.2 (Quality Goals) — it anchors all architectural decisions that follow
+- **Three depth levels** apply to every section (toolkit conventions — not official arc42 categories):
   - **LEAN** — 1–3 pages, essential info only, agile teams
   - **ESSENTIAL** — core information, production systems
   - **THOROUGH** — complete documentation, critical/audited systems
@@ -70,7 +70,7 @@ These are the most common consistency traps — watch for them across all sectio
 
 ## Diagram Convention
 
-Architecture diagrams use **C4 PlantUML** notation. The single exception is the Section 8 domain model, which uses standard PlantUML class diagram notation (C4 does not cover domain-level class relationships). All diagrams are stored as individual `.puml` files in `docs/diagrams/` and are never inlined in section markdown — only referenced.
+Architecture diagrams use **C4 PlantUML** notation — the toolkit's default choice. Official arc42 is diagram-format agnostic; any notation (UML, Archimate, draw.io, etc.) is valid. The single exception is the Section 8 domain model, which uses standard PlantUML class diagram notation (C4 does not cover domain-level class relationships). All diagrams are stored as individual `.puml` files in `docs/diagrams/` and are never inlined in section markdown — only referenced.
 
 | Diagram | File |
 |---------|------|

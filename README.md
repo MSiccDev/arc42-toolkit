@@ -1,6 +1,6 @@
 # arc42 Toolkit
 
-[![arc42](https://img.shields.io/badge/arc42-compliant-brightgreen)](https://arc42.org)
+[![arc42](https://img.shields.io/badge/arc42-based-brightgreen)](https://arc42.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
@@ -16,7 +16,7 @@ Create professional software architecture documentation through guided, interact
 - **Provider-agnostic** — works with Claude Code, GitHub Copilot, Cursor, Codex, and any LLM tool
 - **Ask-first approach** — every skill gathers your project details before generating anything
 - **Three depth levels** — LEAN, ESSENTIAL, or THOROUGH, chosen per section based on your needs
-- **C4 PlantUML diagrams** — architecture diagrams as separate `.puml` files, never inlined
+- **C4 PlantUML diagrams** — toolkit default notation for architecture diagrams, stored as separate `.puml` files, never inlined (official arc42 is format-agnostic — any notation works)
 - **Q42 quality model** — 492 quality attributes across 8 properties integrated into relevant skills
 - **Cross-section consistency** — skills check related sections and flag contradictions
 - **Automated consistency linting** — catch IF-xx, QS-xx, ADR, and RISK-xx mismatches before they accumulate
@@ -34,7 +34,7 @@ arc42 is the proven, open-source template for software architecture documentatio
 - All sections are optional — use what fits your project
 - Suitable for agile and traditional environments
 
-**One mandatory exception:** Section 1.2 (Quality Goals) must exist before any other architecture work begins.
+**Toolkit recommendation:** Start with Section 1.2 (Quality Goals) — it anchors all architectural decisions that follow.
 
 ---
 
@@ -167,13 +167,13 @@ Generated documentation goes in your project's `docs/` directory. Architecture d
 
 ## The 12 arc42 Sections
 
-| Section | Name | Skill | Required? |
+| Section | Name | Skill | Toolkit guidance |
 |---------|------|-------|----------|
-| **1** | Introduction and Goals | `/arc42-section-01` | **Quality goals mandatory** |
+| **1** | Introduction and Goals | `/arc42-section-01` | **Recommended starting point** (Section 1.2 quality goals) |
 | **2** | Constraints | `/arc42-section-02` | Optional |
 | **3** | Context and Scope | `/arc42-section-03` | Recommended |
 | **4** | Solution Strategy | `/arc42-section-04` | Recommended |
-| **5** | Building Block View | `/arc42-section-05` | **Level-1 mandatory** |
+| **5** | Building Block View | `/arc42-section-05` | **Core section** (Level-1 view essential) |
 | **6** | Runtime View | `/arc42-section-06` | Optional |
 | **7** | Deployment View | `/arc42-section-07` | Optional |
 | **8** | Crosscutting Concepts | `/arc42-section-08` | Optional |
@@ -189,7 +189,7 @@ Use `/arc42-lint` to check cross-section ID consistency automatically.
 
 ## Three Depth Levels
 
-Every skill supports three depth levels. Choose based on your project's needs — you can use different levels for different sections.
+Every skill supports three depth levels. Choose based on your project's needs — you can use different levels for different sections. These levels are toolkit conventions — they are not part of the official arc42 template.
 
 ### LEAN (Agile / Minimal)
 **Best for:** Agile teams, time-constrained projects, evolving systems

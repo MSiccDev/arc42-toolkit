@@ -1,24 +1,24 @@
 ---
 name: arc42-lint
-version: 1.0.0
-description: Validates cross-section ID consistency in generated arc42 documentation. Checks IF-xx interface IDs (Section 3↔Section 5), building block deployment coverage (Section 5↔Section 7), Q42 quality tag traceability (Section 1↔Section 10), ADR risk references (Section 9↔Section 11), and aspirational scenario linkage (Section 10↔Section 11). Runs the automated linter script when available, or applies rules manually when not.
+version: 1.0.1
+description: Validates cross-section ID consistency in arc42 documentation that follows this toolkit's conventions. Checks toolkit IF-xx interface IDs (Section 3↔Section 5), building block deployment coverage (Section 5↔Section 7), Q42 quality tag traceability (Section 1↔Section 10), toolkit ADR risk references (Section 9↔Section 11), and aspirational scenario linkage (Section 10↔Section 11). Runs the automated linter script when available, or applies rules manually when not.
 ---
 
-# arc42 Consistency Linter
+# arc42 Toolkit Convention Linter
 
-You are an expert arc42 architect validating cross-section ID consistency in architecture documentation.
+You are an expert arc42 architect validating cross-section ID consistency in documentation that follows this toolkit's conventions.
 
-This skill checks that identifiers defined in one section are correctly referenced in all related sections, and that every cross-section traceability rule is satisfied. It does not review content quality or completeness — use `arc42-review` for that.
+This skill checks that identifiers defined in one section are correctly referenced in related sections when the documentation follows this toolkit's ID conventions. These checks are toolkit convention rules — not official arc42 requirements. It does not review content quality or completeness — use `arc42-review` for that.
 
-**Five consistency rules:**
+**Five toolkit consistency rules:**
 
 | Rule | Sections | What is checked |
 |------|----------|-----------------|
-| 1 | Section 3 ↔ Section 5 | IF-xx interface IDs defined in Section 3 must appear in Section 5 Level-1, and vice versa |
-| 2 | Section 5 ↔ Section 7 | Every Section 5 building block name must appear in the Section 7 deployment mapping |
-| 3 | Section 1 ↔ Section 10 | Every Q42 tag used in Section 10 quality scenarios must appear in Section 1.2 quality goals |
-| 4 | Section 9 ↔ Section 11 | Every RISK-xx in an ADR's "Risks created" field must have a Section 11 risk matrix entry |
-| 5 | Section 10 ↔ Section 11 | Every aspirational (unmet) scenario from Section 10.3 must be referenced in Section 11 |
+| 1 | Section 3 ↔ Section 5 | Toolkit IF-xx interface IDs defined in Section 3 should appear in Section 5 Level-1, and vice versa |
+| 2 | Section 5 ↔ Section 7 | Toolkit checks whether Section 5 building block names appear in the Section 7 deployment mapping |
+| 3 | Section 1 ↔ Section 10 | Toolkit checks whether Q42 tags used in Section 10 quality scenarios appear in Section 1.2 quality goals |
+| 4 | Section 9 ↔ Section 11 | Every toolkit RISK-xx in an ADR's "Risks created" field should have a Section 11 risk matrix entry |
+| 5 | Section 10 ↔ Section 11 | Every toolkit aspirational scenario from Section 10.3 should be referenced in Section 11 |
 
 ---
 
@@ -64,8 +64,8 @@ Read the relevant documentation sections. Apply each rule in order. The phrases 
 **Rule 1 — Section 3 ↔ Section 5 Interface IDs**
 1. Read Section 3: collect every `IF-xx` from the interface table (first column)
 2. Read Section 5 Level-1: collect every `IF-xx` from the Interfaces column of the building block table
-3. Check both directions — each IF-xx in Section 3 must appear in Section 5, and each IF-xx in Section 5 must appear in Section 3
-4. Record any orphan IDs as errors
+3. Check both directions according to the toolkit convention: each IF-xx in Section 3 should appear in Section 5, and each IF-xx in Section 5 should appear in Section 3
+4. Record any orphan IDs as toolkit convention deviations
 
 **Rule 2 — Section 5 ↔ Section 7 Building Block Coverage**
 1. Read Section 5: collect every component name (Name column of the building block table)
@@ -80,12 +80,12 @@ Read the relevant documentation sections. Apply each rule in order. The phrases 
 **Rule 4 — Section 9 ↔ Section 11 ADR Risk References**
 1. Read Section 9: for each ADR, find the `Risks created (→ Section 11):` line in its Implications block; collect all `RISK-xx` IDs mentioned
 2. Read Section 11: collect every `RISK-xx` from the risk matrix (ID column)
-3. Any RISK-xx mentioned in Section 9 but absent from Section 11 is an error
+3. Any toolkit RISK-xx mentioned in Section 9 but absent from Section 11 is a toolkit convention deviation
 
-**Rule 5 — Section 10.3 ↔ Section 11 Aspirational Scenarios**
+**Rule 5 — Section 10.3 ↔ Section 11 Aspirational Scenarios** *(toolkit extension — Section 10.3 is not part of the official arc42 template)*
 1. Read Section 10.3 (aspirational scenarios table): collect every `QS-xx` where Current State is "not measured"
 2. Read Section 11: check that each aspirational QS-xx is referenced somewhere in the risks/debt section
-3. Any aspirational QS-xx absent from Section 11 is an error
+3. Any aspirational QS-xx absent from Section 11 is a toolkit convention deviation
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: arc42-section-01
-version: 1.0.0
+version: 1.0.1
 description: Interactively guides the documentation of arc42 Section 1 (Introduction and Goals). Asks targeted questions about the system, quality goals, and stakeholders before generating a structured draft. Iterates until the user is satisfied.
 ---
 
@@ -106,7 +106,7 @@ See Section 10 for detailed quality scenarios.
 
 ---
 
-## 1.3 Stakeholders
+## 1.3 Stakeholder
 
 | Role / Name | Contact | Expectations from Architecture |
 |-------------|---------|--------------------------------|
