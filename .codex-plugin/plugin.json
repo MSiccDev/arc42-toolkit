@@ -1,0 +1,40 @@
+{
+  "name": "arc42-toolkit",
+  "version": "1.1.0",
+  "description": "Provider-agnostic AI skills for creating professional arc42 software architecture documentation. Covers all 12 arc42 sections, cross-section quality review, and automated consistency linting.",
+  "author": {
+    "name": "MSiccDev Software Development",
+    "url": "https://github.com/MSiccDev"
+  },
+  "homepage": "https://github.com/MSiccDev/arc42-toolkit",
+  "repository": "https://github.com/MSiccDev/arc42-toolkit",
+  "license": "MIT",
+  "keywords": [
+    "arc42",
+    "architecture",
+    "documentation",
+    "skills",
+    "adr",
+    "quality",
+    "c4"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "arc42 Toolkit",
+    "shortDescription": "Interactive arc42 documentation skills for Codex.",
+    "longDescription": "Provider-agnostic skills for drafting and reviewing all 12 arc42 sections, plus cross-section review and consistency linting.",
+    "developerName": "MSiccDev Software Development",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/MSiccDev/arc42-toolkit",
+    "defaultPrompt": [
+      "Draft arc42 section 1 for my project.",
+      "Review this arc42 document for missing sections.",
+      "Lint my arc42 docs for cross-section consistency."
+    ],
+    "brandColor": "#65A30D"
+  }
+}

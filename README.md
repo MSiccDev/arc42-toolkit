@@ -65,15 +65,15 @@ copilot plugin install arc42-toolkit
 
 **OpenAI Codex**
 
-Use the built-in `$skill-installer` inside Codex and provide the repository URL, or install for your user account:
+Register the repository as a marketplace source once, then install the plugin from the Codex app:
 
 ```bash
-# User-wide (available in all your projects)
-git clone https://github.com/MSiccDev/arc42-toolkit.git ~/.codex/skills/arc42-toolkit
-
-# Project-wide (checked into the repo)
-git clone https://github.com/MSiccDev/arc42-toolkit.git .codex/skills/arc42-toolkit
+codex plugin marketplace add MSiccDev/arc42-toolkit --ref main
 ```
+
+After registration, restart Codex, open **Plugins**, choose the **arc42 Toolkit** marketplace, and install `arc42-toolkit`.
+
+If you open this repository directly in Codex, the repo-local `.agents/skills/` symlinks also expose the skills without plugin installation.
 
 **Cursor, Copilot Chat, and other tools**
 
@@ -96,7 +96,8 @@ Invoke the skill for your AI tool:
 |------|----------|
 | Claude Code | `/arc42-section-01` |
 | GitHub Copilot Chat | `#arc42-section-01` |
-| Cursor / Codex | Reference `skills/arc42-section-01/SKILL.md` in context |
+| Cursor | Reference `skills/arc42-section-01/SKILL.md` in context |
+| Codex | Use `$arc42-section-01` after installing the plugin, or open the repo directly |
 
 ### 3. Answer the questions
 
@@ -121,6 +122,13 @@ arc42-toolkit/
 ├── README.md                          # This file
 ├── LICENSE                            # MIT License
 ├── CONTRIBUTING.md                    # Contribution guidelines
+│
+├── .codex-plugin/
+│   └── plugin.json                    # Codex plugin manifest
+├── .agents/
+│   ├── plugins/
+│   │   └── marketplace.json           # Repo-scoped Codex marketplace
+│   └── skills/                        # Codex skill-discovery symlinks
 │
 ├── skills/                            # Canonical skill source (agentskills.io spec)
 │   ├── arc42-section-01/SKILL.md      # Introduction and Goals
@@ -151,7 +159,6 @@ arc42-toolkit/
 ├── templates/
 │   └── arc42-lint.yml                 # GitHub Actions workflow template (copy to your project)
 │
-└── .agents/ -> skills/                # Symlink for agent-discovery compatibility
 ```
 
 Generated documentation goes in your project's `docs/` directory. Architecture diagrams are stored as `.puml` files in `docs/diagrams/`.
@@ -229,9 +236,21 @@ Use in Copilot Chat. Copilot reads `AGENTS.md` for project context automatically
 
 Open `skills/arc42-section-01/SKILL.md` in the Composer context, or reference it with `@SKILL.md` in chat.
 
-### Codex / ChatGPT / Other LLMs
+### Codex
 
-Paste the content of the relevant `SKILL.md` file as a system prompt or context message. All skills are plain markdown — they work with any LLM that understands structured text.
+Install the plugin from the Codex marketplace flow above, then invoke skills directly:
+
+```text
+$arc42-section-01
+$arc42-review
+$arc42-lint
+```
+
+If you are working inside a clone of this repository, Codex also discovers the skills through `.agents/skills/` automatically.
+
+### ChatGPT / Other LLMs
+
+Paste the content of the relevant `SKILL.md` file as a system prompt or context message. All skills are plain markdown and remain portable outside plugin runtimes.
 
 ---
 
