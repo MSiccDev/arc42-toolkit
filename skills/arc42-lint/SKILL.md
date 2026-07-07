@@ -80,7 +80,7 @@ Read the relevant documentation sections. Apply each rule in order. The phrases 
 **Rule 4 — Section 9 ↔ Section 11 ADR Risk References**
 1. Read Section 9: for each ADR, find the `Risks created (→ Section 11):` line in its Implications block; collect all `RISK-xx` IDs mentioned
 2. Read Section 11: collect every `RISK-xx` from the risk matrix (ID column)
-3. Any RISK-xx mentioned in Section 9 but absent from Section 11 is an error
+3. Any toolkit RISK-xx mentioned in Section 9 but absent from Section 11 is a toolkit convention deviation
 
 **Rule 5 — Section 10.3 ↔ Section 11 Aspirational Scenarios** *(toolkit extension — Section 10.3 is not part of the official arc42 template)*
 1. Read Section 10.3 (aspirational scenarios table): collect every `QS-xx` where Current State is "not measured"

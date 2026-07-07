@@ -122,12 +122,12 @@ Apply only for sections included in the review scope.
 - [ ] Quality requirements overview (if present) is in sync with the scenario tables — every QS ID appears in both → flag mismatches; note: overview format (table, quality tree, or prose) is the author's choice per quality.arc42.org conventions
 
 **Section 11 (Risks and Technical Debt):**
-- [ ] Every "Risks created" entry from Section 9 ADRs appears as a RISK-xx entry → list any missing
+- [ ] Every "Risks created" entry from Section 9 ADRs appears as a toolkit RISK-xx entry → if any are missing, flag as toolkit convention deviation
 - [ ] Every aspirational scenario from Section 10 that is not yet met has a corresponding risk entry → list any missing
 - [ ] Risks are ordered Critical → High → Medium → Low → flag if out of order
 - [ ] Priority is consistent with probability × impact — flag any mismatch
 - [ ] No risk is marked "Mitigated" without a concrete mitigation strategy → flag vague or empty mitigations
-- [ ] RISK-xx and DEBT-xx IDs are stable — no gaps unless an item is marked "Closed" → flag renumbering
+- [ ] Toolkit RISK-xx and DEBT-xx IDs are stable — no gaps unless an item is marked "Closed" → flag renumbering as toolkit convention deviation
 - [ ] Technical debt items reference a specific component from Section 5 → flag any that don't
 
 **Section 12 (Glossary):**
@@ -155,8 +155,8 @@ Apply when multiple sections are in scope.
 | Constraints | Section 2 ↔ Section 5 | No component structure violates a Section 2 constraint |
 | Constraints | Section 2 ↔ Section 7 | No infrastructure choice violates a Section 2 constraint |
 | Decisions | Section 4 ↔ Section 9 | Every significant decision in Section 4 has a full ADR in Section 9 |
-| Risks | Section 9 ↔ Section 11 | Every "Risks created" field in Section 9 ADRs has a RISK-xx entry in Section 11 |
-| Risks | Section 10 ↔ Section 11 | Aspirational scenarios in Section 10 have corresponding RISK-xx entries in Section 11 |
+| Risks (toolkit) | Section 9 ↔ Section 11 | Every "Risks created" field in Section 9 ADRs has a toolkit RISK-xx entry in Section 11 |
+| Risks (toolkit) | Section 10 ↔ Section 11 | Toolkit aspirational scenarios in Section 10 have corresponding RISK-xx entries in Section 11 |
 | Crosscutting | Section 8 ↔ Section 4 | Crosscutting patterns are consistent with Section 4 solution strategy |
 | Terminology | Section 12 ↔ all | Preferred terms in Section 12 are used consistently across all sections |
 

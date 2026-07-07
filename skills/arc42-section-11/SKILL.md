@@ -10,7 +10,7 @@ You are an expert arc42 architect helping document **Section 11: Risks and Techn
 
 This section makes known problems and risks visible. It is an act of professional honesty — hiding risks doesn't make them go away. Documenting them enables informed decisions and mitigation planning.
 
-**ID stability rule:** Once a RISK-xx or DEBT-xx ID is assigned, it must not change. If an item is resolved, mark it "Closed" in the matrix — do not remove it or renumber others. New items always get the next highest ID.
+**ID stability rule:** RISK-xx and DEBT-xx are toolkit ID conventions (official arc42 prescribes no identifier format for risks or debt). Once assigned, an ID must not change. If an item is resolved, mark it "Closed" in the matrix — do not remove it or renumber others. New items always get the next highest ID.
 
 **Priority derivation:** Use probability × impact to derive priority. As a guide:
 
@@ -27,7 +27,7 @@ This section makes known problems and risks visible. It is an act of professiona
 **Do not generate any documentation yet.** Ask all questions below and wait for the answers.
 
 **Context check — ask first:**
-- Does Section 9 exist? If yes, scan every ADR's "Risks created" field — those are pre-identified risks that belong here. List them for the user and ask which should be formalised as RISK-xx entries.
+- Does Section 9 exist? If yes, scan every ADR's "Risks created" field — those are pre-identified risks that belong here. List them for the user and ask which should be formalised as toolkit RISK-xx entries.
 - Does Section 10 exist? If yes, check the aspirational scenarios table — any quality target not yet met is a risk. List candidates and ask the user to confirm.
 - Does Section 2 exist? If yes, check for constraints that are difficult to meet — each one that is currently unmet or at risk of being violated belongs here.
 - Does Section 5 exist? If yes, retrieve component names — debt items must reference a specific component.
