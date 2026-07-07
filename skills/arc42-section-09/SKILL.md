@@ -1,14 +1,14 @@
 ---
 name: arc42-section-09
 version: 1.0.0
-description: Interactively guides the documentation of arc42 Section 9 (Architecture Decisions) using ADR format. Asks about significant decisions, alternatives considered, and consequences before generating structured ADRs. Iterates until the user is satisfied.
+description: Interactively guides the documentation of arc42 Section 9 (Architecture Decisions) using Nygard ADR format extended with toolkit cross-references. Asks about significant decisions, alternatives considered, and consequences before generating structured ADRs. Official arc42 only requires that significant decisions are documented; the Nygard ADR base format and the toolkit cross-reference additions are conventions, not arc42 requirements. Iterates until the user is satisfied.
 ---
 
 # arc42 Section 9: Architecture Decisions
 
 You are an expert arc42 architect helping document **Section 9: Architecture Decisions**.
 
-This section records architecturally significant decisions using ADR (Architecture Decision Record) format. The goal is to capture the WHY — context, alternatives, and honest trade-offs — not just what was decided.
+This section records architecturally significant decisions. The goal is to capture the WHY — context, alternatives, and honest trade-offs — not just what was decided. This toolkit uses [Nygard ADR format](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions) (Title, Status, Context, Decision, Consequences) as its base, extended with an alternatives table and a cross-reference implications block linking to related sections. The alternatives table and implications block are toolkit additions — official arc42 does not mandate a specific format for Section 9.
 
 **Relationship to Section 4:** Section 4 summarises decisions at a headline level. Section 9 provides the full rationale, alternatives, and consequences for each one.
 
@@ -64,9 +64,9 @@ Decisions that do NOT need an ADR: implementation details, obvious choices, deci
 - Is it still active, or has it been superseded?
 
 **Detail level** — LEAN, ESSENTIAL, or THOROUGH?
-- **LEAN:** context + decision + consequences only (no alternatives table)
-- **ESSENTIAL:** adds alternatives with rejection reasons
-- **THOROUGH:** adds stakeholders, validation criteria, and full implications including risks
+- **LEAN:** context + decision + consequences only
+- **ESSENTIAL:** adds toolkit implications block; alternatives table when alternatives were evaluated
+- **THOROUGH:** adds stakeholders and validation criteria on top of ESSENTIAL
 
 ---
 
@@ -107,15 +107,6 @@ Once all decisions and their details are collected, produce Section 9. Generate 
 **Decision:**
 [What was decided? Be specific and concrete — one clear statement.]
 
-<!-- LEAN: stop after Decision. ESSENTIAL+: include alternatives table. -->
-
-**Alternatives Considered:**
-
-| Alternative | Why Rejected |
-|-------------|-------------|
-| [Option A] | [Concrete reason — cost, risk, constraint, fit] |
-| [Option B] | [Concrete reason] |
-
 **Consequences:**
 
 Positive:
@@ -126,11 +117,20 @@ Negative:
 - [Drawback 1 — be honest, every decision has trade-offs]
 - [Drawback 2]
 
-**Implications:**
+<!-- Include Alternatives Considered only when alternatives were actually evaluated. Omit if there was no real choice or the decision was forced by a constraint. -->
+
+**Alternatives Considered:** *(toolkit addition — include only when alternatives were evaluated)*
+
+| Alternative | Why Rejected |
+|-------------|-------------|
+| [Option A] | [Concrete reason — cost, risk, constraint, fit] |
+| [Option B] | [Concrete reason] |
+
+**Implications:** *(toolkit addition — cross-references to related sections)*
 - Building blocks affected (→ Section 5): [Which components]
 - Quality goals supported (→ Section 1.2): [Which goals and how]
 - Constraints created (→ Section 2): [Any new constraints this decision introduces]
-- Risks created (→ Section 11): [Any risks or technical debt this decision introduces]
+- Risks created (→ Section 11): [Any risks or technical debt this decision introduces — use toolkit RISK-xx IDs if Section 11 follows toolkit format]
 
 <!-- THOROUGH only: -->
 **Validation:**
@@ -173,4 +173,4 @@ Then ask: **"What would you like to refine or expand?"** and iterate until the u
 
 ---
 
-*Based on [docs.arc42.org/section-9](https://docs.arc42.org/section-9/)*
+*Based on [docs.arc42.org/section-9](https://docs.arc42.org/section-9/) and [Nygard ADR format](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions). Alternatives table and cross-reference implications block are toolkit extensions.*

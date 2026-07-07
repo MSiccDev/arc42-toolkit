@@ -109,10 +109,11 @@ Apply only for sections included in the review scope.
 
 **Section 9 (Architecture Decisions):**
 - [ ] Every significant decision flagged in Section 4 has a corresponding ADR → list any missing
-- [ ] Every ADR has context, decision, alternatives with rejection reasons, and consequences (positive AND negative) → flag ADRs with only benefits listed
-- [ ] ADR lifecycle rule: no ADR has been edited to change a past decision — superseded decisions must be marked "Superseded by ADR-XXX" with a new ADR created → if an ADR appears to have been overwritten, flag it
+- [ ] Every ADR covers the Nygard base fields: Context, Decision, Consequences (positive AND negative) → flag entries missing any of these or listing only benefits
+- [ ] Alternatives table is present when alternatives were actually evaluated (toolkit extension — do not flag its absence if the decision was forced or had no real alternatives); Implications block present at ESSENTIAL/THOROUGH → flag if absent at those levels
+- [ ] Lifecycle rule: no ADR has been edited to change a past decision — superseded decisions must be marked "Superseded by ADR-XXX" with a new ADR created → flag any apparent overwrites
 - [ ] Status and date are set on every ADR → flag any missing
-- [ ] "Risks created" field is populated and each risk appears in Section 11 → flag any gap
+- [ ] "Risks created" field in the Implications block is populated and each risk appears in Section 11 (toolkit convention: use RISK-xx IDs if Section 11 follows toolkit format) → flag any gap
 
 **Section 10 (Quality Requirements):**
 - [ ] Every Section 1.2 quality goal has at least one scenario → list any unaddressed goals
