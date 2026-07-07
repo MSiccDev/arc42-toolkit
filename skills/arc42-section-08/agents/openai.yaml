@@ -1,7 +1,0 @@
-interface:
-  display_name: "Crosscutting Concepts"
-  short_description: "Document architecturally significant patterns applying across multiple components for arc42 Section 8"
-  default_prompt: "Use arc42-section-08 to interactively document crosscutting concepts, including domain model, security, persistence, error handling, and observability patterns"
-
-policy:
-  allow_implicit_invocation: true

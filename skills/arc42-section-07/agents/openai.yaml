@@ -1,7 +1,0 @@
-interface:
-  display_name: "Deployment View"
-  short_description: "Map software components to infrastructure and environments for arc42 Section 7"
-  default_prompt: "Use arc42-section-07 to interactively document the deployment view, including infrastructure, environments, and software-to-hardware mapping"
-
-policy:
-  allow_implicit_invocation: true

@@ -1,7 +1,0 @@
-interface:
-  display_name: "Glossary"
-  short_description: "Define domain and technical terms for ubiquitous language for arc42 Section 12"
-  default_prompt: "Use arc42-section-12 to interactively build a structured glossary with consistent preferred terms, scanning other sections for undefined terminology"
-
-policy:
-  allow_implicit_invocation: true

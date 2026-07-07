@@ -1,7 +1,0 @@
-interface:
-  display_name: "Quality Review"
-  short_description: "Validate any arc42 section or full document for consistency and completeness"
-  default_prompt: "Use arc42-review to review any arc42 section or the full document for accuracy, completeness, cross-section consistency, and alignment with arc42 standards"
-
-policy:
-  allow_implicit_invocation: true
