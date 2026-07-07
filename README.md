@@ -1,6 +1,6 @@
 # arc42 Toolkit
 
-[![arc42](https://img.shields.io/badge/arc42-compliant-brightgreen)](https://arc42.org)
+[![arc42](https://img.shields.io/badge/arc42-based-brightgreen)](https://arc42.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
