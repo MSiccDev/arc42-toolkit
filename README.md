@@ -189,7 +189,7 @@ Use `/arc42-lint` to check cross-section ID consistency automatically.
 
 ## Three Depth Levels
 
-Every skill supports three depth levels. Choose based on your project's needs — you can use different levels for different sections.
+Every skill supports three depth levels. Choose based on your project's needs — you can use different levels for different sections. These levels are toolkit conventions — they are not part of the official arc42 template.
 
 ### LEAN (Agile / Minimal)
 **Best for:** Agile teams, time-constrained projects, evolving systems
