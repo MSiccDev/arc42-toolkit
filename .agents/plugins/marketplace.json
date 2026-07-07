@@ -1,0 +1,20 @@
+{
+  "name": "arc42-toolkit",
+  "interface": {
+    "displayName": "arc42 Toolkit"
+  },
+  "plugins": [
+    {
+      "name": "arc42-toolkit",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
