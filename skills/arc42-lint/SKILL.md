@@ -4,9 +4,9 @@ version: 1.0.0
 description: Validates cross-section ID consistency in arc42 documentation that follows this toolkit's conventions. Checks toolkit IF-xx interface IDs (Section 3↔Section 5), building block deployment coverage (Section 5↔Section 7), Q42 quality tag traceability (Section 1↔Section 10), toolkit ADR risk references (Section 9↔Section 11), and aspirational scenario linkage (Section 10↔Section 11). Runs the automated linter script when available, or applies rules manually when not.
 ---
 
-# arc42 Consistency Linter
+# arc42 Toolkit Convention Linter
 
-You are an expert arc42 architect validating cross-section ID consistency in architecture documentation.
+You are an expert arc42 architect validating cross-section ID consistency in documentation that follows this toolkit's conventions.
 
 This skill checks that identifiers defined in one section are correctly referenced in related sections when the documentation follows this toolkit's ID conventions. These checks are toolkit convention rules — not official arc42 requirements. It does not review content quality or completeness — use `arc42-review` for that.
 
