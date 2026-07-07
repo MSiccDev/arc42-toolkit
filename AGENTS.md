@@ -70,7 +70,7 @@ These are the most common consistency traps — watch for them across all sectio
 
 ## Diagram Convention
 
-Architecture diagrams use **C4 PlantUML** notation. The single exception is the Section 8 domain model, which uses standard PlantUML class diagram notation (C4 does not cover domain-level class relationships). All diagrams are stored as individual `.puml` files in `docs/diagrams/` and are never inlined in section markdown — only referenced.
+Architecture diagrams use **C4 PlantUML** notation — the toolkit's default choice. Official arc42 is diagram-format agnostic; any notation (UML, Archimate, draw.io, etc.) is valid. The single exception is the Section 8 domain model, which uses standard PlantUML class diagram notation (C4 does not cover domain-level class relationships). All diagrams are stored as individual `.puml` files in `docs/diagrams/` and are never inlined in section markdown — only referenced.
 
 | Diagram | File |
 |---------|------|

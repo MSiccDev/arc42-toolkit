@@ -68,7 +68,7 @@ Apply only for sections included in the review scope.
 - [ ] The system boundary is clear — no internal components appear in the context diagram → flag any building block from Section 5 that appears inside the system boundary in the context diagram
 - [ ] Business context does not contain technical details (protocols, data formats, port numbers) → those belong in the technical context
 - [ ] All external actors and systems are shown → check against Section 5 Level-1 interfaces
-- [ ] C4 PlantUML context diagram exists as a separate `.puml` file in `docs/diagrams/` (ESSENTIAL/THOROUGH) → if inlined or absent, flag with the expected file path
+- [ ] C4 PlantUML context diagram exists as a separate `.puml` file in `docs/diagrams/` (ESSENTIAL/THOROUGH) → if inlined or absent, flag as toolkit convention deviation (C4 PlantUML is the toolkit default; official arc42 is format-agnostic)
 
 **Section 4 (Solution Strategy):**
 - [ ] Every quality goal from Section 1.2 has a corresponding approach described here → list any unaddressed goals
@@ -82,7 +82,7 @@ Apply only for sections included in the review scope.
 - [ ] No circular dependencies between components → if any are present, flag them as Critical
 - [ ] No building block maps to an individual file, class, or method — only modules, services, libraries, or subsystems → if too granular, flag it
 - [ ] Source code locations are specified for each component (ESSENTIAL/THOROUGH) → if missing, ask the user to provide them
-- [ ] C4 PlantUML diagrams exist as separate `.puml` files in `docs/diagrams/` → if inlined or absent, flag with expected file paths
+- [ ] C4 PlantUML diagrams exist as separate `.puml` files in `docs/diagrams/` → if inlined or absent, flag as toolkit convention deviation
 
 **Section 6 (Runtime View):**
 - [ ] 3–5 scenarios — not fewer (too thin), not more (too exhaustive) → flag if outside this range
@@ -90,7 +90,7 @@ Apply only for sections included in the review scope.
 - [ ] All components referenced exist in Section 5 — exact name match → list any name mismatches
 - [ ] All external actors referenced exist in Section 3 → list any that don't
 - [ ] Error handling documented for scenarios on the critical path → flag missing error handling
-- [ ] C4 Dynamic PlantUML diagrams in `docs/diagrams/runtime-[name].puml` (ESSENTIAL/THOROUGH) → flag if absent or inlined
+- [ ] C4 Dynamic PlantUML diagrams in `docs/diagrams/runtime-[name].puml` (ESSENTIAL/THOROUGH) → if absent or inlined, flag as toolkit convention deviation
 
 **Section 7 (Deployment View):**
 - [ ] Every Section 5 building block appears in the software-to-infrastructure mapping → list any missing
@@ -98,7 +98,7 @@ Apply only for sections included in the review scope.
 - [ ] TLS termination point is identified → if absent, flag as a security gap
 - [ ] At least one `#reliable`, `#efficient`, or `#operable` goal from Section 1.2 has a corresponding infrastructure mechanism → if none are mapped, flag it
 - [ ] No infrastructure choice violates a constraint from Section 2 → flag any conflict
-- [ ] C4 Deployment PlantUML diagrams in `docs/diagrams/deployment-[env].puml` (ESSENTIAL/THOROUGH) → flag if absent or inlined
+- [ ] C4 Deployment PlantUML diagrams in `docs/diagrams/deployment-[env].puml` (ESSENTIAL/THOROUGH) → if absent or inlined, flag as toolkit convention deviation
 
 **Section 8 (Crosscutting Concepts):**
 - [ ] Every documented concept applies to 2 or more building blocks — apply the crosscutting test → flag any concept that only affects one component

@@ -16,7 +16,7 @@ Create professional software architecture documentation through guided, interact
 - **Provider-agnostic** — works with Claude Code, GitHub Copilot, Cursor, Codex, and any LLM tool
 - **Ask-first approach** — every skill gathers your project details before generating anything
 - **Three depth levels** — LEAN, ESSENTIAL, or THOROUGH, chosen per section based on your needs
-- **C4 PlantUML diagrams** — architecture diagrams as separate `.puml` files, never inlined
+- **C4 PlantUML diagrams** — toolkit default notation for architecture diagrams, stored as separate `.puml` files, never inlined (official arc42 is format-agnostic — any notation works)
 - **Q42 quality model** — 492 quality attributes across 8 properties integrated into relevant skills
 - **Cross-section consistency** — skills check related sections and flag contradictions
 - **Automated consistency linting** — catch IF-xx, QS-xx, ADR, and RISK-xx mismatches before they accumulate
