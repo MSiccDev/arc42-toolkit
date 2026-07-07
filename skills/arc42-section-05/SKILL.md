@@ -21,7 +21,7 @@ This section documents the static decomposition of the system into building bloc
 **Do not generate any documentation yet.** Ask all questions below and wait for the answers.
 
 **Context check — ask first:**
-- Does Section 3 exist? If yes, retrieve the external interfaces (IF-xx IDs) — they MUST appear at Level-1 and use the same IDs.
+- Does Section 3 exist? If yes, retrieve the external interfaces (IF-xx IDs) — toolkit convention requires they appear at Level-1 with matching IDs.
 - Does Section 4 exist? If yes, retrieve the decomposition strategy — the components here must reflect what was decided there. Flag any mismatch.
 - Do Sections 6 or 7 exist? If yes, component names here must match exactly what is used in runtime scenarios and deployment diagrams.
 
@@ -29,7 +29,7 @@ This section documents the static decomposition of the system into building bloc
 
 1. **Top-level components** — What are the main building blocks at the highest level? For each: one sentence on its sole responsibility. If a component seems to have more than one clear responsibility, ask whether it should be split.
 
-2. **External interfaces** — Which external actors and systems connect directly to the system? (Must match Section 3 if it exists — use the same IF-xx interface IDs.)
+2. **External interfaces** — Which external actors and systems connect directly to the system? (If Section 3 exists, use the same toolkit IF-xx interface IDs to keep cross-section consistency.)
 
 3. **Component dependencies** — Which components depend on which? Any data flows between them? Watch for circular dependencies — if any exist, flag them immediately and ask whether they can be resolved.
 

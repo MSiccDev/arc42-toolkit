@@ -78,7 +78,7 @@ Apply only for sections included in the review scope.
 
 **Section 5 (Building Block View):**
 - [ ] Level-1 diagram and component table are present (toolkit convention: Level-1 is the minimum expected output at all detail levels) → if absent, flag as Critical
-- [ ] All external interfaces from Section 3 appear at Level-1 with matching IF-xx IDs → list any missing or renamed interfaces
+- [ ] All external interfaces from Section 3 appear at Level-1 with matching toolkit IF-xx IDs → if any are missing or renamed, flag as toolkit convention deviation
 - [ ] No circular dependencies between components → if any are present, flag them as Critical
 - [ ] No building block maps to an individual file, class, or method — only modules, services, libraries, or subsystems → if too granular, flag it
 - [ ] Source code locations are specified for each component (ESSENTIAL/THOROUGH) → if missing, ask the user to provide them
@@ -145,7 +145,7 @@ Apply when multiple sections are in scope.
 
 | Check | Sections | What to Verify |
 |-------|----------|----------------|
-| Interface IDs | Section 3 ↔ Section 5 | IF-xx IDs in Section 3 match IF-xx IDs used at Section 5 Level-1 exactly |
+| Interface IDs (toolkit) | Section 3 ↔ Section 5 | Toolkit IF-xx IDs in Section 3 match IF-xx IDs used at Section 5 Level-1 exactly |
 | Component names | Section 5 ↔ Section 6 | Every component name in runtime scenarios matches Section 5 name exactly |
 | Component names | Section 5 ↔ Section 7 | Every component in Section 5 appears in Section 7 deployment mapping |
 | Component names | Section 5 ↔ Section 8 | Building blocks referenced in crosscutting concepts match Section 5 names |
