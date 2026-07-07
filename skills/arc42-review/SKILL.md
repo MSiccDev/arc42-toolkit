@@ -48,15 +48,15 @@ Read the specified files. For each section reviewed, determine the stated detail
 
 ### Section-Specific Checks
 
-Apply only for sections included in the review scope.
+Apply only for sections included in the review scope. Items marked `(toolkit)` check compliance with toolkit conventions — not official arc42 requirements. All other items reflect official arc42 guidance.
 
 **Section 1 (Introduction and Goals):**
 - [ ] Section 1.2 quality goals are present (toolkit recommendation: document quality goals before any other section) → if absent, flag as high priority
-- [ ] 3–5 quality goals maximum → if more, ask the user which to promote and which to demote to Section 10
-- [ ] Every quality goal has a Q42 property tag (`#reliable`, `#efficient`, `#secure`, `#usable`, `#safe`, `#flexible`, `#suitable`, `#operable`) → if missing, suggest the correct tag
+- [ ] 3–5 quality goals maximum (toolkit) → if more, ask the user which to promote and which to demote to Section 10
+- [ ] Every quality goal has a Q42 property tag (`#reliable`, `#efficient`, `#secure`, `#usable`, `#safe`, `#flexible`, `#suitable`, `#operable`) (toolkit — per quality.arc42.org) → if missing, suggest the correct tag
 - [ ] Every quality goal has a concrete metric or measurable scenario — not "the system should be fast" → flag vague statements
 - [ ] All relevant stakeholders are listed with their expectations → if a stakeholder group appears in other sections but not here, flag the gap
-- [ ] Requirements overview is under 1 page (ESSENTIAL/THOROUGH) → if longer, suggest splitting into summary vs. reference
+- [ ] Requirements overview is under 1 page (ESSENTIAL/THOROUGH) (toolkit) → if longer, suggest splitting into summary vs. reference
 
 **Section 2 (Constraints):**
 - [ ] Each constraint has a reason explaining why it is non-negotiable → if missing, ask who mandated it and why
@@ -81,11 +81,11 @@ Apply only for sections included in the review scope.
 - [ ] All external interfaces from Section 3 appear at Level-1 with matching toolkit IF-xx IDs → if any are missing or renamed, flag as toolkit convention deviation
 - [ ] No circular dependencies between components → if any are present, flag them as Critical
 - [ ] No building block maps to an individual file, class, or method — only modules, services, libraries, or subsystems → if too granular, flag it
-- [ ] Source code locations are specified for each component (ESSENTIAL/THOROUGH) → if missing, ask the user to provide them
+- [ ] Source code locations are specified for each component (ESSENTIAL/THOROUGH) (toolkit) → if missing, ask the user to provide them
 - [ ] C4 PlantUML diagrams exist as separate `.puml` files in `docs/diagrams/` → if inlined or absent, flag as toolkit convention deviation
 
 **Section 6 (Runtime View):**
-- [ ] 3–5 scenarios — not fewer (too thin), not more (too exhaustive) → flag if outside this range
+- [ ] 3–5 scenarios (toolkit) — not fewer (too thin), not more (too exhaustive) → flag if outside this range
 - [ ] At least one happy-path scenario, one error/recovery scenario, and one scenario demonstrating a quality goal → flag any missing type
 - [ ] All components referenced exist in Section 5 — exact name match → list any name mismatches
 - [ ] All external actors referenced exist in Section 3 → list any that don't
@@ -105,7 +105,7 @@ Apply only for sections included in the review scope.
 - [ ] No subsection contains generic industry advice without system-specific content → flag anything that reads like a textbook
 - [ ] Security is present unless the system has no users and no sensitive data → if absent without justification, flag as Critical
 - [ ] Patterns described here are consistent with Section 4 solution strategy → flag any contradiction
-- [ ] Domain model (if present) uses standard PlantUML class diagram notation, stored as `docs/diagrams/domain-model.puml` → C4 is not appropriate for domain models
+- [ ] Domain model (if present) uses standard PlantUML class diagram notation, stored as `docs/diagrams/domain-model.puml` (toolkit) → C4 is not appropriate for domain models
 
 **Section 9 (Architecture Decisions):**
 - [ ] Every significant decision flagged in Section 4 has a corresponding ADR → list any missing
@@ -124,12 +124,12 @@ Apply only for sections included in the review scope.
 
 **Section 11 (Risks and Technical Debt):**
 - [ ] Every "Risks created" entry from Section 9 ADRs appears as a toolkit RISK-xx entry → if any are missing, flag as toolkit convention deviation
-- [ ] Every aspirational scenario from Section 10 that is not yet met has a corresponding risk entry → list any missing
-- [ ] Risks are ordered Critical → High → Medium → Low → flag if out of order
+- [ ] Every aspirational scenario from Section 10 that is not yet met has a corresponding risk entry (toolkit) → list any missing
+- [ ] Risks are ordered Critical → High → Medium → Low (toolkit) → flag if out of order
 - [ ] Priority is consistent with probability × impact — flag any mismatch
 - [ ] No risk is marked "Mitigated" without a concrete mitigation strategy → flag vague or empty mitigations
 - [ ] Toolkit RISK-xx and DEBT-xx IDs are stable — no gaps unless an item is marked "Closed" → flag renumbering as toolkit convention deviation
-- [ ] Technical debt items reference a specific component from Section 5 → flag any that don't
+- [ ] Technical debt items reference a specific component from Section 5 (toolkit) → flag any that don't
 
 **Section 12 (Glossary):**
 - [ ] All building block names from Section 5 that are not plain English have a glossary entry → list any missing
