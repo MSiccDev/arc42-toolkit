@@ -18,7 +18,7 @@ This skill checks that identifiers defined in one section are correctly referenc
 | 2 | Section 5 ↔ Section 7 | Toolkit checks whether Section 5 building block names appear in the Section 7 deployment mapping |
 | 3 | Section 1 ↔ Section 10 | Toolkit checks whether Q42 tags used in Section 10 quality scenarios appear in Section 1.2 quality goals |
 | 4 | Section 9 ↔ Section 11 | Every toolkit RISK-xx in an ADR's "Risks created" field should have a Section 11 risk matrix entry |
-| 5 | Section 10 ↔ Section 11 | Every aspirational (unmet) scenario from Section 10.3 must be referenced in Section 11 |
+| 5 | Section 10 ↔ Section 11 | Every toolkit aspirational scenario from Section 10.3 should be referenced in Section 11 |
 
 ---
 
@@ -82,10 +82,10 @@ Read the relevant documentation sections. Apply each rule in order. The phrases 
 2. Read Section 11: collect every `RISK-xx` from the risk matrix (ID column)
 3. Any RISK-xx mentioned in Section 9 but absent from Section 11 is an error
 
-**Rule 5 — Section 10.3 ↔ Section 11 Aspirational Scenarios**
+**Rule 5 — Section 10.3 ↔ Section 11 Aspirational Scenarios** *(toolkit extension — Section 10.3 is not part of the official arc42 template)*
 1. Read Section 10.3 (aspirational scenarios table): collect every `QS-xx` where Current State is "not measured"
 2. Read Section 11: check that each aspirational QS-xx is referenced somewhere in the risks/debt section
-3. Any aspirational QS-xx absent from Section 11 is an error
+3. Any aspirational QS-xx absent from Section 11 is a toolkit convention deviation
 
 ---
 

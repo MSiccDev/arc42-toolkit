@@ -119,7 +119,7 @@ Apply only for sections included in the review scope.
 - [ ] Every scenario has a quantified, testable success measure — no vague criteria → flag every instance of "fast", "reliable", "secure" without a number
 - [ ] Every scenario has an environment context (normal / peak / degraded) → flag any missing
 - [ ] QS IDs are sequential and stable — no gaps unless a scenario is marked "Retired" → flag renumbering
-- [ ] Quality tree (if present) is in sync with the scenario tables — every QS ID appears in both → flag mismatches
+- [ ] Quality requirements overview (if present) is in sync with the scenario tables — every QS ID appears in both → flag mismatches; note: overview format (table, quality tree, or prose) is the author's choice per quality.arc42.org conventions
 
 **Section 11 (Risks and Technical Debt):**
 - [ ] Every "Risks created" entry from Section 9 ADRs appears as a RISK-xx entry → list any missing
