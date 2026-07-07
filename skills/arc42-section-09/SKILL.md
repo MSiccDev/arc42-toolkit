@@ -1,6 +1,6 @@
 ---
 name: arc42-section-09
-version: 1.0.0
+version: 1.0.1
 description: Interactively guides the documentation of arc42 Section 9 (Architecture Decisions) using Nygard ADR format extended with toolkit cross-references. Asks about significant decisions, alternatives considered, and consequences before generating structured ADRs. Official arc42 only requires that significant decisions are documented; the Nygard ADR base format and the toolkit cross-reference additions are conventions, not arc42 requirements. Iterates until the user is satisfied.
 ---
 

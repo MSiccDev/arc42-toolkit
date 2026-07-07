@@ -10,6 +10,26 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). Eac
 
 ---
 
+## [1.1.1] — 2026-07-07
+
+### Fixed
+
+Clarified the boundary between official arc42 guidance and toolkit conventions throughout all skills and documentation. No behavioral changes — wording and attribution corrections only.
+
+| Artifact | Change |
+|---|---|
+| `README.md` | Badge changed from `arc42-compliant` to `arc42-based`; Section 1.2 reframed as toolkit recommendation; depth levels labelled as toolkit conventions; C4 PlantUML noted as toolkit default |
+| `AGENTS.md` | Aligned with README framing: depth levels, C4 PlantUML, and Section 1.2 recommendation all labelled as toolkit conventions |
+| `arc42-lint` → `1.0.1` | Renamed to "arc42 Toolkit Convention Linter"; all five rules reworded from "must" to "should/toolkit convention"; findings say "toolkit convention deviation" not "error" |
+| `arc42-review` → `1.0.1` | Legend added to section-specific checks; all toolkit-specific items tagged `(toolkit)`; Nygard base fields now complete (Title, Context, Decision, Status, Consequences); quality overview source corrected to `docs.arc42.org/section-10` |
+| `arc42-section-01` → `1.0.1` | Section `1.3` heading corrected to singular "Stakeholder" per official arc42 template |
+| `arc42-section-05` → `1.0.1` | Section `5.1` heading changed to "Whitebox Overall System" per official arc42 template name |
+| `arc42-section-09` → `1.0.1` | ADR format credited to Nygard; alternatives table and implications block labelled as toolkit additions; alternatives table now conditional on real alternatives existing; Date field labelled as toolkit addition |
+| `arc42-section-10` → `1.0.1` | Quality Requirements Overview replaces forced quality tree; Q42 coaching references `quality.arc42.org`; QS-xx IDs and Section 10.3 labelled as toolkit conventions |
+| `arc42-section-11` → `1.0.1` | RISK-xx and DEBT-xx ID conventions labelled at the top of the skill |
+
+---
+
 ## [1.1.0] — 2026-05-16
 
 ### Added

@@ -1,6 +1,6 @@
 ---
 name: arc42-section-11
-version: 1.0.0
+version: 1.0.1
 description: Interactively guides the documentation of arc42 Section 11 (Risks and Technical Debt). Pre-populates candidates from Sections 9 and 10, works through risk categories systematically, and generates a prioritized risk register and debt backlog with mitigation strategies. Iterates until the user is satisfied.
 ---
 
