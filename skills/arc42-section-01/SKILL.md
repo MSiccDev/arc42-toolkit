@@ -106,7 +106,7 @@ See Section 10 for detailed quality scenarios.
 
 ---
 
-## 1.3 Stakeholders
+## 1.3 Stakeholder
 
 | Role / Name | Contact | Expectations from Architecture |
 |-------------|---------|--------------------------------|

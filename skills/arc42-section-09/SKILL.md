@@ -97,7 +97,7 @@ Once all decisions and their details are collected, produce Section 9. Generate 
 
 **Status:** Accepted *(Proposed | Accepted | Superseded by ADR-XXX | Deprecated)*
 
-**Date:** YYYY-MM-DD
+**Date:** YYYY-MM-DD *(toolkit addition — not part of the Nygard base format)*
 
 **Stakeholders:** [Who was involved in or informed of this decision — THOROUGH only]
 

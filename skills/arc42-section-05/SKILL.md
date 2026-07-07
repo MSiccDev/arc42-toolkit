@@ -103,7 +103,7 @@ Rel(sub1, sub2, "Calls", "[protocol]")
 
 ---
 
-## 5.1 Level 1: Overall System (White-box) — MANDATORY
+## 5.1 Whitebox Overall System
 
 ### Structure Diagram
 

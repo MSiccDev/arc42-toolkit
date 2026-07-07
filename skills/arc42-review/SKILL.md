@@ -109,10 +109,10 @@ Apply only for sections included in the review scope. Items marked `(toolkit)` c
 
 **Section 9 (Architecture Decisions):**
 - [ ] Every significant decision flagged in Section 4 has a corresponding ADR → list any missing
-- [ ] Every ADR covers the Nygard base fields: Context, Decision, Consequences (positive AND negative) → flag entries missing any of these or listing only benefits
+- [ ] Every ADR covers all five Nygard base fields: Title, Context, Decision, Status, Consequences (positive AND negative) → flag entries missing any of these or listing only benefits
 - [ ] Alternatives table is present when alternatives were actually evaluated (toolkit extension — do not flag its absence if the decision was forced or had no real alternatives); Implications block present at ESSENTIAL/THOROUGH → flag if absent at those levels
 - [ ] Lifecycle rule: no ADR has been edited to change a past decision — superseded decisions must be marked "Superseded by ADR-XXX" with a new ADR created → flag any apparent overwrites
-- [ ] Status and date are set on every ADR → flag any missing
+- [ ] Status (Nygard) and Date (toolkit addition) are set on every ADR → flag any missing
 - [ ] "Risks created" field in the Implications block is populated and each risk appears in Section 11 (toolkit convention: use RISK-xx IDs if Section 11 follows toolkit format) → flag any gap
 
 **Section 10 (Quality Requirements):**
@@ -120,7 +120,7 @@ Apply only for sections included in the review scope. Items marked `(toolkit)` c
 - [ ] Every scenario has a quantified, testable success measure — no vague criteria → flag every instance of "fast", "reliable", "secure" without a number
 - [ ] Every scenario has an environment context (normal / peak / degraded) → flag any missing
 - [ ] QS IDs are sequential and stable — no gaps unless a scenario is marked "Retired" → flag renumbering
-- [ ] Quality requirements overview (if present) is in sync with the scenario tables — every QS ID appears in both → flag mismatches; note: overview format (table, quality tree, or prose) is the author's choice per quality.arc42.org conventions
+- [ ] Quality requirements overview (if present) is in sync with the scenario tables — every QS ID appears in both → flag mismatches; note: overview format (table, quality tree, or prose) is the author's choice per docs.arc42.org/section-10
 
 **Section 11 (Risks and Technical Debt):**
 - [ ] Every "Risks created" entry from Section 9 ADRs appears as a toolkit RISK-xx entry → if any are missing, flag as toolkit convention deviation
