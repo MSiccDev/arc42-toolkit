@@ -51,7 +51,7 @@ Read the specified files. For each section reviewed, determine the stated detail
 Apply only for sections included in the review scope.
 
 **Section 1 (Introduction and Goals):**
-- [ ] Section 1.2 quality goals are present — this is the only mandatory content in arc42 → if absent, the whole document is at risk
+- [ ] Section 1.2 quality goals are present (toolkit recommendation: document quality goals before any other section) → if absent, flag as high priority
 - [ ] 3–5 quality goals maximum → if more, ask the user which to promote and which to demote to Section 10
 - [ ] Every quality goal has a Q42 property tag (`#reliable`, `#efficient`, `#secure`, `#usable`, `#safe`, `#flexible`, `#suitable`, `#operable`) → if missing, suggest the correct tag
 - [ ] Every quality goal has a concrete metric or measurable scenario — not "the system should be fast" → flag vague statements
@@ -77,7 +77,7 @@ Apply only for sections included in the review scope.
 - [ ] Decomposition strategy is stated and consistent with Section 5 component structure → flag mismatches
 
 **Section 5 (Building Block View):**
-- [ ] Level-1 diagram and component table are present — this is mandatory at all detail levels → if absent, this is Critical
+- [ ] Level-1 diagram and component table are present (toolkit convention: Level-1 is the minimum expected output at all detail levels) → if absent, flag as Critical
 - [ ] All external interfaces from Section 3 appear at Level-1 with matching IF-xx IDs → list any missing or renamed interfaces
 - [ ] No circular dependencies between components → if any are present, flag them as Critical
 - [ ] No building block maps to an individual file, class, or method — only modules, services, libraries, or subsystems → if too granular, flag it
