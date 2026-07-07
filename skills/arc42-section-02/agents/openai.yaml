@@ -1,7 +1,0 @@
-interface:
-  display_name: "Constraints"
-  short_description: "Capture technical, organizational, and regulatory constraints for arc42 Section 2"
-  default_prompt: "Use arc42-section-02 to interactively document the constraints of the system, including technical, organizational, and regulatory boundaries"
-
-policy:
-  allow_implicit_invocation: true

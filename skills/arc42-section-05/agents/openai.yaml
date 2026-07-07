@@ -1,7 +1,0 @@
-interface:
-  display_name: "Building Block View"
-  short_description: "Document hierarchical component decomposition and interfaces for arc42 Section 5"
-  default_prompt: "Use arc42-section-05 to interactively document the building block view, including top-level components, interfaces, and optional deeper decomposition levels"
-
-policy:
-  allow_implicit_invocation: true

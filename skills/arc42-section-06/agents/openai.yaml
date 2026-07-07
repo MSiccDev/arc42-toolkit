@@ -1,7 +1,0 @@
-interface:
-  display_name: "Runtime View"
-  short_description: "Describe dynamic behavior and key interaction scenarios for arc42 Section 6"
-  default_prompt: "Use arc42-section-06 to interactively document the runtime view, including key dynamic scenarios, component interactions, and sequence diagrams"
-
-policy:
-  allow_implicit_invocation: true

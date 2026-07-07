@@ -1,7 +1,0 @@
-interface:
-  display_name: "Risks and Technical Debt"
-  short_description: "Document known risks and technical debt with priorities for arc42 Section 11"
-  default_prompt: "Use arc42-section-11 to interactively document risks and technical debt, generating a prioritized risk register and debt backlog with mitigation strategies"
-
-policy:
-  allow_implicit_invocation: true

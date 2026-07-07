@@ -1,7 +1,0 @@
-interface:
-  display_name: "Context and Scope"
-  short_description: "Define system boundaries, external actors, and interfaces for arc42 Section 3"
-  default_prompt: "Use arc42-section-03 to interactively document the context and scope of the system, including external actors, data flows, and interface definitions"
-
-policy:
-  allow_implicit_invocation: true
