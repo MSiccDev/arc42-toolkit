@@ -1,3 +1,8 @@
 .DS_Store
 .github/instructions/awesome-arc42-copilot_project.instructions.md
 .github/instructions/awesome-arc42-copilot_project.validation.md
+
+# .NET build artifacts
+bin/
+obj/
+*.user
