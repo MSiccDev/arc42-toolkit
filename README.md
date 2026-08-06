@@ -349,7 +349,7 @@ Use `/arc42-lint` to run the linter interactively through your AI tool. The skil
 
 ## AI Evaluation Tests
 
-The toolkit includes a small suite of LLM-as-judge evaluations under `tests/arc42Toolkit.Evaluations/`, built on the [Microsoft.Extensions.AI.Evaluation](https://learn.microsoft.com/dotnet/ai/evaluation-libraries) libraries. The `ArchitecturalRelevanceEvaluator` scores ADRs against a fixed rubric (context, decision, consequences, alternatives considered), guarding against regressions in how well AI-generated documentation follows the arc42 structural contract.
+The toolkit includes a small suite of LLM-as-judge evaluations under `tests/arc42Toolkit.Evaluations/`, built on the [Microsoft.Extensions.AI.Evaluation](https://learn.microsoft.com/dotnet/ai/evaluation-libraries) libraries. The `AdrCompletenessEvaluator` scores ADRs against a fixed rubric (context, decision, consequences, alternatives considered), guarding against regressions in how well AI-generated documentation follows the arc42 structural contract.
 
 ### Generating the report
 

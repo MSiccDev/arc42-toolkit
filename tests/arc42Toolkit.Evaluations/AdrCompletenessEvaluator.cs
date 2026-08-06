@@ -10,9 +10,9 @@ namespace Arc42Toolkit.Evals.Evaluators;
 /// Consequences), against a fixed rubric: context, decision, consequences, and
 /// alternatives considered.
 /// </summary>
-public sealed class ArchitecturalRelevanceEvaluator : IEvaluator
+public sealed class AdrCompletenessEvaluator : IEvaluator
 {
-    public const string MetricName = "ArchitecturalRelevance";
+    public const string MetricName = "AdrCompleteness";
 
     public IReadOnlyCollection<string> EvaluationMetricNames => [MetricName];
 
@@ -26,7 +26,7 @@ public sealed class ArchitecturalRelevanceEvaluator : IEvaluator
         if (chatConfiguration?.ChatClient is null)
         {
             throw new InvalidOperationException(
-                $"{nameof(ArchitecturalRelevanceEvaluator)} requires a {nameof(ChatConfiguration)} " +
+                $"{nameof(AdrCompletenessEvaluator)} requires a {nameof(ChatConfiguration)} " +
                 "with a valid ChatClient to act as the judge.");
         }
 

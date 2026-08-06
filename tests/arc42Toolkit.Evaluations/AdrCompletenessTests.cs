@@ -8,7 +8,7 @@ using OpenAI;
 
 namespace arc42Toolkit.Evaluations;
 
-public class ArchitecturalRelevanceTests
+public class AdrCompletenessTests
 {
     // Resolves to tests/arc42Toolkit.Evaluations/eval-results
     private static readonly string ReportStoragePath = Path.Combine(
@@ -26,7 +26,7 @@ public class ArchitecturalRelevanceTests
     private static readonly ReportingConfiguration ReportingConfig =
         DiskBasedReportingConfiguration.Create(
             storageRootPath: ReportStoragePath,
-            evaluators: [new ArchitecturalRelevanceEvaluator()],
+            evaluators: [new AdrCompletenessEvaluator()],
             chatConfiguration: new ChatConfiguration(CreateLmStudioClient()));
 
     // Calibration test #1 — a complete ADR should score well.
@@ -43,7 +43,7 @@ public class ArchitecturalRelevanceTests
 
         EvaluationResult result = await scenarioRun.EvaluateAsync(messages, response);
 
-        var metric = result.Get<NumericMetric>(ArchitecturalRelevanceEvaluator.MetricName);
+        var metric = result.Get<NumericMetric>(AdrCompletenessEvaluator.MetricName);
 
         Assert.True(metric.Value >= 0.8,
             $"Expected a well-formed ADR to score >= 0.8, got {metric.Value}. " +
@@ -65,7 +65,7 @@ public class ArchitecturalRelevanceTests
 
         EvaluationResult result = await scenarioRun.EvaluateAsync(messages, response);
 
-        var metric = result.Get<NumericMetric>(ArchitecturalRelevanceEvaluator.MetricName);
+        var metric = result.Get<NumericMetric>(AdrCompletenessEvaluator.MetricName);
 
         Assert.True(metric.Value < 0.8,
             $"Expected an ADR missing alternatives to score < 0.8, got {metric.Value}. " +
