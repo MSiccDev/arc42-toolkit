@@ -347,6 +347,35 @@ Use `/arc42-lint` to run the linter interactively through your AI tool. The skil
 
 ---
 
+## AI Evaluation Tests
+
+The toolkit includes a small suite of LLM-as-judge evaluations under `tests/arc42Toolkit.Evaluations/`, built on the [Microsoft.Extensions.AI.Evaluation](https://learn.microsoft.com/dotnet/ai/evaluation-libraries) libraries. The `ArchitecturalRelevanceEvaluator` scores ADRs against a fixed rubric (context, decision, consequences, alternatives considered), guarding against regressions in how well AI-generated documentation follows the arc42 structural contract.
+
+### Generating the report
+
+The `aieval` CLI ships as part of the `Microsoft.Extensions.AI.Evaluation.Console` .NET tool, registered in this repo as a local tool via `dotnet-tools.json`. Restore it once (also runs automatically on `dotnet restore`):
+
+```bash
+dotnet tool restore
+```
+
+Then, after running the tests at least once, generate (and optionally open) the report:
+
+```bash
+dotnet tool run aieval report \
+  --path tests/arc42Toolkit.Evaluations/eval-results \
+  --output tests/arc42Toolkit.Evaluations/eval-results/report.html \
+  --open
+```
+
+- `--path` points at the result store populated by the test run.
+- `--output` is where the HTML report is written.
+- `--open` launches it in your default browser; omit it to just generate the file.
+
+Re-run the tests and the `aieval report` command any time `AGENTS.md` changes to confirm it still satisfies the structural contract.
+
+---
+
 ## Contributing
 
 Contributions are welcome. Here is how you can help:
