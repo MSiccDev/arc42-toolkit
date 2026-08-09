@@ -1,4 +1,6 @@
-﻿using System.ClientModel;
+using System.ClientModel;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Arc42Toolkit.Evals.Evaluators;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.AI.Evaluation;
@@ -14,10 +16,19 @@ public class AdrCompletenessTests
     private static readonly string ReportStoragePath = Path.Combine(
         AppContext.BaseDirectory, "..", "..", "..", "eval-results");
 
+    private static readonly string TestDataPath = Path.Combine(AppContext.BaseDirectory, "TestData");
+
     private static IChatClient CreateLmStudioClient() =>
         new OpenAIClient(
                 new ApiKeyCredential("lm-studio"),
-                new OpenAIClientOptions { Endpoint = new Uri("http://localhost:1234/v1") })
+                new OpenAIClientOptions
+                {
+                    Endpoint = new Uri("http://localhost:1234/v1"),
+                    // Default is 100s. A local reasoning-model judge can take several
+                    // minutes on a single ADR depending on prompt complexity — the
+                    // default was cutting off valid, still-in-progress responses.
+                    NetworkTimeout = TimeSpan.FromMinutes(10)
+                })
             .GetChatClient("microsoft/phi-4-reasoning-plus")
             .AsIChatClient();
 
@@ -29,37 +40,36 @@ public class AdrCompletenessTests
             evaluators: [new AdrCompletenessEvaluator()],
             chatConfiguration: new ChatConfiguration(CreateLmStudioClient()));
 
-    // Calibration test #1 — a complete ADR should score well.
-    // Use one of your real, well-formed ADRs here.
-    [Fact]
-    public async Task WellFormedAdr_ScoresHigh()
+    // Golden dataset fixtures — see TestData/golden-dataset.json and TestData/adrs/.
+    // Each entry records the expected score band for a real or synthetic ADR, so this
+    // one theory replaces what would otherwise be a hand-written fact per fixture.
+    public static TheoryData<string, string, string, double, double> GoldenDataset()
     {
-        await using ScenarioRun scenarioRun =
-            await ReportingConfig.CreateScenarioRunAsync(nameof(WellFormedAdr_ScoresHigh));
+        string json = File.ReadAllText(Path.Combine(TestDataPath, "golden-dataset.json"));
+        List<GoldenDatasetEntry> entries = JsonSerializer.Deserialize<List<GoldenDatasetEntry>>(json)
+            ?? throw new InvalidOperationException("golden-dataset.json deserialized to null.");
 
-        string adrText = await File.ReadAllTextAsync("TestData/adr-001-good.md");
-        var messages = new[] { new ChatMessage(ChatRole.User, "Evaluate this ADR.") };
-        var response = new ChatResponse(new ChatMessage(ChatRole.Assistant, adrText));
+        var data = new TheoryData<string, string, string, double, double>();
+        foreach (GoldenDatasetEntry entry in entries)
+        {
+            data.Add(entry.Id, entry.File, entry.ExpectedLabel, entry.ExpectedScoreMin, entry.ExpectedScoreMax);
+        }
 
-        EvaluationResult result = await scenarioRun.EvaluateAsync(messages, response);
-
-        var metric = result.Get<NumericMetric>(AdrCompletenessEvaluator.MetricName);
-
-        Assert.True(metric.Value >= 0.8,
-            $"Expected a well-formed ADR to score >= 0.8, got {metric.Value}. " +
-            $"Reason: {metric.Interpretation?.Reason}");
+        return data;
     }
 
-    // Calibration test #2 — an ADR deliberately missing "alternatives considered"
-    // should score noticeably lower. This is the test that proves the judge is
-    // actually checking the rubric, not just rubber-stamping everything.
-    [Fact]
-    public async Task AdrMissingAlternatives_ScoresLower()
+    // Runs the full golden dataset against a slow-but-rigorous reasoning judge (~30 min
+    // locally). Excluded from default runs via `dotnet test --filter "Category!=Slow"`;
+    // run explicitly or in a scheduled job instead.
+    [Theory]
+    [Trait("Category", "Slow")]
+    [MemberData(nameof(GoldenDataset))]
+    public async Task AdrCompleteness_MatchesGoldenExpectation(
+        string id, string file, string expectedLabel, double expectedScoreMin, double expectedScoreMax)
     {
-        await using ScenarioRun scenarioRun =
-            await ReportingConfig.CreateScenarioRunAsync(nameof(AdrMissingAlternatives_ScoresLower));
+        await using ScenarioRun scenarioRun = await ReportingConfig.CreateScenarioRunAsync(id);
 
-        string adrText = await File.ReadAllTextAsync("TestData/adr-002-missing-alternatives.md");
+        string adrText = await File.ReadAllTextAsync(Path.Combine(TestDataPath, file));
         var messages = new[] { new ChatMessage(ChatRole.User, "Evaluate this ADR.") };
         var response = new ChatResponse(new ChatMessage(ChatRole.Assistant, adrText));
 
@@ -67,8 +77,26 @@ public class AdrCompletenessTests
 
         var metric = result.Get<NumericMetric>(AdrCompletenessEvaluator.MetricName);
 
-        Assert.True(metric.Value < 0.8,
-            $"Expected an ADR missing alternatives to score < 0.8, got {metric.Value}. " +
-            $"Reason: {metric.Interpretation?.Reason}");
+        Assert.True(metric.Value >= expectedScoreMin && metric.Value <= expectedScoreMax,
+            $"[{id}] Expected a '{expectedLabel}' ADR to score within [{expectedScoreMin}, {expectedScoreMax}], " +
+            $"got {metric.Value}. Reason: {metric.Interpretation?.Reason}");
+    }
+
+    private sealed class GoldenDatasetEntry
+    {
+        [JsonPropertyName("id")]
+        public string Id { get; init; } = string.Empty;
+
+        [JsonPropertyName("file")]
+        public string File { get; init; } = string.Empty;
+
+        [JsonPropertyName("expectedLabel")]
+        public string ExpectedLabel { get; init; } = string.Empty;
+
+        [JsonPropertyName("expectedScoreMin")]
+        public double ExpectedScoreMin { get; init; }
+
+        [JsonPropertyName("expectedScoreMax")]
+        public double ExpectedScoreMax { get; init; }
     }
 }

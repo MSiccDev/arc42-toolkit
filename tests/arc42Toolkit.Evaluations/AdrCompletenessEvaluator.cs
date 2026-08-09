@@ -71,11 +71,50 @@ public sealed class AdrCompletenessEvaluator : IEvaluator
             new(ChatRole.User, judgePrompt)
         };
 
-        ChatResponse judgeResponse = await chatConfiguration.ChatClient
-            .GetResponseAsync(judgeMessages, cancellationToken: cancellationToken)
-            .ConfigureAwait(false);
+        // Reasoning-model judges occasionally drift from the requested format on the
+        // first attempt (e.g. leaking chain-of-thought before the SCORE line). Give the
+        // judge one chance to correct itself before treating it as a real failure.
+        const int maxAttempts = 2;
+        double score = 0.0;
+        string reason = string.Empty;
+        string lastJudgeText = string.Empty;
+        bool parsed = false;
 
-        (double score, string reason) = ParseJudgeResponse(judgeResponse.Text ?? string.Empty);
+        for (int attempt = 1; attempt <= maxAttempts; attempt++)
+        {
+            ChatResponse judgeResponse = await chatConfiguration.ChatClient
+                .GetResponseAsync(judgeMessages, cancellationToken: cancellationToken)
+                .ConfigureAwait(false);
+
+            lastJudgeText = judgeResponse.Text ?? string.Empty;
+            parsed = TryParseJudgeResponse(lastJudgeText, out score, out reason);
+
+            if (parsed)
+            {
+                break;
+            }
+
+            if (attempt < maxAttempts)
+            {
+                judgeMessages.Add(new ChatMessage(ChatRole.Assistant, lastJudgeText));
+                judgeMessages.Add(new ChatMessage(ChatRole.User, """
+                    Your previous reply did not contain a line starting with "SCORE:" followed by a
+                    number. Reply again using EXACTLY this format, nothing else:
+                    SCORE: <a number between 0.0 and 1.0>
+                    REASON: <one sentence explaining what is present and what, if anything, is missing>
+                    """));
+            }
+        }
+
+        if (!parsed)
+        {
+            // Fail loud rather than silently returning 0 — a parsing failure after a
+            // retry is a bug in the prompt or the judge model, not a legitimate "bad
+            // ADR" verdict.
+            throw new FormatException(
+                $"Could not parse a SCORE from the judge response after {maxAttempts} attempts. " +
+                $"Last raw response:\n{lastJudgeText}");
+        }
 
         var metric = new NumericMetric(MetricName, score);
         metric.Interpretation = new EvaluationMetricInterpretation(
@@ -85,31 +124,30 @@ public sealed class AdrCompletenessEvaluator : IEvaluator
             reason: reason);
 
         // Keep the raw judge output attached for debugging when a score looks wrong.
-        metric.AddDiagnostics(EvaluationDiagnostic.Informational(judgeResponse.Text ?? string.Empty));
+        metric.AddDiagnostics(EvaluationDiagnostic.Informational(lastJudgeText));
 
         return new EvaluationResult(metric);
     }
 
-    private static (double Score, string Reason) ParseJudgeResponse(string judgeText)
+    private static bool TryParseJudgeResponse(string judgeText, out double score, out string reason)
     {
         // Deliberately tolerant regex parsing — real model output has minor formatting drift
         // (extra whitespace, markdown bold, etc.) even when told to follow a fixed format.
         var scoreMatch = Regex.Match(judgeText, @"SCORE:\s*([0-9]*\.?[0-9]+)", RegexOptions.IgnoreCase);
         var reasonMatch = Regex.Match(judgeText, @"REASON:\s*(.+)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
-        if (!scoreMatch.Success || !double.TryParse(scoreMatch.Groups[1].Value, out double score))
+        if (!scoreMatch.Success || !double.TryParse(scoreMatch.Groups[1].Value, out score))
         {
-            // Fail loud rather than silently returning 0 — a parsing failure is a bug in
-            // the prompt or the judge model, not a legitimate "bad ADR" verdict.
-            throw new FormatException(
-                $"Could not parse a SCORE from the judge response. Raw response:\n{judgeText}");
+            score = 0.0;
+            reason = string.Empty;
+            return false;
         }
 
         score = Math.Clamp(score, 0.0, 1.0);
-        string reason = reasonMatch.Success
+        reason = reasonMatch.Success
             ? reasonMatch.Groups[1].Value.Trim()
             : "(no reason provided by judge)";
 
-        return (score, reason);
+        return true;
     }
 }

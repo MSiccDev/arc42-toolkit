@@ -1,0 +1,86 @@
+[
+  {
+    "id": "0003-openai-api-as-primary-ai-provider",
+    "file": "adrs/0003-openai-api-as-primary-ai-provider.md",
+    "source": "real",
+    "sourceRepo": "SmartMealWeek",
+    "sourceCommit": null,
+    "copiedOn": "2026-08-09",
+    "expectedLabel": "high",
+    "expectedScoreMin": 0.8,
+    "expectedScoreMax": 1.0,
+    "notes": "Complete ADR with five considered alternatives (including a competing LLM vendor), decision factors, consequences, and a cross-reference to a superseding ADR."
+  },
+  {
+    "id": "0012-cloud-platform-selection-azure",
+    "file": "adrs/0012-cloud-platform-selection-azure.md",
+    "source": "real",
+    "sourceRepo": "SmartMealWeek",
+    "sourceCommit": null,
+    "copiedOn": "2026-08-09",
+    "expectedLabel": "high",
+    "expectedScoreMin": 0.8,
+    "expectedScoreMax": 1.0,
+    "notes": "Most detailed fixture in the set: six considered alternatives, a service-mapping table, consequences, and explicit revisit triggers."
+  },
+  {
+    "id": "0014-web-portal-technology-react-spa",
+    "file": "adrs/0014-web-portal-technology-react-spa.md",
+    "source": "real",
+    "sourceRepo": "SmartMealWeek",
+    "sourceCommit": null,
+    "copiedOn": "2026-08-09",
+    "expectedLabel": "high",
+    "expectedScoreMin": 0.8,
+    "expectedScoreMax": 1.0,
+    "notes": "Full context/decision/consequences structure and a considered-options list, but two of three alternatives are explicitly marked 'not evaluated' rather than analyzed."
+  },
+  {
+    "id": "ADR-0005-faulty-feed-backoff-cadence",
+    "file": "adrs/ADR-0005-faulty-feed-backoff-cadence.md",
+    "source": "real",
+    "sourceRepo": "TwistReader",
+    "sourceCommit": null,
+    "copiedOn": "2026-08-09",
+    "expectedLabel": "low",
+    "expectedScoreMin": 0.65,
+    "expectedScoreMax": 0.79,
+    "notes": "Well-specified decision and consequences but omits any alternatives-considered section, same lightweight template as ADR-0001. Missing exactly one of the evaluator's four 0.25-weighted criteria caps this at ~0.75, hence the band."
+  },
+  {
+    "id": "ADR-0008-active-group-state-service",
+    "file": "adrs/ADR-0008-active-group-state-service.md",
+    "source": "real",
+    "sourceRepo": "TwistReader",
+    "sourceCommit": null,
+    "copiedOn": "2026-08-09",
+    "expectedLabel": "high",
+    "expectedScoreMin": 0.8,
+    "expectedScoreMax": 1.0,
+    "notes": "Most thorough real fixture: explicit Alternatives Considered section with two rejected options and stated reasons, plus implementation notes and references."
+  },
+  {
+    "id": "adr-001-synthetic-good",
+    "file": "adrs/adr-001-synthetic-good.md",
+    "source": "synthetic",
+    "sourceRepo": null,
+    "sourceCommit": null,
+    "copiedOn": "2026-08-09",
+    "expectedLabel": "high",
+    "expectedScoreMin": 0.8,
+    "expectedScoreMax": 1.0,
+    "notes": "Synthetic positive-control ADR (PostgreSQL datastore) with three alternatives narratively evaluated and rejected, plus balanced consequences."
+  },
+  {
+    "id": "adr-002-synthetic-missing-alternatives",
+    "file": "adrs/adr-002-synthetic-missing-alternatives.md",
+    "source": "synthetic",
+    "sourceRepo": null,
+    "sourceCommit": null,
+    "copiedOn": "2026-08-09",
+    "expectedLabel": "low",
+    "expectedScoreMin": 0.65,
+    "expectedScoreMax": 0.79,
+    "notes": "Synthetic negative-control ADR (Redis session storage) with context, decision, and consequences but no alternatives-considered content — deliberately incomplete, matching the filename. Missing exactly one of the evaluator's four criteria caps this at ~0.75."
+  }
+]
