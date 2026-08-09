@@ -18,6 +18,12 @@ public class AdrCompletenessTests
 
     private static readonly string TestDataPath = Path.Combine(AppContext.BaseDirectory, "TestData");
 
+    // AppContext.BaseDirectory is tests/arc42Toolkit.Evaluations/bin/Debug/net10.0/;
+    // five levels up lands at the repository root, so real (non-fixture) docs such as
+    // docs/adrs/ can be referenced directly instead of being copied into TestData.
+    private static readonly string RepoRootPath = Path.Combine(
+        AppContext.BaseDirectory, "..", "..", "..", "..", "..");
+
     private static IChatClient CreateLmStudioClient() =>
         new OpenAIClient(
                 new ApiKeyCredential("lm-studio"),
@@ -80,6 +86,33 @@ public class AdrCompletenessTests
         Assert.True(metric.Value >= expectedScoreMin && metric.Value <= expectedScoreMax,
             $"[{id}] Expected a '{expectedLabel}' ADR to score within [{expectedScoreMin}, {expectedScoreMax}], " +
             $"got {metric.Value}. Reason: {metric.Interpretation?.Reason}");
+    }
+
+    // Demo-only single run against the toolkit's own real ADR (docs/adrs/), not a
+    // TestData fixture and not part of the golden dataset. Not run by default — invoke
+    // explicitly, e.g.:
+    //   dotnet test --filter "Category=Demo"
+    [Fact]
+    [Trait("Category", "Demo")]
+    public async Task AdrCompleteness_DemoRun_ExtractEvaluationToolAdr()
+    {
+        await using ScenarioRun scenarioRun =
+            await ReportingConfig.CreateScenarioRunAsync(nameof(AdrCompleteness_DemoRun_ExtractEvaluationToolAdr));
+
+        string adrPath = Path.Combine(
+            RepoRootPath, "docs", "adrs",
+            "ADR-0001-extract-ai-evaluation-prototype-into-a-distributable-net-cli-tool.md");
+        string adrText = await File.ReadAllTextAsync(adrPath);
+        var messages = new[] { new ChatMessage(ChatRole.User, "Evaluate this ADR.") };
+        var response = new ChatResponse(new ChatMessage(ChatRole.Assistant, adrText));
+
+        EvaluationResult result = await scenarioRun.EvaluateAsync(messages, response);
+
+        var metric = result.Get<NumericMetric>(AdrCompletenessEvaluator.MetricName);
+
+        Assert.True(metric.Value >= 0.8,
+            $"Expected the toolkit's own extraction ADR to score >= 0.8, got {metric.Value}. " +
+            $"Reason: {metric.Interpretation?.Reason}");
     }
 
     private sealed class GoldenDatasetEntry

@@ -351,6 +351,22 @@ Use `/arc42-lint` to run the linter interactively through your AI tool. The skil
 
 The toolkit includes a small suite of LLM-as-judge evaluations under `tests/arc42Toolkit.Evaluations/`, built on the [Microsoft.Extensions.AI.Evaluation](https://learn.microsoft.com/dotnet/ai/evaluation-libraries) libraries. The `AdrCompletenessEvaluator` scores ADRs against a fixed rubric (context, decision, consequences, alternatives considered), guarding against regressions in how well AI-generated documentation follows the arc42 structural contract.
 
+### Running the tests
+
+The judge is a locally hosted [LM Studio](https://lmstudio.ai/) model (`microsoft/phi-4-reasoning-plus`) at `http://localhost:1234/v1` — start it before running any of these tests.
+
+```bash
+dotnet test tests/arc42Toolkit.Evaluations
+```
+
+This runs the full golden dataset (`TestData/golden-dataset.json` and `TestData/adrs/`) against the judge, which can take a while since every fixture round-trips through the local reasoning model.
+
+For a quick, single-file demo run — evaluating the toolkit's own `docs/adrs/ADR-0001-extract-ai-evaluation-prototype-into-a-distributable-net-cli-tool.md` against the same rubric, without touching the golden dataset — use:
+
+```bash
+dotnet test tests/arc42Toolkit.Evaluations --filter "Category=Demo"
+```
+
 ### Generating the report
 
 The `aieval` CLI ships as part of the `Microsoft.Extensions.AI.Evaluation.Console` .NET tool, registered in this repo as a local tool via `dotnet-tools.json`. Restore it once (also runs automatically on `dotnet restore`):
