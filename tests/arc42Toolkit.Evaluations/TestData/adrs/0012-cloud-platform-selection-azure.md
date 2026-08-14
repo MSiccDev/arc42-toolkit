@@ -8,12 +8,13 @@ Accepted
 
 ## Context
 
-OQ-08 identified Azure as the strongly preferred cloud platform but left the
-decision unconfirmed. The async plan generation design ([0010](0010-async-plan-generation-with-server-sent-events.md))
-requires an API host, job queue, background worker, and persistent job state
-store — all of which need a concrete infrastructure target. The platform spec
-(see `openspec/specs/platform/spec.md`) intentionally stays cloud-neutral at
-requirement level; this ADR owns the infrastructure decision.
+An earlier open question identified Azure as the strongly preferred cloud
+platform but left the decision unconfirmed. The async plan generation design,
+established in an earlier architectural decision, requires an API host, job
+queue, background worker, and persistent job state store — all of which need
+a concrete infrastructure target. The platform specification intentionally
+stays cloud-neutral at requirement level; this ADR owns the infrastructure
+decision.
 
 ### Considered Options
 
@@ -51,7 +52,7 @@ mapping applies:
 
 | Infrastructure need | Azure service | Rationale |
 |---|---|---|
-| API host | Azure Container Apps (Consumption plan) | Stateless, scales to zero, satisfies NFR-06; no cluster management overhead |
+| API host | Azure Container Apps (Consumption plan) | Stateless, scales to zero, satisfies the statelessness requirement; no cluster management overhead |
 | Job queue | Azure Storage Queue | Simple FIFO, at-least-once delivery; sufficient for single-consumer sequential workload |
 | Background worker | Azure Container Apps Job (event-driven) | KEDA queue-based trigger; runs to completion and exits; no hard timeout |
 | Persistent storage | Azure SQL + EF Core (General Purpose, serverless pre-MVP) | Relational model fits family profiles and job state; EF Core already targets SQL Server |
@@ -62,7 +63,8 @@ mapping applies:
 
 Web portal hosting target (Azure Static Web Apps vs Container Apps vs CDN) is
 deferred to the portal implementation phase — see
-[0014](0014-web-portal-technology-react-spa.md) and OQ-09.
+[0014](0014-web-portal-technology-react-spa.md) and the related open question
+on portal technology.
 
 ## Consequences
 
@@ -85,7 +87,8 @@ service layer.
 
 ### Risks Created
 
-None — R-05 (cloud platform not finalised) is now resolved by this decision.
+None — the earlier risk of an unfinalised cloud platform is now resolved by
+this decision.
 
 ### Review Date
 

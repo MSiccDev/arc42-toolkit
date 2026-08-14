@@ -6,7 +6,7 @@ Date: March 2025
 
 Accepted
 
-Superseded in part by [0013](0013-ai-model-selection-gpt5-primary-mistral-secondary.md), which names the specific production models.
+Superseded in part by a later ADR that names the specific production models.
 
 ## Context
 
@@ -17,11 +17,20 @@ Superseded in part by [0013](0013-ai-model-selection-gpt5-primary-mistral-second
 
 ### Considered Options
 
-1. OpenAI GPT-4 — leading LLM with function calling capabilities
-2. Anthropic Claude — alternative LLM with strong reasoning
-3. Local AI models — self-hosted for data privacy
-4. Rule-based system — traditional algorithmic approach
-5. Multiple provider support — abstract interface with multiple implementations
+1. OpenAI GPT-4 — leading LLM with function calling capabilities; selected as
+   primary provider
+2. Anthropic Claude — alternative LLM with strong reasoning; rejected because
+   its function-calling support was less mature at evaluation time, a poor
+   fit for the structured-response requirement
+3. Local AI models — self-hosted for data privacy; rejected due to
+   insufficient output quality for nutrition-domain reasoning and the
+   operational burden of running and maintaining models in-house
+4. Rule-based system — traditional algorithmic approach; rejected as too
+   rigid to handle diverse cultural cuisines and dietary preferences
+5. Multiple provider support — abstract interface with multiple
+   implementations; deferred in favor of a single-provider start behind an
+   abstraction layer, to avoid upfront complexity before real usage patterns
+   are known
 
 ### Decision Factors
 
@@ -54,7 +63,7 @@ privacy considerations; vendor lock-in without abstraction layer.
 
 ### Risks Created
 
-R-03 (Mistral function calling compatibility unverified).
+Mistral function-calling compatibility remains unverified.
 
 ### Review Date
 

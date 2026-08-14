@@ -5,13 +5,13 @@
 
 ## Context
 
-TwistReader already defines when a feed becomes visibly faulty, but the retry cadence after repeated failures is still open.
+The application already defines when a feed becomes visibly faulty, but the retry cadence after repeated failures is still open.
 
 Without an explicit policy, refresh behavior, feed-health state, and future background refresh design remain underspecified.
 
 ## Decision
 
-TwistReader uses an application-owned stepped retry policy for transient feed refresh failures.
+The application owns a stepped retry policy for transient feed refresh failures.
 
 - Only `transport failure` and `parse failure` count toward the transient failure ladder.
 - `invalid payload` and `unsupported feed` mark a feed faulty immediately, do not increment the transient failure counter, and are retried only by explicit manual action.
