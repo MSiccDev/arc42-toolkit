@@ -39,12 +39,14 @@ public class AdrCompletenessTests
             .AsIChatClient();
 
     // Shared across all scenarios in this class so their results land under
-    // the same execution and show up together in the generated report.
+    // the same execution and show up together in the generated report.  
     private static readonly ReportingConfiguration ReportingConfig =
-        DiskBasedReportingConfiguration.Create(
-            storageRootPath: ReportStoragePath,
-            evaluators: [new AdrCompletenessEvaluator()],
-            chatConfiguration: new ChatConfiguration(CreateLmStudioClient()));
+    DiskBasedReportingConfiguration.Create(
+        storageRootPath: ReportStoragePath,
+        evaluators: [new AdrCompletenessEvaluator()],
+        chatConfiguration: new ChatConfiguration(CreateLmStudioClient()),
+        executionName: $"{DateTime.Now:yyyyMMddTHHmmss}",
+        enableResponseCaching: true);
 
     // Golden dataset fixtures — see TestData/golden-dataset.json and TestData/adrs/.
     // Each entry records the expected score band for a real or synthetic ADR, so this
