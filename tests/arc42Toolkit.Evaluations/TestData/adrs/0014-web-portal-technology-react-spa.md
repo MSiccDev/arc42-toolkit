@@ -6,21 +6,22 @@ Date: June 2026
 
 Accepted
 
-Resolves OQ-09.
+Resolves the open question on web portal technology.
 
 ## Context
 
-OQ-09 was previously framed as a choice between Blazor rendering models
-(WASM, Web App Auto, Server). That framing was incorrect — it assumed a
-Blazor-first approach that was never agreed to. The actual open question was
-the web portal technology, and React is the stated preference.
+The web portal technology question was previously framed as a choice between
+Blazor rendering models (WASM, Web App Auto, Server). That framing was
+incorrect — it assumed a Blazor-first approach that was never agreed to. The
+actual open question was the web portal technology, and React is the stated
+preference.
 
-The backend is a stateless ASP.NET Core API ([0001](0001-clean-architecture-with-domain-driven-design.md),
-NFR-06). The portal is a separate client application that calls this API over
-HTTP and consumes SSE streams for plan generation progress
-([0010](0010-async-plan-generation-with-server-sent-events.md)). The portal
-technology does not affect the backend in any way — the API is
-framework-agnostic by design.
+The backend is a stateless ASP.NET Core API, established in an earlier
+architectural decision. The portal is a separate client application that
+calls this API over HTTP and consumes SSE streams for plan generation
+progress, as introduced in another earlier decision. The portal technology
+does not affect the backend in any way — the API is framework-agnostic by
+design.
 
 ### Considered Options
 
@@ -37,8 +38,8 @@ framework-agnostic by design.
   integrates without additional libraries
 - MSAL.js (`@azure/msal-react`) provides first-class Entra External ID
   integration for token acquisition
-- The stateless API design (NFR-06, [0001](0001-clean-architecture-with-domain-driven-design.md))
-  aligns naturally with an SPA model — no server-side rendering is required
+- The stateless API design aligns naturally with an SPA model — no
+  server-side rendering is required
 
 ## Decision
 

@@ -6,7 +6,7 @@ Date: March 2025
 
 Accepted
 
-Superseded in part by [0013](0013-ai-model-selection-gpt5-primary-mistral-secondary.md), which names the specific production models.
+Superseded in part by a later ADR that names the specific production models.
 
 ## Context
 
@@ -54,7 +54,7 @@ privacy considerations; vendor lock-in without abstraction layer.
 
 ### Risks Created
 
-R-03 (Mistral function calling compatibility unverified).
+Mistral function-calling compatibility remains unverified.
 
 ### Review Date
 
