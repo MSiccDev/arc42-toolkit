@@ -1,4 +1,3 @@
-using System.ClientModel;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Arc42Toolkit.Evals.Evaluators;
@@ -6,7 +5,7 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.AI.Evaluation;
 using Microsoft.Extensions.AI.Evaluation.Reporting;
 using Microsoft.Extensions.AI.Evaluation.Reporting.Storage;
-using OpenAI;
+using OllamaSharp;
 
 namespace arc42Toolkit.Evaluations;
 
@@ -24,19 +23,17 @@ public class AdrCompletenessTests
     private static readonly string RepoRootPath = Path.Combine(
         AppContext.BaseDirectory, "..", "..", "..", "..", "..");
 
-    private static IChatClient CreateLmStudioClient() =>
-        new OpenAIClient(
-                new ApiKeyCredential("lm-studio"),
-                new OpenAIClientOptions
-                {
-                    Endpoint = new Uri("http://localhost:1234/v1"),
-                    // Default is 100s. A local reasoning-model judge can take several
-                    // minutes on a single ADR depending on prompt complexity — the
-                    // default was cutting off valid, still-in-progress responses.
-                    NetworkTimeout = TimeSpan.FromMinutes(10)
-                })
-            .GetChatClient("microsoft/phi-4-reasoning-plus")
-            .AsIChatClient();
+    private static IChatClient CreateOllamaClient() =>
+        new OllamaApiClient(
+            // Default HttpClient timeout is 100s. A local reasoning-model judge can take
+            // several minutes on a single ADR depending on prompt complexity — the
+            // default was cutting off valid, still-in-progress responses.
+            new HttpClient
+            {
+                BaseAddress = new Uri("http://localhost:11434"),
+                Timeout = TimeSpan.FromMinutes(10)
+            },
+            defaultModel: "phi4-reasoning:14b-plus-q8_0");
 
     // Shared across all scenarios in this class so their results land under
     // the same execution and show up together in the generated report.  
@@ -44,9 +41,9 @@ public class AdrCompletenessTests
     DiskBasedReportingConfiguration.Create(
         storageRootPath: ReportStoragePath,
         evaluators: [new AdrCompletenessEvaluator()],
-        chatConfiguration: new ChatConfiguration(CreateLmStudioClient()),
+        chatConfiguration: new ChatConfiguration(CreateOllamaClient()),
         executionName: $"{DateTime.Now:yyyyMMddTHHmmss}",
-        enableResponseCaching: true);
+        enableResponseCaching: false);
 
     // Golden dataset fixtures — see TestData/golden-dataset.json and TestData/adrs/.
     // Each entry records the expected score band for a real or synthetic ADR, so this
