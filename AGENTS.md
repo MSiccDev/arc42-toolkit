@@ -116,6 +116,8 @@ scripts/
 │   languages/                    # Language definitions (en, de, fr, it, es, pt)
 templates/
 │   arc42-lint.yml                # GitHub Actions workflow template (copy to your project)
+tests/arc42Toolkit.Evaluations/     # xUnit suite (MEAI.Evaluation) scoring ADRs against a completeness rubric
+docs/adrs/                          # Architecture decisions for this toolkit itself
 ```
 
 ## Official arc42 Resources
