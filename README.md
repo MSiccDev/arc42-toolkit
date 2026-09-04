@@ -353,7 +353,7 @@ The toolkit includes a small suite of LLM-as-judge evaluations under `tests/arc4
 
 ### Running the tests
 
-The judge is a locally hosted [LM Studio](https://lmstudio.ai/) model (`microsoft/phi-4-reasoning-plus`) at `http://localhost:1234/v1` — start it before running any of these tests.
+The judge is a locally hosted [Ollama](https://ollama.com/) model (`phi4-reasoning:14b-plus-q8_0`) served at `http://localhost:11434` — start Ollama and pull that model before running any of these tests.
 
 ```bash
 dotnet test tests/arc42Toolkit.Evaluations
@@ -388,7 +388,7 @@ dotnet tool run aieval report \
 - `--output` is where the HTML report is written.
 - `--open` launches it in your default browser; omit it to just generate the file.
 
-Re-run the tests and the `aieval report` command any time `AGENTS.md` changes to confirm it still satisfies the structural contract.
+Re-run the tests and the `aieval report` command any time your ADRs change to confirm they still satisfy the completeness rubric.
 
 ---
 
