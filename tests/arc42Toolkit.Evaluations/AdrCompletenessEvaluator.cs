@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.AI.Evaluation;
 
-namespace Arc42Toolkit.Evals.Evaluators;
+namespace arc42Toolkit.Evaluations.Evaluators;
 
 /// <summary>
 /// An LLM-as-judge IEvaluator that scores an Architecture Decision Record (ADR),

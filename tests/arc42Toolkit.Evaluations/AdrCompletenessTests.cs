@@ -1,13 +1,13 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Arc42Toolkit.Evals.Evaluators;
+using arc42Toolkit.Evaluations.Evaluators;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.AI.Evaluation;
 using Microsoft.Extensions.AI.Evaluation.Reporting;
 using Microsoft.Extensions.AI.Evaluation.Reporting.Storage;
 using OllamaSharp;
 
-namespace arc42Toolkit.Evaluations;
+namespace arc42Toolkit.Evaluations.Tests;
 
 public class AdrCompletenessTests
 {
