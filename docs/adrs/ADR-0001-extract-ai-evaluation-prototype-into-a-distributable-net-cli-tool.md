@@ -9,7 +9,7 @@ During a personal learning exercise on `Microsoft.Extensions.AI.Evaluation`, an
 scores Architecture Decision Records against a four-criterion rubric (context,
 decision, consequences, alternatives considered). It runs against a golden
 dataset of real and synthetic ADR fixtures with calibrated expected-score bands,
-and judges via a locally hosted LM Studio model through the standard
+and judges via a locally hosted Ollama model through the standard
 `IChatClient` abstraction. The evaluator currently lives entirely inside
 `tests/arc42Toolkit.Evaluations` as an xUnit test project — an internal
 quality-regression harness, not something toolkit consumers can invoke.
